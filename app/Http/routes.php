@@ -67,6 +67,7 @@ Route::group(['middleware'=>'administrador'], function(){
     });
 
 
+///////////////////////ADONAY//////////////////////////////////
 
 Route::match(['get','post'],'/proveedor/desactivo/{id}','ProveedorController@desactivo');
 Route::match(['get','post'],'/proveedor/activo/{id}','ProveedorController@activo');
@@ -101,3 +102,18 @@ Route::match(['get','post'],'/presentaciones/index/{id}','PresentacionesControll
 Route::match(['get','post'],'/darAltaPresentacion/{id}','PresentacionesController@darAlta');
 Route::get('presentaciones/crear/{producto}','PresentacionesController@crear');
 Route::match(['get','post'],'/guardarPresentaciones/{id}','PresentacionesController@guardar');
+
+///////////////////////FIN ADONAY//////////////////////////////////
+
+///////////////////////ELIO//////////////////////////////////
+Route::match(['get','post'],'/compras/desactivo/{id}','compraController@desactivo');
+Route::match(['get','post'],'/compras/activo/{id}','compraController@activo');
+Route::match(['get','post'],'/compras/index/{id}','compraController@index');
+Route::match(['get','post'],'/compras/ver/{id}','compraController@ver');
+
+
+Route::resource('compras', 'compraController');
+
+Route::resource('detallecompras', 'detallecompraController');
+
+///////////////////////FIN ELIO//////////////////////////////////

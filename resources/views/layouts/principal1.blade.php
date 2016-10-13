@@ -18,9 +18,6 @@
 <!-- alertas con script -->
 {!!Html::style('css/sweetalert.css')!!}
 <!--fin de alertas con script   -->
-
-
-
 <!-- AdminLTE Skins. Choose a skin from the css/skins
 		 folder instead of downloading all of them to reduce the load. -->
 		 {!!Html::style('dist/css/skins/_all-skins.min.css')!!}
@@ -45,6 +42,7 @@
 <![endif]-->
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+	<?php $foto=Auth::user()->nombre_img; ?>
 	<div class="wrapper">
 		<header class="main-header">
 			<!-- Logo -->
@@ -111,15 +109,14 @@
 							<ul class="dropdown-menu">
 								<!-- User image -->
 								<li class="user-header">
-									<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-									<p>
-										Juan Pérez
-									</p>
+									<img src="imagenesUsuarios/{{$foto}}" class="img-circle" alt="User Image">
+									<p>{{Auth::user()->name}}</p>
+									{{-- <p>{{$apellido}}</p> --}}
 								</li>
 								<!-- Menu Footer-->
 								<li class="user-footer">
 									<div class="pull-right">
-										<a href="#" class="btn btn-default btn-flat">Cerrar Sesion</a>
+										<a href="/logout" class="btn btn-default btn-flat">Cerrar Sesion</a>
 									</div>
 								</li>
 							</ul>
@@ -139,258 +136,20 @@
 				<!-- Sidebar user panel -->
 				<div class="user-panel">
 					<div class="pull-left image">
-						<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+					<img src="imagenesUsuarios/{{$foto}}" class="img-circle" alt="User Image">
 					</div>
+					<center>
 					<div class="pull-left info">
-						<p>Juan Pérez </p>
-						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+						<a href="#"><i class="fa fa-circle text-success"></i>{{Auth::user()->name}}</a>
 					</div>
+				</center>
 				</div>
 				<!-- sidebar menu: : style can be found in sidebar.less -->
-				<ul class="sidebar-menu">
-					<li class="header" align="center">MENU</li>
-					<li class="treeview">
-						<a>
-							<i class="fa fa-files-o text-aqua "></i> <span>INVENTARIO</span> <i class="fa fa-angle-left pull-right"></i>
-						</a>
-						<ul class="treeview-menu">
-							<li>
-									
-									<li class="treeview">
-										<a href="#">
-											<i class="fa fa-list-ol fa-fw text-aqua"></i>
-											<span>Gestionar Productos</span>
-											<i class="fa fa-angle-left pull-right"></i>
-										</a>
-										<ul class="treeview-menu">
-
-										    <li>
-													 <li class="treeview">
-													   <a href="#">
-														<i class="fa fa-folder text-aqua"></i>
-														<span>Categorias</span>
-														<i class="fa fa-angle-left pull-right"></i>
-													    </a>
-													    <ul class="treeview-menu">
-							                            <li>
-																<a href="{!!URL::to('/categoria/create')!!}"><i class='fa fa-plus fa-fw '></i>Agregar</a>
-														</li>
-														<li>
-																<a href="{!!URL::to('/categoria')!!}"><i class='fa fa-gears '></i> Administrar</a>
-														</li>
-														 <li>
-									                            <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
-									                     </li>
-													   </ul>
-												     </li>
-				                            </li>
-
-				                            <li>
- 													<li class="treeview">
-													   <a href="#">
-														<i class="fa fa-folder text-aqua"></i>
-														<span>Productos</span>
-														<i class="fa fa-angle-left pull-right"></i>
-													    </a>
-													    <ul class="treeview-menu">
-							                            <li>
-																<a href="{!!URL::to('/producto/create')!!}"><i class='fa fa-plus fa-fw '></i>Agregar</a>
-														</li>
-														<li>
-																<a href="{!!URL::to('/producto')!!}"><i class='fa fa-gears '></i> Administrar</a>
-														</li>
-														 <li>
-									                            <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
-									                     </li>
-													   </ul>
-												    </li>
-											</li>
-										</ul>
-						          </li>
-							</li>
-						</ul>
-					</li>
-			
-                    <li class="treeview">
-						<a>
-							<i class="fa fa-group text-aqua"></i> <span>EMPLEADOS</span> <i class="fa fa-angle-left pull-right"></i>
-						</a>
-						<ul class="treeview-menu">
-							 <li>
-									<a href="{!!URL::to('/empleado/create')!!}"><i class='fa fa-plus fa-fw '></i> Agregar</a>
-							</li>
-							<li>
-									<a href="{!!URL::to('/empleado')!!}"><i class='fa fa-gears '></i> Administrar</a>
-							</li>
-							<li>
-									<a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open'></i> Informe</a>
-							</li>
-
-						</ul>
-					</li>
-
-
-					<li class="treeview">
-						<a>
-							<i class="fa fa-shopping-cart text-aqua"></i> <span>COMPRAS</span> <i class="fa fa-angle-left pull-right"></i>
-						</a>
-						<ul class="treeview-menu">
-							<li>
-									 <li class="treeview">
-													   <a href="#">
-														<i class="fa fa-folder text-aqua"></i>
-														<span>Proveedores</span>
-														<i class="fa fa-angle-left pull-right"></i>
-													    </a>
-													    <ul class="treeview-menu">
-							                            <li>
-																<a href="{!!URL::to('/proveedor/create')!!}"><i class='fa fa-plus fa-fw'></i>Agregar</a>
-														</li>
-														<li>
-																<a href="{!!URL::to('/proveedor')!!}"><i class='fa fa-gears '></i> Administrar</a>
-														</li>
-														 <li>
-									                            <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
-									                     </li>
-									                       <li>
-														             <li class="treeview">
-																		   <a href="#">
-																			<i class="fa fa-folder text-aqua"></i>
-																			<span>Vendedores</span>
-																			<i class="fa fa-angle-left pull-right"></i>
-																		    </a>
-																		    <ul class="treeview-menu">
-												                            <li>
-																					<a href="{!!URL::to('/vendedor/create')!!}"><i class='fa fa-plus fa-fw'></i>Agregar</a>
-																			</li>
-																			<li>
-																					<a href="{!!URL::to('/vendedor')!!}"><i class='fa fa-gears '></i> Administrar</a>
-																			</li>
-																			 <li>
-														                            <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
-														                     </li>
-																		   </ul>
-													                </li>
-									                     </li>
-													   </ul>
-								 </li>
-							</li>
-							</li>
-							<li>
-									 <li class="treeview">
-													   <a href="#">
-														<i class="fa fa-folder text-aqua"></i>
-														<span>Pedidos</span>
-														<i class="fa fa-angle-left pull-right"></i>
-													    </a>
-													    <ul class="treeview-menu">
-							                            <li>
-																<a href="{!!URL::to('/proveedor/create')!!}"><i class='fa fa-plus fa-fw'></i>Agregar</a>
-														</li>
-														<li>
-																<a href="{!!URL::to('/proveedor')!!}"><i class='fa fa-gears '></i> Administrar</a>
-														</li>
-														 <li>
-									                            <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
-									                     </li>
-													   </ul>
-								 </li>
-							</li>
-							<li>
-								   <li>
- 										<li class="treeview">
-													   <a href="#">
-														<i class="fa fa-folder text-aqua"></i>
-														<span>Devolución S/Compra</span>
-														<i class="fa fa-angle-left pull-right"></i>
-													    </a>
-													    <ul class="treeview-menu">
-							                            <li>
-																<a href="{!!URL::to('/producto/create')!!}"><i class='fa fa-plus fa-fw '></i>Agregar</a>
-														</li>
-														<li>
-																<a href="{!!URL::to('/producto')!!}"><i class='fa fa-gears '></i> Administrar</a>
-														</li>
-														 <li>
-									                            <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
-									                     </li>
-													   </ul>
-												    </li>
-										</li>
-
-							</li>
-						</ul>
-					</li>
-					<li class="treeview">
-						<a>
-							<i class="fa fa-laptop text-aqua"></i> <span>VENTAS</span> <i class="fa fa-angle-left pull-right"></i>
-						</a>
-						<ul class="treeview-menu">
-							<li>
-								<li>
- 										<li class="treeview">
-													   <a href="#">
-														<i class="fa fa-folder text-aqua"></i>
-														<span>Venta</span>
-														<i class="fa fa-angle-left pull-right"></i>
-													    </a>
-													    <ul class="treeview-menu">
-							                            <li>
-																<a href="{!!URL::to('/producto/create')!!}"><i class='fa fa-plus fa-fw '></i>Agregar</a>
-														</li>
-														<li>
-																<a href="{!!URL::to('/producto')!!}"><i class='fa fa-gears '></i> Administrar</a>
-														</li>
-														 <li>
-									                            <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
-									                     </li>
-													   </ul>
-												    </li>
-										</li>
-									<li>
- 										<li class="treeview">
-													   <a href="#">
-														<i class="fa fa-folder text-aqua"></i>
-														<span>Devolución S/Venta</span>
-														<i class="fa fa-angle-left pull-right"></i>
-													    </a>
-													    <ul class="treeview-menu">
-							                            <li>
-																<a href="{!!URL::to('/producto/create')!!}"><i class='fa fa-plus fa-fw '></i>Agregar</a>
-														</li>
-														<li>
-																<a href="{!!URL::to('/producto')!!}"><i class='fa fa-gears '></i> Administrar</a>
-														</li>
-														<li>
-									                            <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
-									                     </li>
-													   </ul>
-												    </li>
-										</li>
-							</li>
-						</ul>
-					</li>
-					<li class="treeview">
-						<a>
-							<i class="glyphicon glyphicon-lock  text-aqua"></i> <span>SEGURIDAD</span> <i class="fa fa-angle-left pull-right"></i>
-						</a>
-						<ul class="treeview-menu">
-							<li>
-									<a href="{!!URL::to('/admin')!!}"><i class='fa fa-gears'></i> Administración</a>
-							</li>
-							<li>
-									<a href="{!!URL::to('')!!}"><i class='fa fa-database'></i> Respaldar BD</a>
-							</li>
-							<li>
-									<a href="{!!URL::to('')!!}"><i class='fa fa-database'></i> Restaurar BD</a>
-							</li>
-							<li>
-									<a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open'></i> Bitácora</a>
-							</li>
-						</ul>
-					</li>
-
-				</ul>
+				@if(Auth::user()->tipoCuenta==1)
+				  @include('menus.administrador')
+				@else
+					@include('menus.vendedor')
+				@endif
 			</section>
 			<!-- /.sidebar -->
 		</aside>
@@ -399,30 +158,19 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				@yield('content')
+
 			</section>
 	<!-- jQuery 2.1.4 -->
 	<script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
 	<!-- jQuery UI 1.11.4 -->
 	<script src="plugins\jQueryUI/jquery-ui.min.js"></script>
 	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-		<!-- jQuery 2.1.4 -->
-	{!!Html::script('plugins/jQuery/jQuery-2.1.4.min.js')!!}
-	<!-- Bootstrap 3.3.5 -->
-	{!!Html::script('bootstrap/js/bootstrap.min.js')!!}
-
-	{!!Html::script('plugins/datatables/jquery.dataTables.min.js')!!}
-	{!!Html::script('plugins/datatables/dataTables.bootstrap.min.js')!!}
-
-	{{-- validaciones --}}
-	  {!!Html::script('js/validaciones.js')!!}
-
-		<!-- jQuery UI 1.11.4 -->
-	{!!Html::script('plugins\jQueryUI/jquery-ui.min.js')!!}
-	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 	<script>
 		$.widget.bridge('uibutton', $.ui.button);
 	</script>
-
+	{!!Html::script('js/buscaresc.js')!!}
+	<!-- Bootstrap 3.3.5 -->
+	{!!Html::script('bootstrap/js/bootstrap.min.js')!!}
 	<!-- Morris.js charts -->
 	{!!Html::script('plugins/raphael-min.js')!!}
 	{!!Html::script('plugins/morris/morris.min.js')!!}
@@ -431,65 +179,8 @@
 	<!-- jvectormap -->
 	{!!Html::script('plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')!!}
 	{!!Html::script('plugins/jvectormap/jquery-jvectormap-world-mill-en.js')!!}
-	<!-- Slimscroll -->
-	{!!Html::script('plugins/slimScroll/jquery.slimscroll.min.js')!!}
-	<!-- FastClick -->
-	{!!Html::script('plugins/fastclick/fastclick.min.js')!!}
-	<!-- AdminLTE App -->
-	{!!Html::script('dist/js/app.min.js')!!}
-	<!-- AdminLTE for demo purposes -->
-	{!!Html::script('dist/js/demo.js')!!}
-
-<!-- InputMask -->
-{!!Html::script('plugins/input-mask/jquery.inputmask.js')!!}
-{!!Html::script('plugins/input-mask/jquery.inputmask.date.extensions.js')!!}
-{!!Html::script('plugins/input-mask/jquery.inputmask.extensions.js')!!}
-
-
-{!!Html::script('js/sweetalert-dev.js')!!}  <!-- plugin alertas -->
-<!-- This is what you need -->
-<!--.......................-->
-
-<!-- <script>
-document.querySelector('ul.examples li.warning.confirm button').onclick = function(){
-	swal({
-		title: "Are you sure?",
-		text: "You will not be able to recover this imaginary file!",
-		type: "warning",
-		showCancelButton: true,
-		confirmButtonColor: '#DD6B55',
-		confirmButtonText: 'Yes, delete it!',
-		closeOnConfirm: false
-	},
-	function(){
-		swal("Deleted!", "Your imaginary file has been deleted!", "success");
-	});
-}; -->
-
-	<script>
-		$(function () {
-			$("#example1").DataTable();
-			$('#example2').DataTable({
-				"paging": true,
-				"lengthChange": false,
-				"searching": false,
-				"ordering": true,
-				"info": true,
-				"autoWidth": false
-			});
-		});
-
-
-	</script>
-	<!--para validar telefono -->
-	<script>
-	$(function () {
-		$("[data-mask]").inputmask();
-	});
-	</script>
 	<!-- jQuery Knob Chart -->
 	{!!Html::script('plugins/knob/jquery.knob.js')!!}
-
 	<!-- daterangepicker -->
 	{!!Html::script('plugins/moment.min.js')!!}
 	{!!Html::script('plugins/daterangepicker/daterangepicker.js')!!}
@@ -497,10 +188,15 @@ document.querySelector('ul.examples li.warning.confirm button').onclick = functi
 	{!!Html::script('plugins/datepicker/bootstrap-datepicker.js')!!}
 	<!-- Bootstrap WYSIHTML5 -->
 	{!!Html::script('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')!!}
-
+	<!-- Slimscroll -->
+	{!!Html::script('plugins/slimScroll/jquery.slimscroll.min.js')!!}
+	<!-- FastClick -->
+	{!!Html::script('plugins/fastclick/fastclick.min.js')!!}
+	<!-- AdminLTE App -->
+	{!!Html::script('dist/js/app.min.js')!!}
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 	{!!Html::script('dist/js/pages/dashboard.js')!!}
-
-	{!!Html::script('js/busqueda.js')!!}
+	<!-- AdminLTE for demo purposes -->
+	{!!Html::script('dist/js/demo.js')!!}
 </body>
 </html>

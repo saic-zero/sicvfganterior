@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use SICVFG\Http\Requests;
 use SICVFG\Http\Controllers\Controller;
+use SICVFG\Http\Requests\ProductoCreateRequest;
+use SICVFG\Http\Requests\ProductoUpdateRequest;
 use SICVFG\Producto;
 use Session;
 use Redirect;
@@ -22,7 +24,7 @@ class ProductoController extends Controller
 
      public function index()
     { 
-      $estado=2;
+     $estado=2;
      $categorias=\SICVFG\Categoria::lists('nombreCategoria','id');
      $productos= \SICVFG\Producto::All();
      return view('producto.index',compact('productos','estado','categorias'));
@@ -48,18 +50,18 @@ class ProductoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductoCreateRequest $request)
     {
-        \SICVFG\Producto::create([
-        'codProducto'=>$request['codProducto'],
-        'nombreProd'=>$request['nombreProd'],
-        'descripcionProd'=> $request['descripcionProd'],
-        'stockMinimo'=>$request['stockMinimo'],
-        'stockMaximo'=> $request['stockMaximo'],
-        'categoria_id'=> $request['categoria_id'],
-      ]);
-        return redirect('/producto')->with('mensaje','Producto Agregado con Exito');
-        
+       $productos = new Producto();
+       $productos->codProducto = $request['codProducto'];
+       $productos->nombreProd = $request['nombreProd'];
+       $productos->descripcionProd = $request['descripcionProd'];
+       $productos->stockMinimo = $request['stockMinimo'];
+       $productos->stockMaximo = $request['stockMaximo'];
+       $productos->categoria_id = $request['categoria_id'];
+       $productos->save();
+       $idproducto = $productos->id;
+     return redirect::to('presentaciones/crear/'.$idproducto);
     }
 
 
@@ -70,13 +72,23 @@ class ProductoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {//El metodo show se utilizara en este caso para habilitar
-        
-        $productos=\SICVFG\Producto::findOrFail($id);
-        $productos->estadoProd=1; //modificamos el estado 
-        $productos->update();
-        Session::flash('mensaje','Producto Habilitado con Exito');
-        return Redirect::to('/producto');
+    {
+         $c =\SICVFG\Producto::find($id);
+         $p =\SICVFG\Presentaciones::where('producto_id',$id)->orderBy('equivale','asc')->paginate(8);
+         $pp =\SICVFG\Presentaciones::where('producto_id',$id)->orderBy('equivale','desc')->get();
+         $w =\SICVFG\Presentaciones::where('producto_id',$id)->count();
+         //$dc = Detallecompras::where('producto_id',$id)->where('entrega',false)->get();
+         $cant = $prec = 0;
+         // foreach ($dc as $xdc) {
+         //   $cant += Productos::unidades($xdc->presentacion_id,$xdc->cantidad);
+         //   $prec += $xdc->precio;
+         // }
+         if($cant == 0){
+           $precu = 0;
+         }else{
+           $precu = $prec / $cant;
+         }
+         return view('producto.show',compact('c','p','w','precu','cant','pp'));
     }
 
     /**
@@ -87,8 +99,7 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
-      //return"Se esta editando el producto #".$id;
-     $categorias=\SICVFG\Categoria::All();
+     $categorias=\SICVFG\Categoria::All(); 
      $producto= \SICVFG\Producto::find($id);
      if(is_null($producto))//Si el producto no existe
        {
@@ -104,7 +115,7 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductoUpdateRequest $request, $id)
     {
         $producto= \SICVFG\Producto::find($id);
         $producto->fill($request->all());
@@ -120,6 +131,8 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     //Esta funcion se encarga de Deshabilitar Un producto
     public function destroy($id)
     {
         //
@@ -129,12 +142,29 @@ class ProductoController extends Controller
         Session::flash('mensaje','Producto Deshabilitado con Exito');
         return Redirect::to('/producto');
     }
- public function desactivo($id)
+
+
+
+    //Funciones Creadas
+    //Esta funcion se encarga de Habilitar Un producto
+    public function darAlta($id){
+         $productos=\SICVFG\Producto::findOrFail($id);
+         $productos->estadoProd=1;
+         $productos->update();
+        // Bitacoras::bitacora("Producto activado: ".$productos['nombre']);
+         Session::flash('mensaje','Producto Habilitado con Exito');
+         return Redirect::to('/producto');
+    }
+
+    //Esta Funcion nos proporciona el control de los productos que se encuentran Deshabilitados
+   public function desactivo($id)
     {
         $estado=0;
         $productos= \SICVFG\Producto::All();
         return view('producto.index',compact('productos','estado'));
     }
+
+    //Esta Funcion nos proporciona el control de los productos que se encuentran Habilitados
     public function activo($id)
     {
         $estado=1;
@@ -142,21 +172,6 @@ class ProductoController extends Controller
         return view('producto.index',compact('productos','estado'));
     }
 
-     public function ver($id)
-    {
-         $c = \SICVFG\Producto::find($id);
-         $p = \SICVFG\Presentaciones::where('producto_id',$id)->orderBy('equivale','asc')->paginate(8);
-         $pp = \SICVFG\Presentaciones::where('producto_id',$id)->orderBy('equivale','desc')->get();
-         $w = \SICVFG\Presentaciones::where('producto_id',$id)->count();
-         $cant = $prec = 0;
-       
-         if($cant == 0){
-           $precu = 0;
-         }else{
-           $precu = $prec / $cant;
-         }
-         return view('producto.ver',compact('c','p','w','precu','cant','pp'));
-    }
-
+   
 
 }

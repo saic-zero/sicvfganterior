@@ -10,9 +10,6 @@ if($bandera==1){
 
 <div class="box box-primary">
 		  <div class="box-header with-border">
-				   <center>
-				        {!!link_to_action("ProductoController@index", $title = "Ver Productos", $parameters = 1, $attributes = ["class"=>"btn btn-primary"])!!}
-				   </center>
 			    <h3 class="box-title">Productos</h3>
 			    <h6 class="campoObligatorio">los campos con ( * ) son obligatorios</h6>
 		  </div><!-- /.box-header -->
@@ -64,7 +61,7 @@ if($bandera==1){
 					<td>
 						<select class="form-control" name="categoria_id" >
 								@foreach($categorias as $cat)
-								@if($categ=$cat->id && $categ!=null)
+								@if($categ==$cat->id && $categ!=null)
 								<option value="{{$cat->id}}" selected="selected">{{$cat->nombreCategoria}}</option>
 								@else
 								<option value="{{$cat->id}}">{{$cat->nombreCategoria}}</option>
@@ -75,6 +72,7 @@ if($bandera==1){
 						</td>
 					</div>
 			      </tr>
+
         </table>
         </div>
       </div><!-- /.col -->

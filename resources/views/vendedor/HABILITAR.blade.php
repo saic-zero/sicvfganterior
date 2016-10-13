@@ -1,4 +1,4 @@
-{!!Form::open(['url'=>['darAltaPresentacion',$c->id],'method'=>'POST'])!!}
+{!! Form::open(['route'=>['vendedor.show',$vendedor->id],'method'=>'GET']) !!}
 <img src={!! asset('/images/faviconnAltaBoton.png') !!} alt="" class="circ" onclick="return swal({
 title: '¿Esta seguro que desea restaurar?',
 text: 'El registro volverá a estar disponible!',   type: 'warning',

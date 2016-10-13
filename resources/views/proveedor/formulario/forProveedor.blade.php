@@ -1,9 +1,6 @@
 
 <div class="box box-primary">
   <div class="box-header with-border">
-  	 <center>
-        {!!link_to_action("ProveedorController@index", $title = "Ver Proveedores", $parameters = 1, $attributes = ["class"=>"btn btn-primary"])!!}
-   </center>
     <h3 class="box-title">Proveedores</h3>
     <h6 class="campoObligatorio">los campos con ( * ) son obligatorios</h6>
   </div><!-- /.box-header -->
@@ -21,21 +18,12 @@
 				<td>{!!Form::text('nombreProv',null,['class'=>'form-control', 'placeholder'=>'Ingresar Nombre De La Empresa','required'])!!}</td>
 			    </div>
 	      </tr>
-        
-		
-    	   <tr>
-			    <div class="form-group">
-				<td>{!!Form::label('lbRepresentante','* Nombre del Contacto:')!!}</td>
-				<td>{!!Form::text('representanteProv',null,['class'=>'form-control', 'placeholder'=>'Ingresar Nombre del Contacto','required'])!!}</td>
-			    </div>
-	      </tr>
-
 
     	   <tr>
     	   	<div class="col-xs-4">
 			    <div class="form-group">
 				<td>{!!Form::label('lbRUC','* NRC:')!!}</td>
-				<td>{!!Form::text('RUC',null,['class'=>'form-control', 'placeholder'=>'Ejemplo:12345-6','required'])!!}</td>
+				<td>{!!Form::text('RUC',null,['onKeyPress'=>'return validarRUC(event)','id'=>'RUC','class'=>'form-control', 'placeholder'=>'Ejemplo:12345-6','required'])!!}</td>
 			    </div>
 			</div>
 	      </tr>
@@ -59,10 +47,10 @@
 
 
     	   <tr>
-			    <div class="form-group">
-				<td>{!!Form::label('lbTelefono','* Telefono:')!!}</td>
-				<td><input name="telefonoProv" id="telefonoEmp" type="text" class="form-control" data-inputmask='"mask": "9999-9999"' data-mask></td>
-			    </div>
+			     <div class="form-group">
+					<td>{!!Form::label('lbTelefono','* Teléfono :')!!}</td>
+					<td>{!!Form::text('telefonoProv',null,['onKeyPress'=>'return validarTelefono(event)','id'=>'telefonoProv','class'=>'form-control', 'placeholder'=>'Telefono ..','required'])!!}</td>
+			   </div><!-- /.form-group -->
 	      </tr>
 						
       </tr>

@@ -1,9 +1,6 @@
 @include('alertas.request')
 <div class="box box-primary">
   <div class="box-header with-border">
-   <center>
-        {!!link_to_action("CategoriaController@index", $title = "Ver Categorias", $parameters = 1, $attributes = ["class"=>"btn btn-primary"])!!}
-   </center>
     <h3 class="box-title">Categoria</h3>
     <h6 class="campoObligatorio">los campos con ( * ) son obligatorios</h6>
   </div><!-- /.box-header -->

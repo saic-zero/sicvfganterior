@@ -1,5 +1,5 @@
 
-@extends('layouts.admin')
+@extends('layouts.principal1')
 @section('content')
 @if (Session::has('mensaje'))
 <div class="alert alert-success" role="alert" >
@@ -18,11 +18,13 @@
   <div class="col-xs-12">
     <div class="box box-success">
       <div class="box-header">
-        <h3 class="box-title"  font-weight:"bold">Administración de Proveedores</h3>
+        <center>
+        <h3 class="box-title"  font-weight:"bold">Administración de Proveedores(Empresas)</h3>
+        </center>
       </div><!-- /.box-header -->
       <br>
      
-      {!!link_to_action("frontController@index", $title = "Salir", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
+      {!!link_to_action("frontController@index", $title = "Salir", $parameters = 1, $attributes = ["class"=>"btn btn-danger"])!!}
       {!!link_to_action("ProveedorController@index", $title = "Todos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_action("ProveedorController@activo", $title = "Activos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_action("ProveedorController@desactivo", $title = "Papelera", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
@@ -36,7 +38,7 @@
           <thead>
             <tr>
                      <th bgcolor="#e5eef7" >EMPRESA</th>
-                      <th bgcolor="#e5eef7">CONTACTO</th>
+                     <th bgcolor="#e5eef7" >NRC</th>
                       <th bgcolor="#e5eef7">CORREO</th>
                       <th bgcolor="#e5eef7">DIRECCION</th>
                       <th bgcolor="#e5eef7">TELEFONO</th>
@@ -49,7 +51,7 @@
                 <tr>
                   
                      <td>{{$proveedor->nombreProv}}</td>
-                     <td>{{$proveedor->representanteProv}}</td>
+                      <td>{{$proveedor->RUC}}</td>
                      <td>{{$proveedor->correoProv}}</td>
                      <td>{{$proveedor->direccionProv}}</td>
                      <td>{{$proveedor->telefonoProv}}</td>
@@ -72,7 +74,7 @@
                  <tr>
  
                      <td>{{$proveedor->nombreProv}}</td>
-                     <td>{{$proveedor->representanteProv}}</td>
+                     <td>{{$proveedor->RUC}}</td>
                      <td>{{$proveedor->correoProv}}</td>
                      <td>{{$proveedor->direccionProv}}</td>
                      <td>{{$proveedor->telefonoProv}}</td>
@@ -93,7 +95,7 @@
               <tbody>
                 <tr>
                      <td>{{$proveedor->nombreProv}}</td>
-                     <td>{{$proveedor->representanteProv}}</td>
+                     <td>{{$proveedor->RUC}}</td>
                      <td>{{$proveedor->correoProv}}</td>
                      <td>{{$proveedor->direccionProv}}</td>
                      <td>{{$proveedor->telefonoProv}}</td>

@@ -17,7 +17,7 @@ class CreatePresentacionesTable extends Migration
             $table->string('nombrePre');
             $table->integer('producto_id')->unsigned();
             $table->foreign('producto_id')->references('id')->on('productos');
-            $table->double('ganancia');
+            $table->double('ganancia')->default(0);
             $table->integer('equivale')->unsigned();
              $table->boolean('estadoPres')->default(true);
 

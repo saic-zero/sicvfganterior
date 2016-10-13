@@ -68,11 +68,15 @@ Route::group(['middleware'=>'administrador'], function(){
 
 
 
-
 Route::match(['get','post'],'/proveedor/desactivo/{id}','ProveedorController@desactivo');
 Route::match(['get','post'],'/proveedor/activo/{id}','ProveedorController@activo');
 Route::match(['get','post'],'/proveedor/index/{id}','ProveedorController@index');
 Route::resource('proveedor', 'ProveedorController');
+
+Route::match(['get','post'],'/vendedor/desactivo/{id}','VendedorController@desactivo');
+Route::match(['get','post'],'/vendedor/activo/{id}','VendedorController@activo');
+Route::match(['get','post'],'/vendedor/index/{id}','VendedorController@index');
+Route::resource('vendedor', 'VendedorController');
 
 Route::match(['get','post'],'/categoria/desactivo/{id}','CategoriaController@desactivo');
 Route::match(['get','post'],'/categoria/activo/{id}','CategoriaController@activo');
@@ -81,12 +85,19 @@ Route::resource('categoria', 'CategoriaController');
 
 Route::match(['get','post'],'/producto/desactivo/{id}','ProductoController@desactivo');
 Route::match(['get','post'],'/producto/activo/{id}','ProductoController@activo');
+Route::match(['get','post'],'/darAltaProductos/{id}','ProductoController@darAlta');
 Route::match(['get','post'],'/producto/index/{id}','ProductoController@index');
+Route::match(['get','post'],'/producto/show/{id}','ProductoController@show');
 Route::match(['get','post'],'/producto/ver/{id}','ProductoController@ver');
 Route::resource('producto', 'ProductoController');
 
 
-Route::match(['get','post'],'/presentaciones/desactivo/{id}','PresentacionesController@desactivo');
-Route::match(['get','post'],'/presentaciones/activo/{id}','PresentacionesController@activo');
-Route::match(['get','post'],'/presentaciones/index/{id}','PresentacionesController@index');
 Route::resource('presentaciones', 'PresentacionesController');
+Route::match(['get','post'],'/presentaciones/desactivo/{producto}','PresentacionesController@desactivo');
+Route::match(['get','post'],'/presentaciones/activo/{producto}','PresentacionesController@activo');
+Route::match(['get','post'],'/presentaciones/todos/{producto}','PresentacionesController@todos');
+Route::match(['get','post'],'/presentaciones/todosAtras/{producto}','PresentacionesController@todosAtras');
+Route::match(['get','post'],'/presentaciones/index/{id}','PresentacionesController@index');
+Route::match(['get','post'],'/darAltaPresentacion/{id}','PresentacionesController@darAlta');
+Route::get('presentaciones/crear/{producto}','PresentacionesController@crear');
+Route::match(['get','post'],'/guardarPresentaciones/{id}','PresentacionesController@guardar');

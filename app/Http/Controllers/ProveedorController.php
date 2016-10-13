@@ -41,11 +41,10 @@ class ProveedorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProveedorCreateRequest $request)
     {
          \SICVFG\Proveedor::create([
         'nombreProv'=>$request['nombreProv'],
-        'representanteProv'=> $request['representanteProv'],
         'RUC'=> $request['RUC'],
         'correoProv'=> $request['correoProv'],
         'direccionProv'=>$request['direccionProv'],
@@ -92,7 +91,7 @@ class ProveedorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProveedorUpdateRequest $request, $id)
     {
         $proveedor= \SICVFG\Proveedor::find($id);
         $proveedor->fill($request->all());
@@ -111,9 +110,9 @@ class ProveedorController extends Controller
     public function destroy($id)
     {    
     
-        $proveedor=\SICVFG\Proveedor::findOrFail($id);
-        $proveedor->estadoProv=0; //modificamos el estado a cero asumir que esta deshabilitado
-        $proveedor->update();
+        $proveedor=\SICVFG\Proveedor::find($id);
+        $proveedor->estadoProv=false; //modificamos el estado a cero asumir que esta deshabilitado
+        $proveedor->save();
          Session::flash('mensaje','Proveedor Deshabilitado con Exito');
         return Redirect::to('/proveedor');
     }

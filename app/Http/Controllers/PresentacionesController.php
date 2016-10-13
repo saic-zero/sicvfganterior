@@ -5,7 +5,9 @@ namespace SICVFG\Http\Controllers;
 use Illuminate\Http\Request;
 
 use SICVFG\Http\Requests;
+use DB;
 use SICVFG\Http\Controllers\Controller;
+use SICVFG\Presentaciones;
 use SICVFG\Producto;
 use Session;
 use Redirect;
@@ -20,9 +22,7 @@ class PresentacionesController extends Controller
      */
     public function index()
     {
-      $estado=2;
-      $presentaciones= \SICVFG\Presentaciones::All();
-     return view('presentaciones.index',compact('presentaciones','estado'));
+
     }
 
     /**
@@ -32,8 +32,7 @@ class PresentacionesController extends Controller
      */
     public function create()
     {
-    $productos=\SICVFG\Producto::lists('nombreProd','id');
-     return view('presentaciones.create',compact('productos'));
+ 
     }
 
     /**
@@ -45,14 +44,6 @@ class PresentacionesController extends Controller
     public function store(Request $request)
     {
           
-        \SICVFG\Presentaciones::create([
-        'nombrePre'=>$request['nombrePre'],
-        'equivale'=>$request['equivale'],
-         'ganancia'=> $request['ganancia'],
-        'producto_id'=>$request['producto_id'],
-        ]);
-        return redirect('/presentaciones')->with('mensaje','presentacion Agregado con Exito');
-        
     }
 
         
@@ -63,14 +54,19 @@ class PresentacionesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        
-        $presentaciones=\SICVFG\Presentaciones::findOrFail($id);
-        $presentaciones->estadoPres=1; //modificamos el estado 
-        $presentaciones->update();
-        Session::flash('mensaje','presentación Habilitada con Exito');
-        return Redirect::to('/presentaciones');
+    public function show($producto)
+    { 
+     //Obtenemos el id de la presentacion respectiva 
+        $id = \SICVFG\Presentaciones::all()->count();
+        $pres = new Presentaciones;
+        $pres->id = $id;
+        $id= $pres->id;
+
+        $estado=2;
+        $nombre = Presentaciones::nombreProd($producto);
+        $presentacion = Presentaciones::where('producto_id','=',$producto)->orderBy('equivale')->paginate(8);
+     
+      return view('presentaciones.show',compact('presentacion','producto','nombre','estado','id'));
     }
 
     /**
@@ -81,14 +77,12 @@ class PresentacionesController extends Controller
      */
     public function edit($id)
     {
-              //return"Se esta editando el producto #".$id;
      $productos=\SICVFG\Producto::All();
      $presentaciones= \SICVFG\Presentaciones::find($id);
-     if(is_null($presentaciones))//Si no existe
-       {
-        App::abort(404);
-       }
-     return view('presentaciones.edit',compact('presentaciones','productos'));//si no
+          $producto=$presentaciones->producto_id;
+          $nombreProd = Presentaciones::nombreProd($producto);
+     
+     return view('presentaciones.edit',compact('presentaciones','productos','nombreProd','producto'));//si no
     }
 
     /**
@@ -100,12 +94,17 @@ class PresentacionesController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $presentaciones= \SICVFG\Presentaciones::find($id);
-        $presentaciones->fill($request->all());
-        $presentaciones->save();
-       
-        Session::flash('mensaje','presentación Editado con Exito');
-        return Redirect::to('/presentaciones');
+    $presentaciones= \SICVFG\Presentaciones::find($id);
+    $presentaciones->fill($request->all());
+    $presentaciones->save();
+      
+          $estado=2;
+          $prese=\SICVFG\Presentaciones::findOrFail($id);
+          $producto=$prese->producto_id;
+          $nombre = Presentaciones::nombreProd($producto);
+          $presentacion = Presentaciones::where('producto_id','=',$producto)->orderBy('equivale')->paginate(8);
+    Session::flash('mensaje','presentación Editado con Exito');
+    return view('presentaciones.show',compact('presentacion','estado','nombre','producto'));
     }
 
     /**
@@ -115,26 +114,115 @@ class PresentacionesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        
-         $presentaciones=\SICVFG\Presentaciones::findOrFail($id);
+      {
+        $presentaciones=\SICVFG\Presentaciones::findOrFail($id);
         $presentaciones->estadoPres=0; //modificamos el estado 
         $presentaciones->update();
         Session::flash('mensaje','presentación Deshabilitada con Exito');
-        return Redirect::to('/presentaciones');
+              
+           
+              $producto=$presentaciones->producto_id;
+              $estado=2;
+              $nombre = Presentaciones::nombreProd($producto);
+              $presentacion = Presentaciones::where('producto_id','=',$producto)->orderBy('equivale')->paginate(8);
+      return view('presentaciones.show',compact('presentacion','producto','nombre','estado'));
+       }
+
+
+         //Nuevas Funciones
+
+    public function darAlta($id)
+        {
+       $presentaciones=\SICVFG\Presentaciones::findOrFail($id);
+        $presentaciones->estadoPres=1; //modificamos el estado 
+        $presentaciones->update();
+        Session::flash('mensaje','presentación Habilitada con Exito');
+              
+           
+              $producto=$presentaciones->producto_id;
+              $estado=2;
+              $nombre = Presentaciones::nombreProd($producto);
+              $presentacion = Presentaciones::where('producto_id','=',$producto)->orderBy('equivale')->paginate(8);
+      return view('presentaciones.show',compact('presentacion','producto','nombre','estado'));
+        }
+
+   
+    public function desactivo($producto)
+    {
+     $id = \SICVFG\Presentaciones::all()->count();
+     $pres = new Presentaciones;
+     $pres->id = $id;
+     $id= $pres->id;
+              $estado=0;
+              $nombre = Presentaciones::nombreProd($producto);
+              $presentacion = Presentaciones::where('producto_id','=',$producto)->orderBy('equivale')->paginate(8);
+      return view('presentaciones.show',compact('presentacion','producto','nombre','estado','id'));
+    }
+   
+
+   public function activo($producto)
+    {
+        // $estado=1;
+        // $presentacion=\SICVFG\Presentaciones::findOrFail($id);
+        // $obtenido=DB::select('SELECT p.nombreProd,p.id,pre.nombrePre,pre.id FROM productos p, presentaciones pre where pre.producto_id=p.id and pre.producto_id="$id"');
+        // $nombre = Presentaciones::nombreProd($obtenido);
+        
+        $id = \SICVFG\Presentaciones::all()->count();
+        $pres = new Presentaciones;
+        $pres->id = $id;
+        $id= $pres->id;
+
+      $estado=1;
+      $nombre = Presentaciones::nombreProd($producto);
+      $presentacion = Presentaciones::where('producto_id','=',$producto)->orderBy('equivale')->paginate(8);
+      return view('presentaciones.show',compact('presentacion','producto','nombre','estado','id'));
+   }
+
+      
+       public function todos($producto)
+    {
+        $id = \SICVFG\Presentaciones::all()->count();
+        $pres = new Presentaciones;
+        $pres->id = $id;
+        $id= $pres->id;
+
+      $estado=2;
+      $nombre = Presentaciones::nombreProd($producto);
+      $presentacion = Presentaciones::where('producto_id','=',$producto)->orderBy('equivale')->paginate(8);
+      return view('presentaciones.show',compact('presentacion','producto','nombre','estado','id'));
     }
 
- public function desactivo($id)
+        public function todosAtras($producto)
     {
-        $estado=0;
-        $presentaciones= \SICVFG\Presentaciones::All();
-        return view('presentaciones.index',compact('presentaciones','estado'));
+        $id = \SICVFG\Presentaciones::all()->count();
+        $pres = new Presentaciones;
+        $pres->id = $id;
+        $id= $pres->id;
+
+      $estado=2;
+      $nombre = Presentaciones::nombreProd($producto);
+      $presentacion = Presentaciones::where('producto_id','=',$producto)->orderBy('equivale')->paginate(8);
+      return view('presentaciones.show',compact('presentacion','producto','nombre','estado','id'));
     }
-    public function activo($id)
+
+    
+    public function crear($producto)
     {
-        $estado=1;
-        $presentaciones= \SICVFG\Presentaciones::All();
-        return view('presentaciones.index',compact('presentaciones','estado'));
+      $nombreProd = \SICVFG\Presentaciones::nombreProd($producto);
+      return view('presentaciones.crear',compact('producto','nombreProd'));
     }
+
+    public function guardar(Request $request, $producto)
+    {   //Bitacoras::bitacora("Registro de nueva presentación: ".$request['nombre']);
+        $id = \SICVFG\Presentaciones::all()->count();
+        $pres = new Presentaciones;
+        //$pres->id = $id;
+        $pres->nombrePre = $request->nombrePre;
+        $pres->equivale = $request->equivale;
+        $pres->producto_id = $producto;
+        $pres->save();
+        return redirect('/presentaciones/'.$producto)->with('mensaje','Registro Guardado');
+    }
+
 
 }

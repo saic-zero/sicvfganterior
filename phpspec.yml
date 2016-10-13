@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: SICVFG
+        psr4_prefix: SICVFG
+        src_path: app

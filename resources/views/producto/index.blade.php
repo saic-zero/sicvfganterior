@@ -17,11 +17,11 @@
 <div class="row">
   <div class="col-xs-12">
     <div class="box box-success">
-      <center>
+  
         <div class="box-header">
           <h3 class="box-title">Administración de Productos</h3>
         </div><!-- /.box-header -->
-      </center>
+
       <br>
       
       {!!link_to_action("frontController@index", $title = "Salir", $parameters = 1, $attributes = ["class"=>"btn btn-danger"])!!}

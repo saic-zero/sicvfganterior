@@ -30,7 +30,7 @@
        @endif
       <br><br>
       <div class="box-body">
-        <table id="example1" class="table table-bordered table-striped">
+        <table id="example1" class="table table-bordered table-striped buscar">
           <thead>
             <tr>
              <th bgcolor="#e5eef7">CATEGORIA</th>

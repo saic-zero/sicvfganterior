@@ -18,23 +18,23 @@
   <div class="col-xs-12">
     <div class="box box-success">
       <div class="box-header">
-        <center>
+      
         <h3 class="box-title"  font-weight:"bold">Administración de Datos de Vendedores</h3>
-        </center>
+       
       </div><!-- /.box-header -->
       <br>
      
       {!!link_to_action("frontController@index", $title = "Salir", $parameters = 1, $attributes = ["class"=>"btn btn-danger"])!!}
       {!!link_to_action("VendedorController@index", $title = "Todos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_action("VendedorController@activo", $title = "Activos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
-      {!!link_to_action("VendedorController@desactivo", $title = "Papelera", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
+      {!!link_to_action("VendedorController@desactivo", $title = "Desactivos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       @if($estado==2)
       {!!link_to_route('vendedor.create',$title='Nuevo', $parametro= 1, $attributes = ["class"=>"btn bg-olive"])!!}   
        @endif
    
       <br><br>
       <div class="box-body">
-        <table id="example1" class="table table-bordered table-striped">
+           <table id="example1" class="table table-bordered table-striped buscar">
           <thead>
             <tr>
                       <th bgcolor="#e5eef7" >VENDEDOR</th>

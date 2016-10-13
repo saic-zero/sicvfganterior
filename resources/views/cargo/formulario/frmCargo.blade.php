@@ -1,5 +1,5 @@
 @include('alertas.request')
-<div class="box box-success">
+<div class="box box-primary">
 	<div class="box-header with-border">
 		<h3 class="box-title">Nuevo Cargo</h3>
 		<h6 class="campoObligatorio">los campos con ( * ) son obligatorios</h6>

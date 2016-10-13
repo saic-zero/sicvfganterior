@@ -1,4 +1,4 @@
-<div class="box box-success">
+<div class="box box-primary">
 	<div class="box-header with-border ">
 		<h3 class="box-title">Nueva Sucursal</h3>
 		<h6 class="campoObligatorio">los campos con ( * ) son obligatorios</h6>

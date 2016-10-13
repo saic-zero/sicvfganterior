@@ -9,7 +9,7 @@ if($bandera==1){
 	$sex = $empleados->sexo;
 }
  ?>
- <div class="box box-success">
+ <div class="box box-primary">
 	 <div class="box-header with-border">
 		 <h3 class="box-title">Nuevo Empleado</h3>
 		 <h6 class="campoObligatorio">los campos con ( * ) son obligatorios</h6>

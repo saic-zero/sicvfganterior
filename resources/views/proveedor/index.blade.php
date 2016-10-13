@@ -18,9 +18,9 @@
   <div class="col-xs-12">
     <div class="box box-success">
       <div class="box-header">
-        <center>
+        
         <h3 class="box-title"  font-weight:"bold">Administración de Proveedores(Empresas)</h3>
-        </center>
+        
       </div><!-- /.box-header -->
       <br>
      
@@ -34,7 +34,7 @@
    
       <br><br>
       <div class="box-body">
-        <table id="example1" class="table table-bordered table-striped">
+        <table id="example1" class="table table-bordered table-striped buscar">
           <thead>
             <tr>
                      <th bgcolor="#e5eef7" >EMPRESA</th>

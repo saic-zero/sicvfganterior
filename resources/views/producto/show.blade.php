@@ -18,12 +18,11 @@
   <div class="col-xs-12">
     <div class="box box-success">
       <br>
-        <center>
+        
         {!!link_to_action("ProductoController@index", $title = "Atras", $parameters = 1, $attributes = ["class"=>"btn btn-danger"])!!}
         {!!link_to_route('presentaciones.show',$title='Presentaciones', $parametro=$c->id,$atributo=['class'=>'btn btn-primary'])!!}
         {!!link_to_route('producto.edit',$title='Editar Producto', $parametro=$c->id,$atributo=['class'=>'btn btn-primary'])!!}
-        </center>
-
+        
       <br>
       <center>
           <div class="box-header">

@@ -5,6 +5,7 @@
 <link href="images/favicon.png" rel="icon" />
 <!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<!-- Bootstrap 3.3.5 -->
 {!!Html::style('bootstrap/css/bootstrap.min.css')!!}
 <!-- Font Awesome -->
 {!!Html::style('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')!!}
@@ -18,6 +19,9 @@
 <!-- alertas con script -->
 {!!Html::style('css/sweetalert.css')!!}
 <!--fin de alertas con script   -->
+
+
+
 <!-- AdminLTE Skins. Choose a skin from the css/skins
 		 folder instead of downloading all of them to reduce the load. -->
 		 {!!Html::style('dist/css/skins/_all-skins.min.css')!!}
@@ -160,17 +164,26 @@
 				@yield('content')
 
 			</section>
+	
 	<!-- jQuery 2.1.4 -->
-	<script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
-	<!-- jQuery UI 1.11.4 -->
-	<script src="plugins\jQueryUI/jquery-ui.min.js"></script>
+	{!!Html::script('plugins/jQuery/jQuery-2.1.4.min.js')!!}
+	<!-- Bootstrap 3.3.5 -->
+	{!!Html::script('bootstrap/js/bootstrap.min.js')!!}
+
+	{!!Html::script('plugins/datatables/jquery.dataTables.min.js')!!}
+	{!!Html::script('plugins/datatables/dataTables.bootstrap.min.js')!!}
+
+	{{-- validaciones --}}
+	  {!!Html::script('js/validaciones.js')!!}
+		{!!Html::script('js/buscaresc.js')!!}
+
+		<!-- jQuery UI 1.11.4 -->
+	{!!Html::script('plugins\jQueryUI/jquery-ui.min.js')!!}
 	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 	<script>
 		$.widget.bridge('uibutton', $.ui.button);
 	</script>
-	{!!Html::script('js/buscaresc.js')!!}
-	<!-- Bootstrap 3.3.5 -->
-	{!!Html::script('bootstrap/js/bootstrap.min.js')!!}
+
 	<!-- Morris.js charts -->
 	{!!Html::script('plugins/raphael-min.js')!!}
 	{!!Html::script('plugins/morris/morris.min.js')!!}
@@ -179,8 +192,43 @@
 	<!-- jvectormap -->
 	{!!Html::script('plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')!!}
 	{!!Html::script('plugins/jvectormap/jquery-jvectormap-world-mill-en.js')!!}
+	<!-- Slimscroll -->
+	{!!Html::script('plugins/slimScroll/jquery.slimscroll.min.js')!!}
+	<!-- FastClick -->
+	{!!Html::script('plugins/fastclick/fastclick.min.js')!!}
+	<!-- AdminLTE App -->
+	{!!Html::script('dist/js/app.min.js')!!}
+	<!-- AdminLTE for demo purposes -->
+	{!!Html::script('dist/js/demo.js')!!}
+
+<!-- InputMask -->
+{!!Html::script('plugins/input-mask/jquery.inputmask.js')!!}
+{!!Html::script('plugins/input-mask/jquery.inputmask.date.extensions.js')!!}
+{!!Html::script('plugins/input-mask/jquery.inputmask.extensions.js')!!}
+
+
+{!!Html::script('js/sweetalert-dev.js')!!}  <!-- plugin alertas -->
+<!-- This is what you need -->
+
+	<script>
+		$(function () {
+			$("#example1").DataTable();
+			$('#example2').DataTable({
+				"paging": true,
+				"lengthChange": false,
+				"searching": false,
+				"ordering": true,
+				"info": true,
+				"autoWidth": false
+			});
+		});
+
+
+	</script>
+
 	<!-- jQuery Knob Chart -->
 	{!!Html::script('plugins/knob/jquery.knob.js')!!}
+
 	<!-- daterangepicker -->
 	{!!Html::script('plugins/moment.min.js')!!}
 	{!!Html::script('plugins/daterangepicker/daterangepicker.js')!!}
@@ -188,15 +236,10 @@
 	{!!Html::script('plugins/datepicker/bootstrap-datepicker.js')!!}
 	<!-- Bootstrap WYSIHTML5 -->
 	{!!Html::script('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')!!}
-	<!-- Slimscroll -->
-	{!!Html::script('plugins/slimScroll/jquery.slimscroll.min.js')!!}
-	<!-- FastClick -->
-	{!!Html::script('plugins/fastclick/fastclick.min.js')!!}
-	<!-- AdminLTE App -->
-	{!!Html::script('dist/js/app.min.js')!!}
+
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 	{!!Html::script('dist/js/pages/dashboard.js')!!}
-	<!-- AdminLTE for demo purposes -->
-	{!!Html::script('dist/js/demo.js')!!}
+
+	{!!Html::script('js/busqueda.js')!!}
 </body>
 </html>

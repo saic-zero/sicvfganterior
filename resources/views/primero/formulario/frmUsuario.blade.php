@@ -41,7 +41,6 @@
           {!!Form::label('lbcuenta','* Tipo de Cuenta:')!!}
           <select class="form-control" name="tipoCuenta">
             <option value="1">Administrador</option>
-            <option value="2">Vendedor</option>
           </select>
         </div><!-- /.form-group -->
       </div><!-- /.col -->

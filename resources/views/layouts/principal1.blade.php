@@ -46,15 +46,14 @@
 <![endif]-->
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-	<?php $foto=Auth::user()->nombre_img; ?>
 	<div class="wrapper">
 		<header class="main-header">
 			<!-- Logo -->
-			<a href="" class="logo">
+			<a href="/index" class="logo">
 				<!-- mini logo for sidebar mini 50x50 pixels -->
-				<span class="logo-mini"><b>A</b>LT</span>
+				<span class="logo-mini"><b>F</b>G</span>
 				<!-- logo for regular state and mobile devices -->
-				<span class="logo-lg"><b>Farmacia </b>Guadalupe II</span>
+				<span class="logo-lg"><b>Farmacia </b>Guadalupe </span>
 			</a>
 			<!-- Header Navbar: style can be found in header.less -->
 			<nav class="navbar navbar-static-top" role="navigation">
@@ -72,39 +71,20 @@
 								<span class="label label-warning">10</span>
 							</a>
 							<ul class="dropdown-menu">
-								<li class="header">You have 10 notifications</li>
+								<li class="header">area de notificaciones caducidad</li>
 								<li>
 									<!-- inner menu: contains the actual data -->
 									<ul class="menu">
 										<li>
 											<a href="#">
-												<i class="fa fa-users text-aqua"></i> 5 new members joined today
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												<i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the page and may cause design problems
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												<i class="fa fa-users text-red"></i> 5 new members joined
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												<i class="fa fa-shopping-cart text-green"></i> 25 sales made
-											</a>
-										</li>
-										<li>
-											<a href="#">
-												<i class="fa fa-user text-red"></i> You changed your username
+												<i class="fa fa-users text-aqua"></i>
 											</a>
 										</li>
 									</ul>
 								</li>
-								<li class="footer"><a href="#">View all</a></li>
+								<li class="footer"><a href="#">Ver todas</a></li>
 							</ul>
+						</li>
 						</li>
 						<li class="dropdown user user-menu">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -113,7 +93,7 @@
 							<ul class="dropdown-menu">
 								<!-- User image -->
 								<li class="user-header">
-									<img src="imagenesUsuarios/{{$foto}}" class="img-circle" alt="User Image">
+									<img src="http://localhost:8000/imagenesUsuarios/{{Auth::user()->nombre_img}}" class="img-circle" alt="User Image">
 									<p>{{Auth::user()->name}}</p>
 									{{-- <p>{{$apellido}}</p> --}}
 								</li>
@@ -140,7 +120,7 @@
 				<!-- Sidebar user panel -->
 				<div class="user-panel">
 					<div class="pull-left image">
-					<img src="imagenesUsuarios/{{$foto}}" class="img-circle" alt="User Image">
+					<img src="http://localhost:8000/imagenesUsuarios/{{Auth::user()->nombre_img}}" class="img-circle" alt="User Image">
 					</div>
 					<center>
 					<div class="pull-left info">
@@ -164,7 +144,7 @@
 				@yield('content')
 
 			</section>
-	
+{!!Html::script('js/compra.js')!!}
 	<!-- jQuery 2.1.4 -->
 	{!!Html::script('plugins/jQuery/jQuery-2.1.4.min.js')!!}
 	<!-- Bootstrap 3.3.5 -->
@@ -209,23 +189,6 @@
 
 {!!Html::script('js/sweetalert-dev.js')!!}  <!-- plugin alertas -->
 <!-- This is what you need -->
-
-	<script>
-		$(function () {
-			$("#example1").DataTable();
-			$('#example2').DataTable({
-				"paging": true,
-				"lengthChange": false,
-				"searching": false,
-				"ordering": true,
-				"info": true,
-				"autoWidth": false
-			});
-		});
-
-
-	</script>
-
 	<!-- jQuery Knob Chart -->
 	{!!Html::script('plugins/knob/jquery.knob.js')!!}
 
@@ -241,5 +204,6 @@
 	{!!Html::script('dist/js/pages/dashboard.js')!!}
 
 	{!!Html::script('js/busqueda.js')!!}
+
 </body>
 </html>

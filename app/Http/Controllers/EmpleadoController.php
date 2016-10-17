@@ -37,7 +37,7 @@ class EmpleadoController extends Controller
      */
     public function create()
     {
-        $sucursals=Sucursal::All();
+        $sucursals=DB::select('SELECT * FROM sucursals where estadoSuc=1 ');
         $cargos=Cargo::All();
         return view('empleado.create',compact('sucursals','cargos'));
     }
@@ -68,11 +68,7 @@ class EmpleadoController extends Controller
         'sucursal_id'=> $request['sucursal_id'],
         'cargo_id'=> $request['cargo_id'],
       ]);
-
-      //Empleado:create($request->All());
-
-      return redirect('/empleado')->with('mensaje','registrado con éxito');
-
+      return redirect('/empleado')->with('mensaje','Empleado registrado con éxito');
     }
 
     /**
@@ -115,7 +111,6 @@ class EmpleadoController extends Controller
     public function update(Request $request, $id)
     {
       $empleado= Empleado::find($id);
-
       $empleado->fill($request->all());
       $empleado->save();
 
@@ -135,12 +130,17 @@ class EmpleadoController extends Controller
       $empleados->estadoEmp=0; //modificamos el estado a uno asumir que esta deshabilitado
       $empleados->update();
       //si el empleado posee una cuenta de usuario tambien se deshabilita
-      // $buscarUsuario=DB::select('SELECT * FROM users where estadoUsu=1 and user_id=',$id);
-      // if($buscarUsuario!=null){
-      //   $user=\SICVFG\User::findOrFail($buscarUsuario->id);
-      //   $user->estadoUsu=0; //modificamos el estado a uno asumir que esta deshabilitado
-      //   $user->update();
-      // }
+      $idU=User::where('user_id',$id)->get();
+      //  $idUsuario=DB::select('SELECT * FROM users where estadoUsu=1 and user_id=',$id);
+      $idUsuario=$idU->last()->id;
+      if($idUsuario!=null){
+        $user=\SICVFG\User::findOrFail($idUsuario);
+        $user->estadoUsu=0; //modificamos el estado a uno asumir que esta deshabilitado
+        $user->update();
+
+        Session::flash('mensaje','El empleado a deshabilitar poseia una cuenta de usuario que tambien se deshabilito');
+        return Redirect::to('/empleado');
+      }
 
       Session::flash('mensaje','Empleado Deshabilitado con Exito');
       return Redirect::to('/empleado');

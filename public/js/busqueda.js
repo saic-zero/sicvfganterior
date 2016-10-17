@@ -4,23 +4,23 @@ $("#selectEmpleado").on('change',function(event){
   $("#cod").val(codigo);
 });
 
-// funcion para alertas
-document.querySelector('.warning.cancel').onclick = function(){
-  swal({
-    title: "¿Estás seguro?",
-    type: "warning",
-    showCancelButton: true,
-    confirmButtonColor: '#DD6B55',
-    confirmButtonText: 'Aceptar',
-    cancelButtonText: "Cancelar ",
-    closeOnConfirm: false,
-    closeOnCancel: false
-  },
-  function(isConfirm){
-    if (isConfirm){
-      swal("Operación realizada con éxito !!", "", "success");
-    } else {
-      swal("Operación cancelada !!", "", "error");
-    }
-  });
-};
+// // funcion para alertas
+// document.querySelector('.warning.cancel').onclick = function(){
+//   swal({
+//     title: "¿Estás seguro?",
+//     type: "warning",
+//     showCancelButton: true,
+//     confirmButtonColor: '#DD6B55',
+//     confirmButtonText: 'Aceptar',
+//     cancelButtonText: "Cancelar ",
+//     closeOnConfirm: false,
+//     closeOnCancel: false
+//   },
+//   function(isConfirm){
+//     if (isConfirm){
+//       swal("Operación realizada con éxito !!", "", "success");
+//     } else {
+//       swal("Operación cancelada !!", "", "error");
+//     }
+//   });
+// };

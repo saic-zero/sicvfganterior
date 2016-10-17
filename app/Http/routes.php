@@ -110,6 +110,8 @@ Route::match(['get','post'],'/compras/desactivo/{id}','compraController@desactiv
 Route::match(['get','post'],'/compras/activo/{id}','compraController@activo');
 Route::match(['get','post'],'/compras/index/{id}','compraController@index');
 Route::match(['get','post'],'/compras/ver/{id}','compraController@ver');
+Route::match(['get','post'],'/compras/productospresentaciones/{cadena}','compraController@productospresentaciones');
+Route::match(['get','post'],'/compras/nombrepresentacionCompra/{cadena}','compraController@nombrepresentacionCompra');
 
 
 Route::resource('compras', 'compraController');

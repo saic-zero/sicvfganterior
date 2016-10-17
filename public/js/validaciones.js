@@ -44,5 +44,5 @@ jQuery(function($){
   $("#telefonoVen").mask("9999-9999");
   $("#telefonoProv").mask("9999-9999");
   $("#numAFP").mask("9999-9999-9999");
+  $("#numISSS").mask("9999-9999-9999");
 });
-

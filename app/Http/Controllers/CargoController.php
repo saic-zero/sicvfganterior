@@ -21,8 +21,7 @@ class CargoController extends Controller
     public function index()
     {
        $cargos= \SICVFG\Cargo::All();
-       $estado=1;
-       return view ('cargo.index',compact('cargos','estado'));
+       return view ('cargo.index',compact('cargos'));
     }
 
     /**
@@ -57,7 +56,6 @@ class CargoController extends Controller
      */
     public function show($id)
     {
-        return view('cargo.tb');
     }
 
     /**
@@ -85,7 +83,7 @@ class CargoController extends Controller
       $cargo->fill($request->all());
       $cargo->save();
 
-      Session::flash('mensaje1','Datos modificados correctamente');
+      Session::flash('mensaje','Datos modificados correctamente');
       return Redirect::to('/cargo');
     }
 
@@ -98,12 +96,5 @@ class CargoController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function desactivo($id)
-    {
-        $estado=0;
-        $cargos= \SICVFG\Cargo::All();
-        return view ('cargo.index',compact('cargos','estado'));
     }
 }

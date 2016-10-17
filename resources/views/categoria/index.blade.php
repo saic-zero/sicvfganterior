@@ -26,7 +26,7 @@
       {!!link_to_action("CategoriaController@activo", $title = "activos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_action("CategoriaController@desactivo", $title = "Desactivos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
        @if($estado==2)
-      {!!link_to_route('categoria.create',$title='Nueva', $parametro= 1, $attributes = ["class"=>"btn bg-olive"])!!}   
+      {!!link_to_route('categoria.create',$title='Nueva', $parametro= 1, $attributes = ["class"=>"btn bg-olive"])!!}
        @endif
       <br><br>
       <div class="box-body">

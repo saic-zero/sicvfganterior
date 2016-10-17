@@ -30,7 +30,7 @@ class UsuarioUpdateRequest extends Request
 
      public function messages(){
        return [
-         'email.required' => '¡El campo Correo es obligatorio porfavor llene ese campo!',
+         'email.required' => '¡El campo Correo es obligatorio por favor llene ese campo!',
      ];
      }
 }

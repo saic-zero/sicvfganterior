@@ -1,4 +1,4 @@
-{!! Form::open(['route'=>['empleado.destroy',$empleado->id],'method'=>'DELETE']) !!}
+{!! Form::open(['route'=>['usuario.destroy',$user->id],'method'=>'DELETE']) !!}
  <img src={!! asset('/images/faviconnBajaBoton.png') !!} alt="" class="circ" onclick="return swal({
 title: '¿Esta seguro?',
 text: 'Ya no estara disponible!',   type: 'warning',

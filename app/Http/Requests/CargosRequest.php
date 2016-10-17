@@ -30,7 +30,7 @@ class CargosRequest extends Request
 
     public function messages(){
       return [
-        'nombreCargo.unique' => '¡El nuevo cargo que intenta registrar ya existe porfavor digite uno nuevo!',
+        'nombreCargo.unique' => '¡El nuevo cargo que intenta registrar ya existe por favor digite uno nuevo!',
     ];
     }
 }

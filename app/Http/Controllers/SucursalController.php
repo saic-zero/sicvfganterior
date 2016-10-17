@@ -51,7 +51,6 @@ class SucursalController extends Controller
         'telefonoSuc'=>$request['telefonoSuc'],
       ]);
       return redirect('/sucursal')->with('mensaje','Registro guardado con éxito');
-
     }
 
     /**
@@ -62,7 +61,11 @@ class SucursalController extends Controller
      */
     public function show($id)
     {
-
+      $sucursals=\SICVFG\Sucursal::findOrFail($id);
+      $sucursals->estadoSuc=1; //modificamos el estado
+      $sucursals->update();
+      Session::flash('mensaje','Sucursal Habilitada con Exito');
+      return Redirect::to('/sucursal');
     }
 
     /**
@@ -90,7 +93,7 @@ class SucursalController extends Controller
       $sucursal->fill($request->all());
       $sucursal->save();
 
-      Session::flash('mensaje1','Sucursal editada correctamente');
+      Session::flash('mensaje','Sucursal editada correctamente');
       return Redirect::to('/sucursal');
     }
 
@@ -102,7 +105,25 @@ class SucursalController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+      $suc=DB::select('select * from sucursals');
+          $cuenta=0;
+          foreach ($suc as $su) {
+            $cuenta=$cuenta+1;
+          }
+          if($cuenta<=1){
+            Session::flash('mensaje','No se puede dar de baja la Sucursal porque solo hay una');
+            return Redirect::to('/sucursal');
+
+          }else{
+            $sucursals=\SICVFG\Sucursal::findOrFail($id);
+            $sucursals->estadoSuc=0; //modificamos el estado
+            $sucursals->update();
+            Session::flash('mensaje','Sucursal Deshabilitada con Exito');
+            return Redirect::to('/sucursal');
+          }
+
+
     }
 
     public function desactivo($id)

@@ -2593,7 +2593,7 @@ a:hover, a:active, a:focus {
 
 .nav-tabs-custom>.nav-tabs {
     margin: 0;
-    border-bottom-color: #c0de63;
+    border-bottom-color: black;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px
 }
@@ -2614,7 +2614,7 @@ a:hover, a:active, a:focus {
 }
 
 .nav-tabs-custom>.nav-tabs>li>a, .nav-tabs-custom>.nav-tabs>li>a:hover {
-    background: #c0de63;
+    background: rgba(33, 30, 30, 0.24);
 
     margin: 0
 }
@@ -2628,7 +2628,7 @@ a:hover, a:active, a:focus {
 }
 
 .nav-tabs-custom>.nav-tabs>li.active {
-    border-top-color: #c0de63;
+    border-top-color: #1f384e;
 }
 
 .nav-tabs-custom>.nav-tabs>li.active>a, .nav-tabs-custom>.nav-tabs>li.active:hover>a {
@@ -2647,7 +2647,7 @@ a:hover, a:active, a:focus {
 }
 
 .nav-tabs-custom>.nav-tabs>li:first-of-type.active>a {
-    border-left-color: #c0de63;
+    border-left-color: #337ab7;
 }
 
 .nav-tabs-custom>.nav-tabs.pull-right {
@@ -2683,7 +2683,14 @@ a:hover, a:active, a:focus {
 }
 
 .nav-tabs-custom>.tab-content {
-    background: #fff;
+    background: rgba(201, 201, 201, 0.14);
+    padding: 10px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px
+}
+
+.nav-tabs-custom>.tab-contentlogin {
+    background: rgba(54, 125, 160, 0.46);
     padding: 10px;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px
@@ -3385,7 +3392,7 @@ article {
     color: rgba(255, 255, 255, 1);
     width: 120%;
     /*background: white;*/
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0);
     margin: 0px;
     height: 100%;
     border: 5px solid #000000;
@@ -3402,9 +3409,23 @@ article {
 }
 
 article:hover {
-    color: rgba(0, 0, 0, 1);
-    background: #c6e3ea;
-    opacity: 1;
+  color: rgba(255, 255, 255, 1);
+  margin: 110px ;
+  height: 100%;
+  /*background: white;*/
+  background: rgba(255, 255, 255, 0);
+  margin: 0px;
+  height: 100%;
+  border: 5px solid #000000;
+  border-radius: 0px 25px 0px 25px;
+  -webkit-border-radius: 0px 25px 0px 25px;
+  box-shadow: 3px 3px 10px black;
+  -webkit-box-shadow: 7px 10px 20px #a71d1d;
+  padding: 10px 10px 10px 15px;
+  opacity: 1;
+  transition: opacity 1s, box-shadow 1s, transform 1s, background 5s;
+  -webkit-transition: opacity 1s, -webkit-box-shadow 1s, -webkit-transform 1s, background 1s, color 1s;
+
     transform: scale(1.1, 1.1);
     -webkit-transform: scale(1.1, 1.1);
 }
@@ -3416,7 +3437,6 @@ article:hover {
     background: rgba(255, 255, 255, 0);
     margin: 110px ;
     height: 100%;
-
     border: 5px solid blue;
     border-radius: 0px 25px 0px 25px;
     -webkit-border-radius: 0px 25px 0px 25px;
@@ -3431,9 +3451,19 @@ article:hover {
 }
 
 .primeraConfi:hover {
-    color: rgba(0, 0, 0, 1);
-    background: white;
-    opacity: 1;
+  /*aqui controlo el hover para las primeras configuraciones*/
+  background: rgba(255, 255, 255, 0);
+  margin: 110px ;
+  height: 100%;
+  border: 5px solid blue;
+  border-radius: 0px 25px 0px 25px;
+  -webkit-border-radius: 0px 25px 0px 25px;
+  box-shadow: 3px 3px 10px black;
+  -webkit-box-shadow: 3px 3px 10px black;
+  padding: 10px 10px 10px 15px;
+  opacity: 1;
+  transition: opacity 1s, box-shadow 1s, transform 1s, background 5s;
+  -webkit-transition: opacity 1s, -webkit-box-shadow 1s, -webkit-transform 1s, background 1s, color 1s;
     transform: scale(1.1, 1.1);
     -webkit-transform: scale(1.1, 1.1);
 }
@@ -3457,15 +3487,16 @@ article:hover {
     background: rgba(13, 96, 144, 0.48);
     padding: 20px;
     border-top: 0;
-    color: white
+    color: black;
 
 }
 
 .login-box-body:hover{
-    background: #6199b9;
+    background: rgba(13, 96, 144, 0.48);
     padding: 20px;
     border-top: 0;
-    color: white
+    color: black;
+    opacity: 1;
 
 }
 /*color iconos de la ventana login*/

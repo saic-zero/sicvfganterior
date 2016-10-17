@@ -52,10 +52,6 @@
       </div><!-- /.login-box-body -->
     </article>
 
-    <!-- jQuery 2.1.4 -->
-    {{-- <script src="../../plugins/jQuery/jQuery-2.1.4.min.js"></script> --}}
-    <!-- Bootstrap 3.3.5 -->
-    {!!Html::script('js/login.js')!!}
 {{-- {!!Html::script('bootstrap/js/bootstrap.min.js')!!} --}}
 {!!Html::script('js/login.js')!!}
 
@@ -63,70 +59,20 @@
 {!!Html::script('plugins/jQuery/jQuery-2.1.4.min.js')!!}
 <!-- Bootstrap 3.3.5 -->
 {!!Html::script('bootstrap/js/bootstrap.min.js')!!}
-
-{!!Html::script('plugins/datatables/jquery.dataTables.min.js')!!}
-{!!Html::script('plugins/datatables/dataTables.bootstrap.min.js')!!}
-
 {{-- validaciones --}}
   {!!Html::script('js/validaciones.js')!!}
 
   <!-- jQuery UI 1.11.4 -->
 {!!Html::script('plugins\jQueryUI/jquery-ui.min.js')!!}
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button);
-</script>
 
-<!-- Morris.js charts -->
-{!!Html::script('plugins/raphael-min.js')!!}
-{!!Html::script('plugins/morris/morris.min.js')!!}
-<!-- Sparkline -->
-{!!Html::script('plugins/sparkline/jquery.sparkline.min.js')!!}
-<!-- jvectormap -->
-{!!Html::script('plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')!!}
-{!!Html::script('plugins/jvectormap/jquery-jvectormap-world-mill-en.js')!!}
-<!-- Slimscroll -->
-{!!Html::script('plugins/slimScroll/jquery.slimscroll.min.js')!!}
-<!-- FastClick -->
-{!!Html::script('plugins/fastclick/fastclick.min.js')!!}
 <!-- AdminLTE App -->
 {!!Html::script('dist/js/app.min.js')!!}
 <!-- AdminLTE for demo purposes -->
 {!!Html::script('dist/js/demo.js')!!}
 
-<!-- InputMask -->
-{!!Html::script('plugins/input-mask/jquery.inputmask.js')!!}
-{!!Html::script('plugins/input-mask/jquery.inputmask.date.extensions.js')!!}
-{!!Html::script('plugins/input-mask/jquery.inputmask.extensions.js')!!}
-
-
 {!!Html::script('js/sweetalert-dev.js')!!}  <!-- plugin alertas -->
 <!-- This is what you need -->
 
-<script>
-  $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
-  });
-
-
-</script>
-
-<!-- jQuery Knob Chart -->
-{!!Html::script('plugins/knob/jquery.knob.js')!!}
-
-<!-- daterangepicker -->
-{!!Html::script('plugins/moment.min.js')!!}
-{!!Html::script('plugins/daterangepicker/daterangepicker.js')!!}
-<!-- datepicker -->
-{!!Html::script('plugins/datepicker/bootstrap-datepicker.js')!!}
 <!-- Bootstrap WYSIHTML5 -->
 {!!Html::script('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')!!}
 

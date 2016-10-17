@@ -35,10 +35,10 @@ class UsuarioCreateRequest extends Request
        return [
          'name.unique' => '¡Este Empleado ya posee una cuenta de usuario!',
          'name.required' => '¡Seleccione un empleado al cual se le asignara una cuenta de usuario!',
-         'password.required' => '¡El campo Contraseña es obligatorio porfavor llene ese campo!',
-         'email.required' => '¡El campo Correo es obligatorio porfavor llene ese campo!',
-         'email.unique' => '¡Al parecer este correo electronico ya esta asociado a otra cuenta!',
-         'email.email' => '¡Al parecer este correo electronico no es válido!',
+         'password.required' => '¡El campo Contraseña es obligatorio por favor llene ese campo!',
+         'email.required' => '¡El campo Correo es obligatorio por favor llene ese campo!',
+         'email.unique' => '¡Al parecer este correo electrónico ya esta asociado a otra cuenta!',
+         'email.email' => '¡Al parecer este correo electrónico no es válido!',
          'nombre_img.required' => '¡Es necesario que cargue una imagen del empleado!',
      ];
      }

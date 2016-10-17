@@ -35,8 +35,8 @@ class EmpleadoCreateRequest extends Request
 
     public function messages(){
       return [
-        'codEmpleado.unique' => '¡El Código de empleado que ha ingresa ya esta en uso !',
-        'telefonoEmp.unique' => '¡Al parecer este numero de telefono ya esta registrado por otro empleado!',
+        'codEmpleado.unique' => '¡El Código de empleado que ha ingresado ya esta en uso !',
+        'telefonoEmp.unique' => '¡Al parecer este número de telefono ya esta registrado por otro empleado!',
         'DUI.unique' => '¡Verifique el numero de DUI ingresado al parecer ya ha sido registrado ese DUI!',
         'NIT.unique' => '¡Verifique el numero de NIT ingresado al parecer ya ha sido registrado ese NIT!',
 

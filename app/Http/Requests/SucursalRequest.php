@@ -31,8 +31,8 @@ class SucursalRequest extends Request
 
     public function messages(){
       return [
-        'nombreSuc.unique' => '¡El nombre de la sucursal ya existe porfavor digite un nuevo nombre!',
-        'telefonoSuc.unique' => '¡Este número de telefono ya ha sido asignado!',
+        'nombreSuc.unique' => '¡El nombre de la sucursal ya existe por favor digite un nuevo nombre!',
+        'telefonoSuc.unique' => '¡Este número de teléfono ya ha sido asignado!',
     ];
     }
 }

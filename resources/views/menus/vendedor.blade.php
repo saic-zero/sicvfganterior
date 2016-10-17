@@ -2,7 +2,7 @@
   <li class="header" align="center">MENU</li>
   <li class="treeview">
     <a>
-      <i class="fa fa-files-o text-aqua "></i> <span>INVENTARIO</span> <i class="fa fa-angle-left pull-right"></i>
+      <i class="glyphicon glyphicon-briefcase text-aqua "></i> <span>INVENTARIO</span> <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
       <li>
@@ -18,7 +18,7 @@
                 <li>
                    <li class="treeview">
                      <a href="#">
-                    <i class="fa fa-folder text-aqua"></i>
+                    <i class="glyphicon glyphicon-tags text-aqua"></i>
                     <span>Categorias</span>
                     <i class="fa fa-angle-left pull-right"></i>
                       </a>
@@ -39,7 +39,7 @@
                             <li>
                   <li class="treeview">
                      <a href="#">
-                    <i class="fa fa-folder text-aqua"></i>
+                    <i class="glyphicon glyphicon-th-list text-aqua"></i>
                     <span>Productos</span>
                     <i class="fa fa-angle-left pull-right"></i>
                       </a>
@@ -56,26 +56,7 @@
                      </ul>
                     </li>
               </li>
-               <li>
-                     <li class="treeview">
-                     <a href="#">
-                    <i class="fa fa-folder text-aqua"></i>
-                    <span>Presentaciones</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                      </a>
-                      <ul class="treeview-menu">
-                                  <li>
-                        <a href="{!!URL::to('/presentaciones/create')!!}"><i class='fa fa-plus fa-fw'></i>Agregar</a>
-                    </li>
-                    <li>
-                        <a href="{!!URL::to('/presentaciones')!!}"><i class='fa fa-gears '></i> Administrar</a>
-                    </li>
-                     <li>
-                                      <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
-                               </li>
-                     </ul>
-                     </li>
-                  </li>
+             
             </ul>
               </li>
       </li>
@@ -89,7 +70,7 @@
               <li>
                    <li class="treeview">
                              <a href="#">
-                            <i class="fa fa-folder text-aqua"></i>
+                            <i class="glyphicon glyphicon-globe text-aqua"></i>
                             <span>Proveedores</span>
                             <i class="fa fa-angle-left pull-right"></i>
                               </a>
@@ -106,7 +87,7 @@
                                          <li>
                                          <li class="treeview">
                                        <a href="#">
-                                      <i class="fa fa-folder text-aqua"></i>
+                                      <i class="glyphicon glyphicon-folder-open text-aqua"></i>
                                       <span>Vendedores</span>
                                       <i class="fa fa-angle-left pull-right"></i>
                                         </a>
@@ -174,7 +155,7 @@
           </li>
   <li class="treeview">
     <a>
-      <i class="fa fa-laptop text-aqua"></i> <span>VENTAS</span> <i class="fa fa-angle-left pull-right"></i>
+      <i class="glyphicon glyphicon-list-alt text-aqua"></i> <span>VENTAS</span> <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
       <li>

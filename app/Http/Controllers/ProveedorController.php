@@ -67,7 +67,7 @@ class ProveedorController extends Controller
         $proveedor->estadoProv=1; //modificamos el estado 
         $vendedor=\SICVFG\Vendedor::where('proveedor_id',$id)->update(['estadoVen'=>1]);
         $proveedor->update();
-        Session::flash('mensaje','Proveedor habilitado, tenia asociado Registros de Vendedores/as que tambien se habilitaron');
+        Session::flash('mensaje','Proveedor habilitado, es posible que tuviera asociado Registros de Vendedores/as que tambien se habilitaron');
         return Redirect::to('/proveedor');
              
 
@@ -118,7 +118,7 @@ class ProveedorController extends Controller
         $proveedor->estadoProv=0; //modificamos el estado 
         $vendedor=\SICVFG\Vendedor::where('proveedor_id',$id)->update(['estadoVen'=>0]);
         $proveedor->update();
-         Session::flash('mensaje','Proveedor deshabilitado, tenia asociado Registros de Vendedores/as que tambien se deshabilitaron');
+         Session::flash('mensaje','Proveedor deshabilitado, es posible que tuviera asociado Registros de Vendedores/as que tambien se deshabilitaron');
         return Redirect::to('/proveedor');
              
 

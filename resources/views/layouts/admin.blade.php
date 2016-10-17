@@ -135,7 +135,7 @@
 					<li class="header">MENU ADMINISTRADOR</li>
 					<li class="treeview">
 						<a href="#">
-							<i class="glyphicon glyphicon-home"></i> <span>Sucursal</span> <i class="fa fa-angle-left pull-right"></i>
+							<i class="glyphicon glyphicon-home text-aqua"></i> <span>Sucursal</span> <i class="fa fa-angle-left pull-right"></i>
 						</a>
 						<ul class="treeview-menu">
 							<li>
@@ -148,7 +148,7 @@
 					</li>
 					<li class="treeview">
 						<a href="#">
-							<i class="fa fa-dashboard"></i> <span>Cargos</span> <i class="fa fa-angle-left pull-right"></i>
+							<i class="fa fa-dashboard text-aqua"></i> <span>Cargos</span> <i class="fa fa-angle-left pull-right"></i>
 						</a>
 						<ul class="treeview-menu">
 							<li>
@@ -178,7 +178,7 @@
 					</li>
 					<li class="treeview">
 						<a href="#">
-							<i class="fa fa-user-plus"></i> <span>Usuario</span> <i class="fa fa-angle-left pull-right"></i>
+							<i class="fa fa-user-plus text-aqua"></i> <span>Usuario</span> <i class="fa fa-angle-left pull-right"></i>
 						</a>
 						<ul class="treeview-menu">
 							<li>

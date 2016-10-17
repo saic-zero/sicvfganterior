@@ -1,7 +1,7 @@
 {!! Form::open(['route'=>['proveedor.destroy',$proveedor->id],'method'=>'DELETE']) !!}
 <img src={!! asset('/images/faviconnBajaBoton.png') !!} alt="" class="circ" onclick="return swal({
 title: '¿Esta seguro de enviar a papelera?',
-text: 'Ya no estara disponible!',   type: 'warning',
+text: 'Ya no estara disponible, ni los Vendedores Asociados!',   type: 'warning',
 showCancelButton: true,   confirmButtonColor: '#DD6B55',
 confirmButtonText: 'Si, enviar!',
 cancelButtonText: 'No, Cancelar!',   

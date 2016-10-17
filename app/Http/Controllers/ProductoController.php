@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 use SICVFG\Http\Requests;
 use SICVFG\Http\Controllers\Controller;
 use SICVFG\Http\Requests\ProductoCreateRequest;
-use SICVFG\Http\Requests\ProductoUpdateRequest;
 use SICVFG\Producto;
 use Session;
 use Redirect;
 use View;
+use DB;
 
 
 class ProductoController extends Controller
@@ -38,7 +38,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-     $categorias=\SICVFG\Categoria::lists('nombreCategoria','id');
+     $categorias=DB::select('SELECT * FROM categorias WHERE estadoCat=1');
      return view('producto.create',compact('categorias'));
     }
 
@@ -99,7 +99,7 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
-     $categorias=\SICVFG\Categoria::All(); 
+      $categorias=DB::select('SELECT * FROM categorias WHERE estadoCat=1'); 
      $producto= \SICVFG\Producto::find($id);
      if(is_null($producto))//Si el producto no existe
        {
@@ -115,7 +115,7 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductoUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $producto= \SICVFG\Producto::find($id);
         $producto->fill($request->all());

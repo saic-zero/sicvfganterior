@@ -15,7 +15,9 @@
     </div>
   {!! Form::model($presentaciones,['route'=>['presentaciones.update',$presentaciones->id],'method'=>'PUT']) !!}
     @include('presentaciones.Formularios.formulario')
-    {!! Form::submit('Actualizar',['class'=>'btn btn-primary']) !!}
+   <button class="btn btn-primary">
+      <span class="glyphicon glyphicon-refresh"></span> Actualizar
+    </button>
      {!! Form::reset('Limpiar',['class'=>'btn btn-primary']) !!}
      {!!link_to_action("PresentacionesController@todosAtras", $title = "Atras", $parameters = $producto, $attributes = ["class"=>"btn btn-danger"])!!}
     {!!Form::close()!!}

@@ -13,8 +13,7 @@
 </div>
 @endif
 
-<div class="row">
-  <div class="col-xs-12">
+
     <div class="box box-success">
       <div class="box-header">
         <center>
@@ -28,7 +27,7 @@
       {!!link_to_action("PresentacionesController@activo", $title = "activos", $parameters = $producto, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_action("PresentacionesController@desactivo", $title = "Desactivos", $parameters = $producto, $attributes = ["class"=>"btn bg-olive"])!!}
     
-      @if($estado==2)
+      @if($estado==2 || $estado==1)
       {!!link_to_action("PresentacionesController@crear",$title='Nueva', $parametro=$producto, $attributes = ["class"=>"btn bg-olive"])!!}   
       @endif
       <br>
@@ -36,10 +35,10 @@
         <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
-          <th>N°</th>
-          <th>Nombre</th>
-          <th>Equivalencia (Unidades)</th>
-          <th>Acciones</th>
+          <th bgcolor="#e5eef7" >N°</th>
+          <th bgcolor="#e5eef7" >NOMBRE</th>
+          <th bgcolor="#e5eef7" >EQUIVALENCIA (Unidades)</th>
+          <th bgcolor="#e5eef7" >ACCION</th>
         </tr>
           </thead>
          <?php $a = 1; ?>
@@ -55,7 +54,7 @@
                               <div align="center">
                                 <table>
                                     <tr>
-                                        <td>{!!link_to_route('presentaciones.edit',$title='Editar', $parametro=$c->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
+                                        <td>{!!link_to_route('presentaciones.edit',$title=' Editar', $parametro=$c->id,$atributo=['class'=>'btn btn-primary  glyphicon glyphicon-edit'])!!}</td>
                                         <td>@include('presentaciones.DESHABILITAR')</td>
                                     </tr>
                               </table>
@@ -77,7 +76,7 @@
                                 <div align="center">
                                   <table>
                                       <tr>
-                                          <td>{!!link_to_route('presentaciones.edit',$title='Editar', $parametro=$c->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
+                                          <td>{!!link_to_route('presentaciones.edit',$title=' Editar', $parametro=$c->id,$atributo=['class'=>'btn btn-primary  glyphicon glyphicon-edit'])!!}</td>
                                           <td>@include('presentaciones.HABILITAR')</td>
                                       </tr>
                                 </table>
@@ -101,7 +100,7 @@
                                         <div align="center">
                                               <table>
                                                   <tr>
-                                                      <td>{!!link_to_route('presentaciones.edit',$title='Editar', $parametro=$c->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
+                                                      <td>{!!link_to_route('presentaciones.edit',$title=' Editar', $parametro=$c->id,$atributo=['class'=>'btn btn-primary  glyphicon glyphicon-edit'])!!}</td>
                                                       <td>@include('presentaciones.DESHABILITAR')</td>
                                                   </tr>
                                             </table>
@@ -119,7 +118,7 @@
                                         <div align="center">
                                               <table>
                                                   <tr>
-                                                      <td>{!!link_to_route('presentaciones.edit',$title='Editar', $parametro=$c->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
+                                                      <td>{!!link_to_route('presentaciones.edit',$title=' Editar', $parametro=$c->id,$atributo=['class'=>'btn btn-primary  glyphicon glyphicon-edit'])!!}</td>
                                                       <td>@include('presentaciones.HABILITAR')</td>
                                                   </tr>
                                             </table>
@@ -140,6 +139,6 @@
   <div id="act">
         {!! str_replace ('/?', '?', $presentacion) !!}
       </div>
-</div><!-- /.row -->
+
 @stop
 

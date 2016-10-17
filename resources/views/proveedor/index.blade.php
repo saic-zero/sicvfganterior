@@ -27,72 +27,27 @@
       {!!link_to_action("frontController@index", $title = "Salir", $parameters = 1, $attributes = ["class"=>"btn btn-danger"])!!}
       {!!link_to_action("ProveedorController@index", $title = "Todos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_action("ProveedorController@activo", $title = "Activos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
-      {!!link_to_action("ProveedorController@desactivo", $title = "Papelera", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
-      @if($estado==2)
-      {!!link_to_route('proveedor.create',$title='Nuevo', $parametro= 1, $attributes = ["class"=>"btn bg-olive"])!!}   
-       @endif
+      {!!link_to_action("ProveedorController@desactivo", $title = "Desactivos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
+      @if($estado==2 || $estado==1)
+      {!!link_to_route('proveedor.create',$title='Nuevo', $parametro= 1, $attributes = ["class"=>"btn bg-olive "])!!}  
+      @endif
+       
    
       <br><br>
       <div class="box-body">
-        <table id="example1" class="table table-bordered table-striped buscar">
+        <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
-                     <th bgcolor="#e5eef7" >EMPRESA</th>
-                     <th bgcolor="#e5eef7" >NRC</th>
+                      <th bgcolor="#e5eef7" >EMPRESA</th>
+                      <th bgcolor="#e5eef7" >NRC</th>
                       <th bgcolor="#e5eef7">CORREO</th>
                       <th bgcolor="#e5eef7">DIRECCION</th>
                       <th bgcolor="#e5eef7">TELEFONO</th>
                       <th bgcolor="#e5eef7">ACCION</th>
             </tr>
           </thead>
-          @foreach ($proveedors as $proveedor)
-            @if($proveedor->estadoProv==1 && $estado==1)
-              <tbody>
-                <tr>
-                  
-                     <td>{{$proveedor->nombreProv}}</td>
-                      <td>{{$proveedor->RUC}}</td>
-                     <td>{{$proveedor->correoProv}}</td>
-                     <td>{{$proveedor->direccionProv}}</td>
-                     <td>{{$proveedor->telefonoProv}}</td>
-                     <td>
-                        <div align="center">
-                          <table>
-                              <tr>
-                                  <td>{!!link_to_route('proveedor.edit',$title='Editar', $parametro=$proveedor->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
-                                  <td>@include('proveedor.DESHABILITAR')</td>
-                              </tr>
-                        </table>
-                      </div><!-- fin tabla que centra los botones-->
-                    </td>
-                </tr>
-              </tbody>
-
-            @endif
-           @if($proveedor->estadoProv==0 && $estado==0)
-              <tbody>
-                 <tr>
- 
-                     <td>{{$proveedor->nombreProv}}</td>
-                     <td>{{$proveedor->RUC}}</td>
-                     <td>{{$proveedor->correoProv}}</td>
-                     <td>{{$proveedor->direccionProv}}</td>
-                     <td>{{$proveedor->telefonoProv}}</td>
-                     <td>
-                        <div align="center">
-                          <table>
-                              <tr>
-                                  <td>{!!link_to_route('proveedor.edit',$title='Editar', $parametro=$proveedor->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
-                                  <td>@include('proveedor.HABILITAR')</td>
-                              </tr>
-                        </table>
-                      </div><!-- fin tabla que centra los botones-->
-                    </td>
-               </tr>
-              </tbody>
-            @endif
-            @if($estado==2)
-              <tbody>
+           <tbody>
+          @foreach ($proveedors as $proveedor)   
                 <tr>
                      <td>{{$proveedor->nombreProv}}</td>
                      <td>{{$proveedor->RUC}}</td>
@@ -105,7 +60,7 @@
                           <div align="center">
                             <table>
                                 <tr>
-                                    <td>{!!link_to_route('proveedor.edit',$title='Editar', $parametro=$proveedor->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
+                                    <td>{!!link_to_route('proveedor.edit',$title=' Editar', $parametro=$proveedor->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-edit'])!!}</td>
                                     <td>@include('proveedor.DESHABILITAR')</td>
                                 </tr>
                           </table>
@@ -116,7 +71,7 @@
                           <div align="center">
                             <table>
                                 <tr>
-                                    <td>{!!link_to_route('proveedor.edit',$title='Editar', $parametro=$proveedor->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
+                                    <td>{!!link_to_route('proveedor.edit',$title=' Editar', $parametro=$proveedor->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-edit'])!!}</td>
                                     <td>@include('proveedor.HABILITAR')</td>
                                 </tr>
                           </table>
@@ -125,9 +80,8 @@
                   @endif
                   </td>
                 </tr>
-              </tbody>
-            @endif
-          @endforeach
+            @endforeach
+            </tbody><!-- El foreach debe ir dentro de tbody para que funcionen las busquedas de las tablas -->
         </table>
       </div><!-- /.box-body -->
     </div><!-- /.box -->

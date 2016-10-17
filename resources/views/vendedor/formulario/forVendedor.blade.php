@@ -1,11 +1,11 @@
-<?php
+
+ <?php
 if($bandera==1){
 	$prove=null;
 }else{
 	$prove= $vendedor->proveedor_id;
 }
- ?>
-
+?>
 <div class="box box-primary">
   <div class="box-header with-border">
     <h3 class="box-title">Vendedor ó Contacto</h3>
@@ -22,20 +22,16 @@ if($bandera==1){
     	   <tr>
 			    <div class="form-group">
 				<td>{!!Form::label('lbNombre','* Nombre de Vendedor:')!!}</td>
-				<td>{!!Form::text('nombreVen',null,['class'=>'form-control', 'placeholder'=>'Ingresar Nombre Del Vendedor','required'])!!}</td>
+				<td>{!!Form::text('nombreVen',null,['onKeyPress'=>'return validarNombre(event)','id'=>'nombreVen','class'=>'form-control', 'placeholder'=>'Ingresar Nombre Del Vendedor','required'])!!}</td>
 			    </div>
 	      </tr>
 
     	   <tr>
     	   	<div class="col-xs-4">
-			      <tr>
-    	   	<div class="col-xs-4">
 			    <div class="form-group">
 					<td>{!!Form::label('lbDui','* DUI:')!!}</td>
-					<td>{!!Form::text('DUIVen',null,['onKeyPress'=>'return validarDUI(event)','id'=>'DUI','class'=>'form-control', 'placeholder'=>'Documento Unico de Identidad...','required'])!!}</td>
+					<td>{!!Form::text('DUIVen',null,['onKeyPress'=>'return validarDUI(event)','id'=>'DUIVen','class'=>'form-control', 'placeholder'=>'Documento Unico de Identidad...','required'])!!}</td>
 				</div><!-- /.form-group -->
-			</div>
-	      </tr>
 			</div>
 	      </tr>
 					
@@ -57,36 +53,31 @@ if($bandera==1){
 
 
 
+    	
     	   <tr>
 			   <div class="form-group">
 					<td>{!!Form::label('lbTelefono','* Teléfono :')!!}</td>
 					<td>{!!Form::text('telefonoVen',null,['onKeyPress'=>'return validarTelefono(event)','id'=>'telefonoVen','class'=>'form-control', 'placeholder'=>'Telefono ..','required'])!!}</td>
 			   </div><!-- /.form-group -->
 		   </tr>
-
-
-
-			      <tr>
-			        <div class="form-group">
-				    <td>{!!Form::label('lbEmpresa','Empresa:')!!}</td>
-					<td>
-						<select class="form-control" name="proveedor_id" >
-								@foreach($proveedors as $pro)
-								@if($prove==$pro->id && $prove!=null)
-								<option value="{{$pro->id}}" selected="selected">{{$pro->nombreProv}}</option>
-								@else
-								<option value="{{$pro->id}}">{{$pro->nombreProv}}</option>
-								@endif
-								
-								@endforeach
-							</select>
-						</td>
-					</div>
-			      </tr>
-     </tr>
- 
-        </table>
-        </div>
+                         <tr>
+        	                   <div class="form-group">
+									<td>{!!Form::label('lbEmpresa','* Empresa:')!!}</td>
+										 <td><select class="form-control" name="proveedor_id">
+											@foreach($proveedors as $p)
+												@if($prove==$p->id && $prove!=null)
+													<option value="{{$p->id}}" selected="selected">{{$p->nombreProv}}</option>
+												@else
+													<option value="{{$p->id}}">{{$p->nombreProv}}</option>
+												@endif
+											@endforeach
+										</select>
+									 </td>
+								</div><!-- /.form-group -->
+							</tr>
+	                </tr>
+	           </table>
+	       </div>
       </div><!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.box-body -->

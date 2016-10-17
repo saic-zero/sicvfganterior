@@ -25,8 +25,8 @@
       {!!link_to_action("CategoriaController@index", $title = "Todos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_action("CategoriaController@activo", $title = "activos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_action("CategoriaController@desactivo", $title = "Desactivos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
-       @if($estado==2)
-      {!!link_to_route('categoria.create',$title='Nueva', $parametro= 1, $attributes = ["class"=>"btn bg-olive"])!!}
+       @if($estado==2 || $estado==1)
+      {!!link_to_route('categoria.create',$title='Nueva', $parametro= 1, $attributes = ["class"=>"btn bg-olive"])!!}   
        @endif
       <br><br>
       <div class="box-body">
@@ -37,43 +37,44 @@
               <th bgcolor="#e5eef7">ACCION</th>
             </tr>
           </thead>
+          <tbody>
           @foreach ($categorias as $categoria)
             @if($categoria->estadoCat==1 && $estado==1)
-              <tbody>
+            
                 <tr>
                 <td>{{$categoria->nombreCategoria}}</td>
                 <td>
                  <div align="center">
                           <table>
                               <tr>
-                                  <td>{!!link_to_route('categoria.edit',$title='Editar', $parametro=$categoria->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
+                                  <td>{!!link_to_route('categoria.edit',$title=' Editar', $parametro=$categoria->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-edit'])!!}</td>
                                   <td>@include('categoria.DESHABILITAR')</td>
                               </tr>
                         </table>
                       </div><!-- fin tabla que centra los botones-->
                     </td>
                 </tr>
-              </tbody>
+             
             @endif
             @if($categoria->estadoCat==0 && $estado==0)
-              <tbody>
+             
                 <tr>
                   <td>{{$categoria->nombreCategoria}}</td>
                   <td>
                    <div align="center">
                           <table>
                               <tr>
-                                  <td>{!!link_to_route('categoria.edit',$title='Editar', $parametro=$categoria->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
+                                  <td>{!!link_to_route('categoria.edit',$title=' Editar', $parametro=$categoria->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-edit'])!!}</td>
                                   <td>@include('categoria.HABILITAR')</td>
                               </tr>
                         </table>
                       </div><!-- fin tabla que centra los botones-->
                     </td>
                 </tr>
-              </tbody>
+             
             @endif
             @if($estado==2)
-              <tbody>
+            
                 <tr>
                  <td>{{$categoria->nombreCategoria}}</td>
                   <td><center>
@@ -81,7 +82,7 @@
                     <div align="center">
                           <table>
                               <tr>
-                                  <td>{!!link_to_route('categoria.edit',$title='Editar', $parametro=$categoria->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
+                                  <td>{!!link_to_route('categoria.edit',$title=' Editar', $parametro=$categoria->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-edit'])!!}</td>
                                   <td>@include('categoria.DESHABILITAR')</td>
                               </tr>
                         </table>
@@ -90,7 +91,7 @@
                     <div align="center">
                           <table>
                               <tr>
-                                  <td>{!!link_to_route('categoria.edit',$title='Editar', $parametro=$categoria->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
+                                  <td>{!!link_to_route('categoria.edit',$title=' Editar', $parametro=$categoria->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-edit'])!!}</td>
                                   <td>@include('categoria.HABILITAR')</td>
                               </tr>
                         </table>
@@ -99,9 +100,10 @@
                   </center>
                   </td>
                 </tr>
-              </tbody>
+              
             @endif
           @endforeach
+          </tbody>
         </table>
       </div><!-- /.box-body -->
     </div><!-- /.box -->

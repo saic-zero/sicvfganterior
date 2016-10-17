@@ -18,7 +18,7 @@
           <tr>
               <div class="form-group">
                  <td>{!!Form::label('lEquivale','* Equivalencia:') !!}</td> 
-                <td>{!!Form::number('equivale',null,['class'=>'form-control', 'placeholder'=>'Unidades','min'=>'1','required'])!!}</td>
+                <td>{!!Form::number('equivale',null,['class'=>'form-control', 'placeholder'=>'Unidades','min'=>'1','required','min'=>'1','max'=>'999999'])!!}</td>
             </div>
           </tr>
 

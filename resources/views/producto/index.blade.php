@@ -28,7 +28,7 @@
       {!!link_to_action("ProductoController@index", $title = "Todos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_action("ProductoController@activo", $title = "activos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_action("ProductoController@desactivo", $title = "Desactivos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
-       @if($estado==2)
+       @if($estado==2 || $estado==1)
       {!!link_to_route('producto.create',$title='Nuevo', $parametro= 1, $attributes = ["class"=>"btn bg-olive"])!!}   
        @endif
       
@@ -53,19 +53,19 @@
                   <td>
                       <div align="center">
                           <table>
-                              <tr>
-                                 <td>{!!link_to_route('producto.show',$title='Ver', $parametro=$producto->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
-                                  <td>{!!link_to_route('producto.edit',$title='Editar', $parametro=$producto->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
+                              <tr> 
+                                 <td>{!!link_to_route('producto.show',$title=' Ver', $parametro=$producto->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-eye-open'])!!}</td>
+                                  <td>{!!link_to_route('producto.edit',$title=' Editar', $parametro=$producto->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-edit'])!!}</td>
                                   <td>@include('producto.DESHABILITAR')</td>
                               </tr>
                         </table>
                       </div><!-- fin tabla que centra los botones-->
                     </td>
                 </tr>
-              </tbody>
+             
             @endif
            @if($producto->estadoProd==0 && $estado==0)
-              <tbody>
+            
                 <tr>
                    <td>{{$producto->codProducto}}</td>
                   <td>{{$producto->nombreProd}}</td>
@@ -74,18 +74,18 @@
                      <div align="center">
                           <table>
                               <tr>
-                                <td>{!!link_to_route('producto.show',$title='Ver', $parametro=$producto->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
-                                  <td>{!!link_to_route('producto.edit',$title='Editar', $parametro=$producto->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
+                                <td>{!!link_to_route('producto.show',$title=' Ver', $parametro=$producto->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-eye-open'])!!}</td>
+                                  <td>{!!link_to_route('producto.edit',$title=' Editar', $parametro=$producto->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-edit'])!!}</td>
                                   <td>@include('producto.HABILITAR')</td>
                               </tr>
                         </table>
                       </div><!-- fin tabla que centra los botones-->
                     </td>
                 </tr>
-              </tbody>
+            
             @endif
             @if($estado==2)
-              <tbody>
+            
                 <tr>
                   <td>{{$producto->codProducto}}</td>
                   <td>{{$producto->nombreProd}}</td>
@@ -95,8 +95,8 @@
                       <div align="center">
                           <table>
                               <tr>
-                                 <td>{!!link_to_route('producto.show',$title='Ver', $parametro=$producto->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
-                                  <td>{!!link_to_route('producto.edit',$title='Editar', $parametro=$producto->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
+                                 <td>{!!link_to_route('producto.show',$title=' Ver', $parametro=$producto->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-eye-open'])!!}</td>
+                                  <td>{!!link_to_route('producto.edit',$title=' Editar', $parametro=$producto->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-edit'])!!}</td>
                                   <td>@include('producto.DESHABILITAR')</td>
                               </tr>
                         </table>
@@ -107,8 +107,8 @@
                      <div align="center">
                           <table>
                               <tr>
-                                  <td>{!!link_to_route('producto.show',$title='Ver', $parametro=$producto->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
-                                  <td>{!!link_to_route('producto.edit',$title='Editar', $parametro=$producto->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
+                                  <td>{!!link_to_route('producto.show',$title=' Ver', $parametro=$producto->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-eye-open'])!!}</td>
+                                  <td>{!!link_to_route('producto.edit',$title=' Editar', $parametro=$producto->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-edit'])!!}</td>
                                   <td>@include('producto.HABILITAR')</td>
                               </tr>
                         </table>
@@ -116,9 +116,10 @@
                     </td>
                   @endif
                 </tr>
-              </tbody>
+              
             @endif
           @endforeach
+          </tbody>
         </table>
       </div><!-- /.box-body -->
     </div><!-- /.box -->

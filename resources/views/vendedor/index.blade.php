@@ -19,7 +19,7 @@
     <div class="box box-success">
       <div class="box-header">
       
-        <h3 class="box-title"  font-weight:"bold">Administración de Datos de Vendedores</h3>
+        <h3 class="box-title"  font-weight:"bold">Administración de Vendedores (Contactos de Empresas)</h3>
        
       </div><!-- /.box-header -->
       <br>
@@ -28,7 +28,7 @@
       {!!link_to_action("VendedorController@index", $title = "Todos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_action("VendedorController@activo", $title = "Activos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_action("VendedorController@desactivo", $title = "Desactivos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
-      @if($estado==2)
+      @if($estado==2 || $estado==1)
       {!!link_to_route('vendedor.create',$title='Nuevo', $parametro= 1, $attributes = ["class"=>"btn bg-olive"])!!}   
        @endif
    
@@ -46,9 +46,10 @@
                       <th bgcolor="#e5eef7">ACCION</th>
             </tr>
           </thead>
+           <tbody>
           @foreach ($vendedors as $vendedor)
             @if($vendedor->estadoVen==1 && $estado==1)
-              <tbody>
+             
                 <tr>
                   
                      <td>{{$vendedor->nombreVen}}</td>
@@ -62,18 +63,18 @@
                         <div align="center">
                           <table>
                               <tr>
-                                  <td>{!!link_to_route('vendedor.edit',$title='Editar', $parametro=$vendedor->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
+                                  <td>{!!link_to_route('vendedor.edit',$title=' Editar', $parametro=$vendedor->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-edit'])!!}</td>
                                   <td>@include('vendedor.DESHABILITAR')</td>
                               </tr>
                         </table>
                       </div><!-- fin tabla que centra los botones-->
                     </td>
                 </tr>
-              </tbody>
+            
 
             @endif
            @if($vendedor->estadoVen==0 && $estado==0)
-              <tbody>
+
                  <tr>
                   
                      <td>{{$vendedor->nombreVen}}</td>
@@ -87,17 +88,17 @@
                         <div align="center">
                           <table>
                               <tr>
-                                  <td>{!!link_to_route('vendedor.edit',$title='Editar', $parametro=$vendedor->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
+                                  <td>{!!link_to_route('vendedor.edit',$title=' Editar', $parametro=$vendedor->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-edit'])!!}</td>
                                   <td>@include('vendedor.HABILITAR')</td>
                               </tr>
                         </table>
                       </div><!-- fin tabla que centra los botones-->
                     </td>
                 </tr>
-              </tbody>
+           
             @endif
             @if($estado==2)
-              <tbody>
+             
                 <tr>
                      <td>{{$vendedor->nombreVen}}</td>
                      <td>{{$vendedor->nombreProveedor($vendedor->proveedor_id)}}</td>
@@ -112,7 +113,7 @@
                         <div align="center">
                           <table>
                               <tr>
-                                  <td>{!!link_to_route('vendedor.edit',$title='Editar', $parametro=$vendedor->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
+                                  <td>{!!link_to_route('vendedor.edit',$title=' Editar', $parametro=$vendedor->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-edit'])!!}</td>
                                   <td>@include('vendedor.DESHABILITAR')</td>
                               </tr>
                         </table>
@@ -123,7 +124,7 @@
                         <div align="center">
                           <table>
                               <tr>
-                                  <td>{!!link_to_route('vendedor.edit',$title='Editar', $parametro=$vendedor->id,$atributo=['class'=>'btn btn-primary'])!!}</td>
+                                  <td>{!!link_to_route('vendedor.edit',$title=' Editar', $parametro=$vendedor->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-edit'])!!}</td>
                                   <td>@include('vendedor.HABILITAR')</td>
                               </tr>
                         </table>
@@ -132,9 +133,10 @@
                   @endif
                   </td>
                 </tr>
-              </tbody>
+             
             @endif
           @endforeach
+           </tbody>
         </table>
       </div><!-- /.box-body -->
     </div><!-- /.box -->

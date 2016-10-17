@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 use SICVFG\Http\Requests;
 use SICVFG\Vendedor;
+use DB;
 use Session;
 use Redirect;
 use SICVFG\Http\Requests\VendedorCreateRequest;
-use SICVFG\Http\Requests\VendedorUpdateRequest;
 use SICVFG\Http\Controllers\Controller;
 
 
@@ -35,7 +35,7 @@ class VendedorController extends Controller
      */
     public function create()
     {
-     $proveedors=\SICVFG\Proveedor::lists('nombreProv','id');
+     $proveedors=DB::select('SELECT * FROM proveedors WHERE estadoProv=1');
      return view('vendedor.create',compact('proveedors'));
     }
 
@@ -66,11 +66,30 @@ class VendedorController extends Controller
      */
     public function show($id)
     {
+   
+
         $vendedor=\SICVFG\Vendedor::findOrFail($id);
-        $vendedor->estadoVen=1; //modificamos el estado 
-        $vendedor->update();
-         Session::flash('mensaje','Vendedor Habilitado con Exito');
-        return Redirect::to('/vendedor');
+        $idProveedor=$vendedor->proveedor_id;
+
+          $proveedor=\SICVFG\Proveedor::findOrFail($idProveedor);
+          $estadoP=$proveedor->estadoProv;
+
+
+
+                if($estadoP==1)
+                {//inicio condicion 2
+                  $vendedor->estadoVen=1; //modificamos el estado 
+                  $vendedor->update();
+                  Session::flash('mensaje','Vendedor Habilitado Correctamente');
+                  return Redirect::to('/vendedor');   
+                }else{
+
+                  $vendedor->estadoVen=0; //modificamos el estado 
+                  $vendedor->update();
+                  Session::flash('mensaje','El vendedor no se Habilitado ya que la empresa a la que pertenece esta Inactiva');
+                  return Redirect::to('/vendedor');  
+                }//fin condicion 2
+     
     }
 
     /**
@@ -82,7 +101,7 @@ class VendedorController extends Controller
     public function edit($id)
     {
 
-     $proveedors=\SICVFG\Proveedor::All(); 
+     $proveedors=DB::select('SELECT * FROM proveedors WHERE estadoProv=1');
      $vendedor= \SICVFG\Vendedor::find($id);
    
      if(is_null($vendedor))
@@ -100,7 +119,7 @@ class VendedorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(VendedorUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $vendedor= \SICVFG\Vendedor::find($id);
         $vendedor->fill($request->all());
@@ -124,7 +143,7 @@ class VendedorController extends Controller
         $vendedor->update();
         Session::flash('mensaje','Vendedor Deshabilitado con Exito');
         return Redirect::to('/vendedor');
-    }
+}
 
 
     public function desactivo($id)

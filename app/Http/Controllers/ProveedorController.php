@@ -5,11 +5,11 @@ namespace SICVFG\Http\Controllers;
 use Illuminate\Http\Request;
 
 use SICVFG\Proveedor;
+use DB;
 use Session;
 use Redirect;
 use SICVFG\Http\Requests;
 use SICVFG\Http\Requests\ProveedorCreateRequest;
-use SICVFG\Http\Requests\ProveedorUpdateRequest;
 use SICVFG\Http\Controllers\Controller;
 
 class ProveedorController extends Controller
@@ -65,9 +65,12 @@ class ProveedorController extends Controller
         
         $proveedor=\SICVFG\Proveedor::findOrFail($id);
         $proveedor->estadoProv=1; //modificamos el estado 
+        $vendedor=\SICVFG\Vendedor::where('proveedor_id',$id)->update(['estadoVen'=>1]);
         $proveedor->update();
-         Session::flash('mensaje','Proveedor Habilitado con Exito');
+        Session::flash('mensaje','Proveedor habilitado, tenia asociado Registros de Vendedores/as que tambien se habilitaron');
         return Redirect::to('/proveedor');
+             
+
     }
 
     /**
@@ -91,11 +94,11 @@ class ProveedorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProveedorUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $proveedor= \SICVFG\Proveedor::find($id);
         $proveedor->fill($request->all());
-        $proveedor->save();
+        $proveedor->update();
 
         Session::flash('mensaje','Proveedor Editado con Exito');
         return Redirect::to('/proveedor');
@@ -109,26 +112,45 @@ class ProveedorController extends Controller
      */
     public function destroy($id)
     {    
-    
-        $proveedor=\SICVFG\Proveedor::find($id);
-        $proveedor->estadoProv=false; //modificamos el estado a cero asumir que esta deshabilitado
-        $proveedor->save();
-         Session::flash('mensaje','Proveedor Deshabilitado con Exito');
+       
+
+        $proveedor=\SICVFG\Proveedor::findOrFail($id);
+        $proveedor->estadoProv=0; //modificamos el estado 
+        $vendedor=\SICVFG\Vendedor::where('proveedor_id',$id)->update(['estadoVen'=>0]);
+        $proveedor->update();
+         Session::flash('mensaje','Proveedor deshabilitado, tenia asociado Registros de Vendedores/as que tambien se deshabilitaron');
         return Redirect::to('/proveedor');
+             
+
+      // $proveedors=DB::select('SELECT * FROM proveedors');
+      //  foreach ($proveedors as $p ) {
+      //       $estadoP=Proveedor::estadoProveedor($id);
+      //   }
+
+      //   $vendedors=DB::select('SELECT * FROM vendedors');
+      //  foreach ($vendedors as $v ) {
+      //       $estadoV=Vendedor::estadoVendedor($v->id);
+      //   }
+      //   if($estadoV==1 ){
+      //              }
+
+       
+        
     }
 
 
       public function desactivo($id)
     {
-         $estado=0;
-        $proveedors= \SICVFG\Proveedor::All();
-        return view('proveedor.index',compact('proveedors','estado'));
+       $estado=0;
+       $proveedors=DB::select('SELECT * FROM proveedors where estadoProv=0 ');
+       return view('proveedor.index',compact('proveedors','estado'));
     }
     public function activo($id)
-    {
-        $estado=1;
-        $proveedors= \SICVFG\Proveedor::All();
-        return view('proveedor.index',compact('proveedors','estado'));
+    {  
+       $estado=1;
+       $proveedors=DB::select('SELECT * FROM proveedors where estadoProv=1 ');
+       return view('proveedor.index',compact('proveedors','estado'));
+
     }
 
 }

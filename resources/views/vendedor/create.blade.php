@@ -3,7 +3,7 @@
 @section('content')
 @include('alertas.request')
 {!! Form::open(['route'=>'vendedor.store','method'=>'POST']) !!}
-    @include('vendedor.formulario.forVendedorCreate')
+    @include('vendedor.formulario.forVendedor')
     <button class="btn btn-primary">
       <span class="glyphicon glyphicon-floppy-disk"></span> Registrar
     </button>

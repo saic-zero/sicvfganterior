@@ -4,7 +4,7 @@ namespace SICVFG\Http\Requests;
 
 use SICVFG\Http\Requests\Request;
 
-class ProductoCreateRequest extends Request
+class CategoriaCreateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,19 +24,14 @@ class ProductoCreateRequest extends Request
     public function rules()
     {
         return [
-
-            'codProducto'=>'unique:productos',
-            'nombreProd'=>'unique:productos',
-         ];
+            'nombreCategoria'=>'unique:categorias',
+        ];
     }
 
-
     public function messages(){
-       return [
-         
-         'codProducto.unique' => '¡Al parecer el Código de Barra que intenta usar, ya esta asociado a otro producto!',
-         'nombreProd.unique' => '¡El nombre del producto que intenta ingresar ya esta registrado!',
-         
-     ];
-     }
+    return [
+    'nombreCategoria.unique' => '¡La categoria que intenta registrar ya existe !',
+    ];
+    }
+
 }

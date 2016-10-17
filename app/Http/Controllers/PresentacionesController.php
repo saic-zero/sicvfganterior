@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use SICVFG\Http\Requests;
 use DB;
 use SICVFG\Http\Controllers\Controller;
+use SICVFG\Http\Requests\PresentacionCreateRequest;
 use SICVFG\Presentaciones;
 use SICVFG\Producto;
 use Session;

@@ -10,9 +10,10 @@ class Vendedor extends Model
 
     protected $fillable = ['nombreVen','DUIVen','correoVen','direccionVen','telefonoVen','proveedor_id'];
 
-
-      public static function nombreProveedor($id){
+     public static function nombreProveedor($id){
     $n=\SICVFG\Proveedor::find($id);
     return $n->nombreProv;
     }
+
+
 }

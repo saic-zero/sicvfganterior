@@ -4,7 +4,7 @@ namespace SICVFG\Http\Requests;
 
 use SICVFG\Http\Requests\Request;
 
-class ProductoCreateRequest extends Request
+class PresentacionCreateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,17 +25,19 @@ class ProductoCreateRequest extends Request
     {
         return [
 
-            'codProducto'=>'unique:productos',
-            'nombreProd'=>'unique:productos',
+            'nombrePre'=>'required|unique:presentaciones',
+            'equivale'=>'required|unique:presentaciones',
+            
          ];
     }
+
 
 
     public function messages(){
        return [
          
-         'codProducto.unique' => '¡Al parecer el Código de Barra que intenta usar, ya esta asociado a otro producto!',
-         'nombreProd.unique' => '¡El nombre del producto que intenta ingresar ya esta registrado!',
+         'equivale.unique' => '¡La  equivalencia en unidades ya fue asignada a otra Presentación!',
+         'nombrePre.unique' => '¡Al parecer el Nombre de la Presentación ya existe!',
          
      ];
      }

@@ -4,10 +4,12 @@ namespace SICVFG\Http\Controllers;
 use Illuminate\Http\Request;
 
 use SICVFG\Categoria;
+use DB;
 use Session;
 use Redirect;
 use SICVFG\Http\Requests;
 use SICVFG\Http\Controllers\Controller;
+use SICVFG\Http\Requests\CategoriaCreateRequest;
 
 class CategoriaController extends Controller
 {
@@ -42,7 +44,7 @@ class CategoriaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function store(Request $request)
+     public function store(CategoriaCreateRequest $request)
     {
       \SICVFG\Categoria::create([
     //primer parametro es el campo de BD y el segundo es el del formulario
@@ -119,14 +121,15 @@ class CategoriaController extends Controller
 
     public function desactivo($id)
     {
-        $estado=0;
-        $categorias= \SICVFG\Categoria::All();
-        return view('categoria.index',compact('categorias','estado'));
+       $estado=0;
+       $categorias=DB::select('SELECT * FROM categorias where estadoCat=0 ');
+       return view('categoria.index',compact('categorias','estado'));
     }
     public function activo($id)
     {
         $estado=1;
-        $categorias= \SICVFG\Categoria::All();
-        return view('categoria.index',compact('categorias','estado'));
+       $categorias=DB::select('SELECT * FROM categorias where estadoCat=1 ');
+       return view('categoria.index',compact('categorias','estado'));
+
     }
 }

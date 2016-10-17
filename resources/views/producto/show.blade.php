@@ -20,8 +20,8 @@
       <br>
         
         {!!link_to_action("ProductoController@index", $title = "Atras", $parameters = 1, $attributes = ["class"=>"btn btn-danger"])!!}
-        {!!link_to_route('presentaciones.show',$title='Presentaciones', $parametro=$c->id,$atributo=['class'=>'btn btn-primary'])!!}
-        {!!link_to_route('producto.edit',$title='Editar Producto', $parametro=$c->id,$atributo=['class'=>'btn btn-primary'])!!}
+        {!!link_to_route('presentaciones.show',$title=' Presentaciones', $parametro=$c->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-plus'])!!}
+        {!!link_to_route('producto.edit',$title=' Editar', $parametro=$c->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-refresh'])!!}
         
       <br>
       <center>
@@ -57,7 +57,7 @@
                       </div>
                       </td>
                   </tr>
- -->
+ -->              <tbody>
                     <tr>
                       <td>1</td>
                       <td>
@@ -152,7 +152,7 @@
 
                   
              </center>
-       
+          </tbody>
         </table>
       </div><!-- /.box-body -->
     </div><!-- /.box -->

@@ -5,7 +5,7 @@
 
 @include('alertas.request')
 {!! Form::open(['route'=>'producto.store','method'=>'POST']) !!}
- @include('producto.formulario.forProductoCreate')
+ @include('producto.formulario.forProducto')
   <button class="btn btn-primary">
       <span class="glyphicon glyphicon-floppy-disk"></span> Registrar
     </button>

@@ -49,16 +49,17 @@
             $.get(ruta,function(res){
               var presentationNameSell=res;
             tablaDatos.append("<tr><td>"+
-            lote+
-            "</td><td>"+articulo+
-            "</td><td>"+presentationNameSell+
-            "</td><td>"+estante+
-            "</td><td>"+cantidad+
-            "</td><td>"+precioC+
-            "</td><td>"+pmv+
-            "</td><td>"+pmav+
-            "</td><td>"+vencimiento+
-            "</td><td>"+totalC+
+           
+            "</td><td><input type=hidden name=lote[] value="+lote+"/>"+lote+
+            "</td><td><input type=hidden name=articulos[] value="+articulo+"/>"+articulo+
+            "</td><td><input type=hidden name=presentaciones[] value="+presentationNameSell+"/>"+presentationNameSell+
+            "</td><td><input type=hidden name=estante[] value="+estante+"/>"+estante+
+            "</td><td><input type=hidden name=cantidad[] value="+cantidad+"/>"+cantidad+
+            "</td><td><input type=hidden name=precioC[] value="+precioC+"/>"+precioC+
+            "</td><td><input type=hidden name=pmv[] value="+pmv+"/>"+pmv+
+            "</td><td><input type=hidden name=pmav[] value="+pmav+"/>"+pmav+
+            "</td><td><input type=hidden name=vencimiento[] value="+vencimiento+"/>"+vencimiento+
+            "</td><td><input type=hidden name=totalC[] value="+totalC+"/>"+totalC+
             "</td><td class='eliminarVenta' style='cursor:pointer;'>Eliminar</td></tr>");
           });
             // document.getElementById("correlativoVenta").value=correlativo;

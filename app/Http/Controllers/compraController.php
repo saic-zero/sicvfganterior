@@ -64,33 +64,36 @@ class compraController extends Controller
      */
     public function store(Request $request)
     {
-      //   \SICVFG\Compra::create([
-      //   'numComprobanteCompra'=>$request['numComprobanteCompra'],
-      //   'tipoCompra'=> $request['tipoCompra'],
-      //   'fechaCompra'=> $request['fechaCompra'],
-      //   'descripcionCompra'=> $request['descripcionCompra'],
-      //   'proveedor_id'=>$request['proveedor_id'],
-      //   'usuario_id'=> $request['proveedor_id'],
-      //
-      //   ]);
-      //
-      //    \SICVFG\DetalleCompra::create([
-      //   'producto_id'=>$request['producto_id'],
-      //   'cantidad'=> $request['cantidad'],
-      //   'precioCompra'=> $request['precioCompra'],
-      //   'precioMinVenta'=> $request['precioMinVenta'],
-      //   'precioMaxVenta'=>$request['precioMaxVenta'],
-      //   'FechaVencimiento'=> $request['FechaVencimiento'],
-      //   'lote'=> $request['lote'],
-      //   'compra_id'=> $request['producto_id'],
-      //   'estante_id'=> $request['estante_id'],
-      //   'IVA'=> $request['IVA'],
-      //
-      //
-      //
-      // ]);
-      // return redirect('/compras')->with('mensaje','Registrado con exito');
-   // return "Usuario Registrado";
+         $compra=new Compra;
+         
+         $compra->numComprobanteCompra = $request->numComprobanteCompra;
+         $compra->tipoCompra = $request->tipoCompra;
+         $compra->fechaCompra = $request->fechaCompra;
+         $compra->descripcionCompra = $request->descripcionCompra;
+         $compra->proveedor_id = $request->proveedor_id;
+         $compra->usuario_id = 1;
+         $compra->save();         
+      
+        
+      foreach ($request->articulos as $k => $a) {
+      $detalle = new DetalleCompra;
+      $prod = Producto::where('codProducto','=', $a)->first();
+      $detalle->producto_id = 1;
+      $detalle->cantidad = $request->cantidad[$k];
+      $detalle->precioCompra = $request->precioC[$k];
+      $detalle->precioMinVenta = $request->pmv[$k];
+      $detalle->precioMaxVenta = $request->pmav[$k];
+      $detalle->fechaVencimiento = $request->vencimiento[$k];
+      $detalle->lote = $request->lote[$k];
+      $detalle->compra_id =$compra->id;
+      $detalle->IVA = $request->lote[$k];
+      $est = Estante::where('nombreEst','=', $a)->first();
+      $detalle->estante_id = 1;      
+      $pre = Presentaciones::where('nombrePre','=', $a)->first();
+      $detalle->presentacion_id = 1;
+      $detalle->save();
+    }
+       return redirect('/compras')->with('mensaje','Registrado con exito');
 
     }
 

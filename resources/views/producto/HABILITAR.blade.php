@@ -2,7 +2,7 @@
 {!!Form::open(['url'=>['darAltaProductos',$producto->id],'method'=>'POST'])!!}
 <img src={!! asset('/images/faviconnAltaBoton.png') !!} alt="" class="circ" onclick="return swal({
 title: '¿Esta seguro que desea restaurar?',
-text: 'El registro volverá a estar disponible!',   type: 'warning',
+text: 'El registro volverá a estar disponible, y las presentaciones Asociadas!',   type: 'warning',
 showCancelButton: true,   confirmButtonColor: '#06c',
 confirmButtonText: 'Si, restaurar!',
 cancelButtonText: 'No, Cancelar!',   closeOnConfirm: true,

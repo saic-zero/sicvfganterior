@@ -1,7 +1,7 @@
 {!! Form::open(['route'=>['categoria.show',$categoria->id],'method'=>'GET']) !!}
 <img src={!! asset('/images/faviconnAltaBoton.png') !!} alt="" class="circ" onclick="return swal({
 title: '¿Esta seguro que desea restaurar?',
-text: 'El registro volverá a estar disponible!',   type: 'warning',
+text: 'El registro volverá a estar disponible, y los Productos del catálogo Asociados!',   type: 'warning',
 showCancelButton: true,   confirmButtonColor: '#06c',
 confirmButtonText: 'Si, restaurar!',
 cancelButtonText: 'No, Cancelar!',   closeOnConfirm: true,

@@ -71,13 +71,11 @@ class VendedorController extends Controller
         $vendedor=\SICVFG\Vendedor::findOrFail($id);
         $idProveedor=$vendedor->proveedor_id;
 
-          $proveedor=\SICVFG\Proveedor::findOrFail($idProveedor);
-          $estadoP=$proveedor->estadoProv;
-
-
+        $proveedor=\SICVFG\Proveedor::findOrFail($idProveedor);
+        $estadoP=$proveedor->estadoProv;
 
                 if($estadoP==1)
-                {//inicio condicion 2
+                {//inicio condicion 1
                   $vendedor->estadoVen=1; //modificamos el estado 
                   $vendedor->update();
                   Session::flash('mensaje','Vendedor Habilitado Correctamente');
@@ -88,7 +86,7 @@ class VendedorController extends Controller
                   $vendedor->update();
                   Session::flash('mensaje','El vendedor no se Habilitado ya que la empresa a la que pertenece esta Inactiva');
                   return Redirect::to('/vendedor');  
-                }//fin condicion 2
+                }//fin condicion 1
      
     }
 

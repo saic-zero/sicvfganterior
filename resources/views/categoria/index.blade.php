@@ -21,7 +21,7 @@
         <h3 class="box-title">Administración de Categorias</h3>
       </div><!-- /.box-header -->
       <br>
-      {!!link_to_action("frontController@index", $title = "Atras", $parameters = 1, $attributes = ["class"=>"btn btn-danger"])!!}
+<!--       {!!link_to_action("frontController@index", $title = "Atras", $parameters = 1, $attributes = ["class"=>"btn btn-danger"])!!} -->
       {!!link_to_action("CategoriaController@index", $title = "Todos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_action("CategoriaController@activo", $title = "activos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_action("CategoriaController@desactivo", $title = "Desactivos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}

@@ -144,7 +144,7 @@
 				@yield('content')
 
 			</section>
-{!!Html::script('js/compra.js')!!}
+
 	<!-- jQuery 2.1.4 -->
 	{!!Html::script('plugins/jQuery/jQuery-2.1.4.min.js')!!}
 	<!-- Bootstrap 3.3.5 -->
@@ -189,6 +189,23 @@
 
 {!!Html::script('js/sweetalert-dev.js')!!}  <!-- plugin alertas -->
 <!-- This is what you need -->
+
+	<script>
+		$(function () {
+			$("#example1").DataTable();
+			$('#example2').DataTable({
+				"paging": true,
+				"lengthChange": false,
+				"searching": false,
+				"ordering": true,
+				"info": true,
+				"autoWidth": false
+			});
+		});
+
+
+	</script>
+
 	<!-- jQuery Knob Chart -->
 	{!!Html::script('plugins/knob/jquery.knob.js')!!}
 

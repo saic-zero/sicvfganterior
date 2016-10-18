@@ -138,8 +138,9 @@ class ProductoController extends Controller
         //
         $productos=\SICVFG\Producto::findOrFail($id);
         $productos->estadoProd=0; //modificamos el estado a uno asumir que esta deshabilitado
+        $presentacion=\SICVFG\Presentaciones::where('producto_id',$id)->update(['estadoPres'=>0]);
         $productos->update();
-        Session::flash('mensaje','Producto Deshabilitado con Exito');
+        Session::flash('mensaje','Producto Deshabilitado, es posible que tuviera asociado Registros de Presentaciones que tambien se deshabilitaron');
         return Redirect::to('/producto');
     }
 
@@ -148,12 +149,28 @@ class ProductoController extends Controller
     //Funciones Creadas
     //Esta funcion se encarga de Habilitar Un producto
     public function darAlta($id){
-         $productos=\SICVFG\Producto::findOrFail($id);
-         $productos->estadoProd=1;
-         $productos->update();
-        // Bitacoras::bitacora("Producto activado: ".$productos['nombre']);
-         Session::flash('mensaje','Producto Habilitado con Exito');
-         return Redirect::to('/producto');
+
+        $productos=\SICVFG\Producto::findOrFail($id);
+        $idCategoria=$productos->categoria_id;
+
+        $categoria=\SICVFG\Categoria::findOrFail($idCategoria);
+        $estadoC=$categoria->estadoCat;
+
+                if($estadoC==1)
+                {//inicio condicion 1
+                     $productos->estadoProd=1;
+                     $presentacion=\SICVFG\Presentaciones::where('producto_id',$id)->update(['estadoPres'=>1]);
+                     $productos->update();
+                     Session::flash('mensaje','Producto Habilitado, es posible que tuviera asociado Registros de Presentaciones que tambien se habilitaron ');
+                     return Redirect::to('/producto');  
+                }else{
+
+                     $productos->estadoProd=0;
+                     $presentacion=\SICVFG\Presentaciones::where('producto_id',$id)->update(['estadoPres'=>0]);
+                     $productos->update();
+                     Session::flash('mensaje','El Producto del catálogo no se Puede Habilitar, ya que la Categoria a la que pertenece esta Inactiva');
+                     return Redirect::to('/producto'); 
+                  }//fin condicion 1
     }
 
     //Esta Funcion nos proporciona el control de los productos que se encuentran Deshabilitados

@@ -134,10 +134,24 @@ class PresentacionesController extends Controller
 
     public function darAlta($id)
         {
-       $presentaciones=\SICVFG\Presentaciones::findOrFail($id);
-        $presentaciones->estadoPres=1; //modificamos el estado 
-        $presentaciones->update();
-        Session::flash('mensaje','presentación Habilitada con Exito');
+        $presentaciones=\SICVFG\Presentaciones::findOrFail($id);
+        $idProducto=$presentaciones->producto_id;
+
+        $producto=\SICVFG\Producto::findOrFail($idProducto);
+        $estadoProducto=$producto->estadoProd;
+
+                if($estadoProducto==1)
+                {//inicio condicion 1
+                    $presentaciones->estadoPres=1; //modificamos el estado 
+                    $presentaciones->update();
+                    Session::flash('mensaje','presentación Habilitada con Exito'); 
+                }else{
+
+                     $presentaciones->estadoPres=0; //modificamos el estado 
+                     $presentaciones->update();
+                     Session::flash('mensaje','La Presentación no se Puede Habilitar, ya que el producto al que pertenece esta Inactivo');
+                     return Redirect::to('/producto');  
+                }//fin condicion 1
               
            
               $producto=$presentaciones->producto_id;

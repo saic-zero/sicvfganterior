@@ -64,8 +64,9 @@ class CategoriaController extends Controller
         
         $categorias=\SICVFG\Categoria::findOrFail($id);
         $categorias->estadoCat=1; //modificamos el estado a cero asumir que esta deshabilitado
+        $producto=\SICVFG\Producto::where('categoria_id',$id)->update(['estadoProd'=>1]);
         $categorias->update();
-        Session::flash('mensaje','Categoria Habilitada con Exito');
+        Session::flash('mensaje','Categoria habilitada, es posible que tuviera asociado Registros del Catálogo de Productos que tambien se habilitaron');
         return Redirect::to('/categoria');
         
     }
@@ -107,14 +108,11 @@ class CategoriaController extends Controller
      */
     public function destroy($id)
     {
-        /*\SICVFG\Categoria::destroy($id);
-        Session::flash('mensaje','Categoria Eliminada con Exito');
-        return Redirect::to('/categoria');*/
-
         $categorias=\SICVFG\Categoria::findOrFail($id);
         $categorias->estadoCat=0; //modificamos el estado a cero asumir que esta deshabilitado
+        $producto=\SICVFG\Producto::where('categoria_id',$id)->update(['estadoProd'=>0]);
         $categorias->update();
-        Session::flash('mensaje','Categoria Deshabilitada con Exito');
+        Session::flash('mensaje','Categoria deshabilitada, es posible que tuviera asociado Registros del Catálogo de Productos que tambien se deshabilitaron');
         return Redirect::to('/categoria');
 
     }

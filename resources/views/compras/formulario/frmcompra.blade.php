@@ -22,7 +22,7 @@
          				 @endforeach
         				</select>
                 {!!Form::label('lbFecha','Fecha de Compra')!!}
-                {!!Form::date('fechaCompra',null,['id'=>'fechaVencimiento','class'=>'form-control', 'placeholder'=>'Fecha de Vencimiento...','required'])!!}
+                {!!Form::date('fechaCompra',null,['id'=>'fechaCompra','class'=>'form-control', 'placeholder'=>'Fecha de Vencimiento...','required'])!!}
               </div>
     					<div class="col-md-3">
     					  {!!form::label('# Comprobante')!!}
@@ -121,7 +121,8 @@
 <div class="box-body">
 		<table class="table  table-bordered taC table-hover" name="tablaArticulosVenta" id="tblDatosCompra">
       <tr>
-        <th>Lote</th>
+      <th> ---- </th>
+      <th>Lote</th>
 			 <th>Producto</th>
 			 <th>Presentación</th>
 			 <th>Estante</th>

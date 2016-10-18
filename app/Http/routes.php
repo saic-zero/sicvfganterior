@@ -115,7 +115,7 @@ Route::match(['get','post'],'/compras/nombrepresentacionCompra/{cadena}','compra
 
 
 Route::resource('compras', 'compraController');
-
+Route::resource('estante', 'estanteController');
 Route::resource('detallecompras', 'detallecompraController');
 
 ///////////////////////FIN ELIO//////////////////////////////////

@@ -77,8 +77,9 @@ class compraController extends Controller
         
       foreach ($request->articulos as $k => $a) {
       $detalle = new DetalleCompra;
+      $i=1;
       $prod = Producto::where('codProducto','=', $a)->first();
-      $detalle->producto_id = 1;
+      $detalle->producto_id = $i;
       $detalle->cantidad = $request->cantidad[$k];
       $detalle->precioCompra = $request->precioC[$k];
       $detalle->precioMinVenta = $request->pmv[$k];
@@ -88,9 +89,10 @@ class compraController extends Controller
       $detalle->compra_id =$compra->id;
       $detalle->IVA = $request->lote[$k];
       $est = Estante::where('nombreEst','=', $a)->first();
-      $detalle->estante_id = 1;      
+      $detalle->estante_id = $i;      
       $pre = Presentaciones::where('nombrePre','=', $a)->first();
-      $detalle->presentacion_id = 1;
+      $detalle->presentacion_id = $i;
+      $i=$i+1;
       $detalle->save();
     }
        return redirect('/compras')->with('mensaje','Registrado con exito');

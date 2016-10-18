@@ -38,7 +38,7 @@
   </thead>
   @foreach ($detallecompras as $detallecompras)
   <tbody>
-    <td>{{$detallecompras->producto_id}}</td>
+    <td>{{$detallecompras->nombreProd($detallecompras->producto_id)}}</td>
     <td>{{$detallecompras->cantidad}}</td>
     <td>{{$detallecompras->precioCompra}}</td>
     <td>{{$detallecompras->precioMinVenta}}</td>

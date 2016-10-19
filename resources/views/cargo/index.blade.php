@@ -13,6 +13,9 @@
         <h3 class="box-title">Administración de Cargos</h3>
       </div><!-- /.box-header -->
       <br>
+      {!!link_to_action("CargoController@index", $title = "Todos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
+      {!!link_to_action("CargoController@activo", $title = "activos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
+      {!!link_to_action("CargoController@desactivo", $title = "Desactivos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_route('cargo.create',$title='Nuevo', $parametro= 1, $attributes = ["class"=>"btn bg-olive"])!!}
       <br><br>
       <div class="box-body">
@@ -27,9 +30,21 @@
           @foreach($cargos as $cargo)
             <tr>
               <td>{{$cargo->nombreCargo}}</td>
-              <td> <center>
-                {!!link_to_route('cargo.edit',$title=' Editar', $parametro=$cargo->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-edit'])!!}
-                </center>
+              <td>
+                <div align="center">
+                  <table>
+                    <tr>
+                       <td>{!!link_to_route('cargo.edit',$title=' Editar', $parametro=$cargo->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-edit'])!!}</td>
+                        <td>
+                        @if($cargo->estadoCargo==1)
+                          @include('cargo.darDeBaja')
+                        @else
+                          @include('cargo.habilitar')
+                        @endif
+                      </td>
+                    </tr>
+                  </table>
+                </div><!-- fin tabla que centra los botones-->
               </td>
             </tr>
             @endforeach

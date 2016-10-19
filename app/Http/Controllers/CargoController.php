@@ -9,6 +9,7 @@ use SICVFG\Http\Requests\CargosRequest;
 use SICVFG\Http\Controllers\Controller;
 use SICVFG\Cargo;
 use Session;
+use DB;
 use Redirect;
 
 class CargoController extends Controller
@@ -56,6 +57,11 @@ class CargoController extends Controller
      */
     public function show($id)
     {
+      $cargos=\SICVFG\Cargo::findOrFail($id);
+      $cargos->estadoCargo=1; //modificamos el estado
+      $cargos->update();
+      Session::flash('mensaje','Cargo Habilitado con Exito');
+      return Redirect::to('/cargo');
     }
 
     /**
@@ -95,6 +101,21 @@ class CargoController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $cargos=\SICVFG\Cargo::findOrFail($id);
+      $cargos->estadoCargo=0; //modificamos el estado
+      $cargos->update();
+      Session::flash('mensaje','Cargo Deshabilitado con Exito');
+      return Redirect::to('/cargo');
+    }
+
+    public function desactivo($id)
+    {
+        $cargos=DB::select('SELECT * FROM cargos where estadoCargo=0 ');
+        return view('cargo.index',compact('cargos'));
+    }
+    public function activo($id)
+    {
+      $cargos=DB::select('SELECT * FROM cargos where estadoCargo=1 ');
+      return view('cargo.index',compact('cargos'));
     }
 }

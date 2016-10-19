@@ -23,16 +23,30 @@
         <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
+              <th bgcolor="#e5eef7">foto</th>
               <th bgcolor="#e5eef7">Usuario</th>
               <th bgcolor="#e5eef7">Nombre</th>
+              <th bgcolor="#e5eef7">Correo</th>
+              <th bgcolor="#e5eef7">Tipo De Cuenta</th>
               <th bgcolor="#e5eef7">Acción</th>
             </tr>
           </thead>
           <tbody>
           @foreach ($users as $user)
           <tr>
+            <td>
+              <div class="pull-left image">
+    						<img src="http://localhost:8000/imagenesUsuarios/{{$user->nombre_img }}" class="img-circle" alt="User Image" width="40px" height="40px">
+    					</div>
+            </td>
             <td>{{$user->name}}</td>
             <td>{{$user->nombresEmp.' '.$user->apellidosEmp}}</td>
+            <td>{{$user->email}}</td>
+            @if($user->tipoCuenta==1)
+            <td>Administrador</td>
+          @else
+            <td>Vendedor</td>
+          @endif
             <td>
               <div align="center">
                 <table>

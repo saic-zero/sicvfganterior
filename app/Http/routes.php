@@ -54,6 +54,8 @@ Route::group(['middleware'=>'administrador'], function(){
   Route::match(['get','post'],'/empleado/index/{id}','EmpleadoController@index');
   Route::resource('empleado','EmpleadoController');
 
+  Route::match(['get','post'],'/cargo/index/{id}','CargoController@index');
+  Route::match(['get','post'],'/cargo/activo/{id}','CargoController@activo');
   Route::match(['get','post'],'/cargo/desactivo/{id}','CargoController@desactivo');
   Route::resource('cargo','CargoController');
   /////////////////////////////FIN SAIC/////////////////////////////////////////////////////////

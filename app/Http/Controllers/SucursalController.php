@@ -119,7 +119,8 @@ class SucursalController extends Controller
             $sucursals=\SICVFG\Sucursal::findOrFail($id);
             $sucursals->estadoSuc=0; //modificamos el estado
             $sucursals->update();
-            Session::flash('mensaje','Sucursal Deshabilitada con Exito');
+            $empleado=\SICVFG\Empleado::where('sucursal_id',$id)->update(['estadoEmp'=>0]);
+            Session::flash('mensaje','Sucursal Deshabilitada con Exito, es posible que tuviera empleados registrados los cuales tambien se deshabilitaron');
             return Redirect::to('/sucursal');
           }
 

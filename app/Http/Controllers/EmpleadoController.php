@@ -38,7 +38,7 @@ class EmpleadoController extends Controller
     public function create()
     {
         $sucursals=DB::select('SELECT * FROM sucursals where estadoSuc=1 ');
-        $cargos=Cargo::All();
+        $cargos=DB::select('SELECT * FROM cargos where estadoCargo=1 ');
         return view('empleado.create',compact('sucursals','cargos'));
     }
 
@@ -80,10 +80,19 @@ class EmpleadoController extends Controller
     public function show($id)
     {
       $empleados=\SICVFG\Empleado::findOrFail($id);
-      $empleados->estadoEmp=1; //modificamos el estado a uno asumir que esta habilitado
-      $empleados->update();
-      Session::flash('mensaje','Empleado Deshabilitado con Exito');
-      return Redirect::to('/empleado');
+      $idSucursal=$empleados->sucursal_id;
+      $sucursal=\SICVFG\Sucursal::findOrFail($idSucursal);
+      $estadoSucursal=$sucursal->estadoSuc;
+      if ($estadoSucursal==1) {
+        $empleados->estadoEmp=1; //modificamos el estado a uno asumir que esta habilitado
+        $empleados->update();
+        Session::flash('mensaje','Empleado Habilitado con Exito');
+        return Redirect::to('/empleado');
+      }else{
+        Session::flash('mensaje','El empleado no se ha Habilitado ya que la sucursal a la que pertenece esta Inactiva');
+        return Redirect::to('/empleado');
+      }
+
     }
 
     /**
@@ -129,20 +138,8 @@ class EmpleadoController extends Controller
       $empleados=\SICVFG\Empleado::findOrFail($id);
       $empleados->estadoEmp=0; //modificamos el estado a uno asumir que esta deshabilitado
       $empleados->update();
-      //si el empleado posee una cuenta de usuario tambien se deshabilita
-      $idU=User::where('user_id',$id)->get();
-      //  $idUsuario=DB::select('SELECT * FROM users where estadoUsu=1 and user_id=',$id);
-      $idUsuario=$idU->last()->id;
-      if($idUsuario!=null){
-        $user=\SICVFG\User::findOrFail($idUsuario);
-        $user->estadoUsu=0; //modificamos el estado a uno asumir que esta deshabilitado
-        $user->update();
-
-        Session::flash('mensaje','El empleado a deshabilitar poseia una cuenta de usuario que tambien se deshabilito');
-        return Redirect::to('/empleado');
-      }
-
-      Session::flash('mensaje','Empleado Deshabilitado con Exito');
+      $usuario=\SICVFG\User::where('user_id',$id)->update(['estadoUsu'=>0]);
+      Session::flash('mensaje','Empleado  deshabilitado, es  posible que tuviera asociado ua cuenta de usuario que tambien se deshabilito');
       return Redirect::to('/empleado');
     }
 

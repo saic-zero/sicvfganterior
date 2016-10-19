@@ -82,7 +82,7 @@ if($bandera==1){
 						</div><!-- /.form-group -->
 						<div class="form-group">
 							{!!Form::label('lbISSS','Número de ISSS:')!!}
-							{!!Form::text('numISSS',null,['onKeyPress'=>'return validarISSS(event)','class'=>'form-control', 'placeholder'=>'Ejemplo: 14555-555','id'])!!}
+							{!!Form::text('numISSS',null,['onKeyPress'=>'return validarISSS(event)','id'=>'numISSS','class'=>'form-control', 'placeholder'=>'Ejemplo: 14555-555','id'])!!}
 						</div><!-- /.form-group -->
 					</div><!-- /.col -->
 					<p>formulario 2 de 3</p>
@@ -91,7 +91,7 @@ if($bandera==1){
 					<div class="col-md-6"><br>
 						<div class="form-group">
 							{!!Form::label('lbCodEmp','* Código_Empleado:')!!}
-							{!!Form::text('codEmpleado',null,['class'=>'form-control', 'placeholder'=>'Codigo de Empleado...','required'])!!}
+							{!!Form::text('codEmpleado',null,['class'=>'form-control','onKeyPress'=>'return validarCodEmp(event)','id'=>'codEmpleado', 'placeholder'=>'Codigo de Empleado...','required'])!!}
 							</div><!-- /.form-group -->
 						<div class="form-group">
 							{!!Form::label('lbFechaIngSuc','* Fecha de Ingreso:')!!}

@@ -67,7 +67,7 @@
 							</div><!-- /.form-group -->
 							<div class="form-group">
 								{!!Form::label('lbISSS','Num_ISSS:')!!}
-								{!!Form::text('numISSS',null,['onKeyPress'=>'return validarISSS(event)','class'=>'form-control', 'placeholder'=>'Numero de ISSS'])!!}
+								{!!Form::text('numISSS',null,['onKeyPress'=>'return validarISSS(event)','id'=>'numISSS','class'=>'form-control', 'placeholder'=>'Numero de ISSS'])!!}
 							</div><!-- /.form-group -->
 						</div><!-- /.col2 -->
 						<p>formulario 2 de 3</p>
@@ -76,7 +76,7 @@
 						<div class="col-md-6"><br>
 							<div class="form-group">
 								{!!Form::label('lbCodEmp','* Código_Empleado:')!!}
-								{!!Form::text('codEmpleado',null,['class'=>'form-control', 'placeholder'=>'Codigo de Empleado...','required'])!!}
+								{!!Form::text('codEmpleado',null,['class'=>'form-control','onKeyPress'=>'return validarCodEmp(event)','id'=>'codEmpleado', 'placeholder'=>'Codigo de Empleado...','required'])!!}
 							</div><!-- /.form-group -->
 							<div class="form-group">
 								{!!Form::label('lbFechaIngSuc','* Fecha de Ingreso:')!!}

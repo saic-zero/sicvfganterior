@@ -24,7 +24,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-      $users=DB::select('SELECT e.nombresEmp,e.apellidosEmp,u.name,u.estadoUsu,u.id  FROM empleados e, users u where u.user_id=e.id ');
+      $users=DB::select('SELECT e.nombresEmp,e.apellidosEmp,u.name,u.email,u.tipoCuenta,u.estadoUsu,u.id,u.nombre_img  FROM empleados e, users u where u.user_id=e.id ');
       return view('usuario.index',compact('users'));
     }
 
@@ -77,11 +77,24 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
+      //primero se obtiene el id del empleado
       $user=\SICVFG\User::findOrFail($id);
-      $user->estadoUsu=1; //modificamos el estado
-      $user->update();
-      Session::flash('mensaje','Usuario Habilitado con Exito');
-      return Redirect::to('/usuario');
+      $idEmpleado=$user->user_id;
+      //luego se obtiene el estado del empleado
+      $empleado=\SICVFG\Empleado::findOrFail($idEmpleado);
+      $estadoEmpleado=$empleado->estadoEmp;
+      if ($estadoEmpleado==1) {
+        $user->estadoUsu=1; //modificamos el estado
+        $user->update();
+        Session::flash('mensaje','Usuario Habilitado Correctamente');
+        return Redirect::to('/usuario');
+      }else{
+        $user->estadoUsu=0; //modificamos el estado
+        $user->update();
+        Session::flash('mensaje','Usuario no Habilitado ya que este Empleado se encuentra Inactivo');
+        return Redirect::to('/usuario');
+      }
+
     }
 
     /**
@@ -106,22 +119,26 @@ class UsuarioController extends Controller
      */
     public function update(UsuarioUpdateRequest $request, $id)
     {
+
       $user= User::find($id);
       //obtenemos el campo file definido en el formulario
-      $file = Input::file('nombre_img');
-       //Creamos una instancia de la libreria instalada
-       $image = \Image::make(\Input::file('nombre_img'));
-       //Ruta donde queremos guardar las imagenes
-       $path = public_path().'/imagenesusuarios/';
-       // Guardar imagen
-       $image->save($path.$file->getClientOriginalName());
+       $file = Input::file('nombre_img');
+     //Creamos una instancia de la libreria instalada
+     $image = \Image::make(\Input::file('nombre_img'));
+     //Ruta donde queremos guardar las imagenes
+     $path = public_path().'/imagenesUsuarios/';
+     // Guardar Original
+     $image->save($path.$file->getClientOriginalName());
 
-        // $user->name->$request['name'];
-        // $user->password->$request['password'];
-        // $user->email->$request['email'];
-        // $user->nombre_img=$file->getClientOriginalName(); //obtenemos el nombre del archivo
-        // $user->tipoCuenta->$request['tipoCuenta'];
-        $user->fill($request->all());
+
+      //  $user = new User();
+         $user->name=$request['name'];
+         $user->password=$request['password'];
+         $user->email=$request['email'];
+        $user->nombre_img=$file->getClientOriginalName(); //obtenemos el nombre del archivo
+         $user->tipoCuenta=$request['tipoCuenta'];
+        //  $user->fill($request->all());
+
         $user->save();
         Session::flash('mensaje','Usuario editado correctamente');
         return Redirect::to('/usuario');
@@ -144,12 +161,12 @@ class UsuarioController extends Controller
 
     public function desactivo($id)
     {
-        $users=DB::select('SELECT e.nombresEmp,e.apellidosEmp,u.name,u.estadoUsu,u.id  FROM empleados e, users u where u.user_id=e.id and u.estadoUsu=0 ');
+        $users=DB::select('SELECT e.nombresEmp,e.apellidosEmp,u.name,u.email,u.tipoCuenta,u.estadoUsu,u.id,u.nombre_img  FROM empleados e, users u where u.user_id=e.id and u.estadoUsu=0 ');
         return view('usuario.index',compact('users'));
     }
     public function activo($id)
     {
-        $users=DB::select('SELECT e.nombresEmp,e.apellidosEmp,u.name,u.estadoUsu,u.id  FROM empleados e, users u where u.user_id=e.id and u.estadoUsu=1');
+        $users=DB::select('SELECT e.nombresEmp,e.apellidosEmp,u.name,u.email,u.tipoCuenta,u.estadoUsu,u.id,u.nombre_img  FROM empleados e, users u where u.user_id=e.id and u.estadoUsu=1');
         return view('usuario.index',compact('users'));
     }
 }

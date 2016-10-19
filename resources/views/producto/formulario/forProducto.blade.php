@@ -18,44 +18,44 @@ if($bandera==1){
     <tr>
            <div class="col-md-6">
 	        <div class="form-group">
-	        <td> {!!Form::label('lbCodPro','Código Producto:')!!}</td> 
+	        <td> {!!Form::label('lbCodPro','* Código Producto:')!!}</td>
 			<td>{!!Form::text('codProducto',null,['onKeyPress'=>'return validarcodProducto(event)','id'=>'codProducto','class'=>'form-control', 'placeholder'=>'Código de Producto..','required'])!!}</td>
 		    </div>
 	    </div>
-	</tr>    
-	
+	</tr>
+
   <tr>
 	<div class="form-group">
-	    <td>{!!Form::label('lbNombre','Nombre:')!!}</td>
+	    <td>{!!Form::label('lbNombre','* Nombre:')!!}</td>
 		<td>{!!Form::text('nombreProd',null,['class'=>'form-control', 'placeholder'=>'Nombre del Producto...','required'])!!}</td>
 		</div>
 	</tr>
-        
+
 	    <tr>
 		    <div class="form-group">
-			<td>{!!Form::label('lbDescripcionPro','Descripción:')!!}</td>
+			<td>{!!Form::label('lbDescripcionPro','* Descripción:')!!}</td>
 			<td>{!!Form::textarea('descripcionProd',null,['class'=>'form-control', 'placeholder'=>'Descripción del Producto','required','rows'=>2])!!}</td>
 		    </div>
 	     </tr>
 
       <tr>
 	      	<div class="form-group">
-			<td>{!!Form::label('lbStockMinimo','Stock Minimo:')!!}</td>
+			<td>{!!Form::label('lbStockMinimo','* Stock Minimo:')!!}</td>
 			<td>{!!Form::number('stockMinimo',null,['class'=>'form-control', 'placeholder'=>'Cantidad Minima en existencia','required','min'=>'1','max'=>'999999'])!!}</td>
 		    </div>
       </tr>
-	    
+
 
       <tr>
         <div class="form-group">
-		<td>{!!Form::label('lbStockMaximo','Stock Maximo:')!!}</td>
+		<td>{!!Form::label('lbStockMaximo','* Stock Maximo:')!!}</td>
 		<td>{!!Form::number('stockMaximo',null,['class'=>'form-control', 'placeholder'=>'Cantidad Maxima en existencia','required','min'=>'1','max'=>'999999'])!!}</td>
 	    </div>
       </tr>
-	  
+
          <tr>
 			        <div class="form-group">
-					<td>{!!Form::label('lbCategoria','Categoria:')!!}</td>
+					<td>{!!Form::label('lbCategoria','* Categoria:')!!}</td>
 					<td>
 						<select class="form-control" name="categoria_id" >
 								@foreach($categorias as $cat)
@@ -64,17 +64,16 @@ if($bandera==1){
 								@else
 								<option value="{{$cat->id}}">{{$cat->nombreCategoria}}</option>
 								@endif
-								
+
 								@endforeach
 							</select>
 						</td>
 					</div>
 			      </tr>
-	    
-     
+
+
         </table>
         </div>
       </div><!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.box-body -->
-

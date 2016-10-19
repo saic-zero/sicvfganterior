@@ -24,7 +24,7 @@ class ProductoController extends Controller
 
      public function index()
     { 
-     $estado=2;
+     $estado=1;
      $categorias=\SICVFG\Categoria::lists('nombreCategoria','id');
      $productos= \SICVFG\Producto::All();
      return view('producto.index',compact('productos','estado','categorias'));

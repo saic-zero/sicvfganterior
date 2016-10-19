@@ -23,11 +23,11 @@
       </div><!-- /.box-header -->
       <br>
       {!!link_to_action("ProductoController@show", $title = "Atras", $parameters = $producto, $attributes = ["class"=>"btn btn-danger"])!!}
-      {!!link_to_action("PresentacionesController@todos", $title = "Todos", $parameters = $producto, $attributes = ["class"=>"btn bg-olive"])!!}
+    <!--   {!!link_to_action("PresentacionesController@todos", $title = "Todos", $parameters = $producto, $attributes = ["class"=>"btn bg-olive"])!!} -->
       {!!link_to_action("PresentacionesController@activo", $title = "activos", $parameters = $producto, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_action("PresentacionesController@desactivo", $title = "Desactivos", $parameters = $producto, $attributes = ["class"=>"btn bg-olive"])!!}
     
-      @if($estado==2 || $estado==1)
+      @if( $estado==1)
       {!!link_to_action("PresentacionesController@crear",$title='Nueva', $parametro=$producto, $attributes = ["class"=>"btn bg-olive"])!!}   
       @endif
       <br>
@@ -86,50 +86,6 @@
                   <?php $a++; ?>
                   @endif
                @endif
-
-
-             @if($estado==2)
-                    @if($nombre) 
-                      @if($c->estadoPres==1) 
-                      <tr>
-                          <td>{{$a}}</td>
-                          <td>{{$c->nombrePre}}</td>
-                          <td><center>{{$c->equivale}}</center></td>
-                                
-                                   <td>
-                                        <div align="center">
-                                              <table>
-                                                  <tr>
-                                                      <td>{!!link_to_route('presentaciones.edit',$title=' Editar', $parametro=$c->id,$atributo=['class'=>'btn btn-primary  glyphicon glyphicon-edit'])!!}</td>
-                                                      <td>@include('presentaciones.DESHABILITAR')</td>
-                                                  </tr>
-                                            </table>
-                                          </div><!-- fin tabla que centra los botones-->
-                                        </td>
-                              </tr>
-                              <?php $a++; ?>
-                              @else
-
-                         <tr>
-                          <td>{{$a}}</td>
-                          <td>{{$c->nombrePre}}</td>
-                          <td><center>{{$c->equivale}}</center></td>    
-                                   <td>
-                                        <div align="center">
-                                              <table>
-                                                  <tr>
-                                                      <td>{!!link_to_route('presentaciones.edit',$title=' Editar', $parametro=$c->id,$atributo=['class'=>'btn btn-primary  glyphicon glyphicon-edit'])!!}</td>
-                                                      <td>@include('presentaciones.HABILITAR')</td>
-                                                  </tr>
-                                            </table>
-                                          </div><!-- fin tabla que centra los botones-->
-                                        </td>
-                              </tr>
-                              <?php $a++; ?>
-                      @endif
-                 
-                @endif 
-          @endif
         @endforeach
           
         </table>

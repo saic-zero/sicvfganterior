@@ -22,7 +22,7 @@ class VendedorController extends Controller
      */
     public function index()
     {
-       $estado=2;
+       $estado=1;
        $proveedors=\SICVFG\Proveedor::lists('nombreProv','id');
        $vendedors= \SICVFG\Vendedor::all();
        return view('vendedor.index',compact('vendedors','estado','proveedors'));

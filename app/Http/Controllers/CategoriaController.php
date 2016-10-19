@@ -20,7 +20,7 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-      $estado=2;
+      $estado=1;
       $categorias= \SICVFG\Categoria::all();
         //Accedemos al modelo a extraer los datos que necesitamos
        return view ('categoria.index',compact('categorias','estado'));

@@ -22,7 +22,7 @@
       </div><!-- /.box-header -->
       <br>
 <!--       {!!link_to_action("frontController@index", $title = "Atras", $parameters = 1, $attributes = ["class"=>"btn btn-danger"])!!} -->
-      {!!link_to_action("CategoriaController@index", $title = "Todos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
+     <!--  {!!link_to_action("CategoriaController@index", $title = "Todos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!} -->
       {!!link_to_action("CategoriaController@activo", $title = "activos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_action("CategoriaController@desactivo", $title = "Desactivos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
        @if($estado==2 || $estado==1)
@@ -73,35 +73,12 @@
                 </tr>
              
             @endif
-            @if($estado==2)
             
-                <tr>
-                 <td>{{$categoria->nombreCategoria}}</td>
-                  <td><center>
-                    @if($categoria->estadoCat==1)
-                    <div align="center">
-                          <table>
-                              <tr>
-                                  <td>{!!link_to_route('categoria.edit',$title=' Editar', $parametro=$categoria->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-edit'])!!}</td>
-                                  <td>@include('categoria.DESHABILITAR')</td>
-                              </tr>
-                        </table>
-                      </div><!-- fin tabla que centra los botones-->
-                  @else
-                    <div align="center">
-                          <table>
-                              <tr>
-                                  <td>{!!link_to_route('categoria.edit',$title=' Editar', $parametro=$categoria->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-edit'])!!}</td>
-                                  <td>@include('categoria.HABILITAR')</td>
-                              </tr>
-                        </table>
-                      </div><!-- fin tabla que centra los botones-->
-                  @endif
                   </center>
                   </td>
                 </tr>
               
-            @endif
+          
           @endforeach
           </tbody>
         </table>

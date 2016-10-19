@@ -63,7 +63,7 @@ class PresentacionesController extends Controller
         $pres->id = $id;
         $id= $pres->id;
 
-        $estado=2;
+        $estado=1;
         $nombre = Presentaciones::nombreProd($producto);
         $presentacion = Presentaciones::where('producto_id','=',$producto)->orderBy('equivale')->paginate(8);
      
@@ -99,7 +99,7 @@ class PresentacionesController extends Controller
     $presentaciones->fill($request->all());
     $presentaciones->save();
       
-          $estado=2;
+          $estado=1;
           $prese=\SICVFG\Presentaciones::findOrFail($id);
           $producto=$prese->producto_id;
           $nombre = Presentaciones::nombreProd($producto);
@@ -201,7 +201,7 @@ class PresentacionesController extends Controller
         $pres->id = $id;
         $id= $pres->id;
 
-      $estado=2;
+      $estado=1;
       $nombre = Presentaciones::nombreProd($producto);
       $presentacion = Presentaciones::where('producto_id','=',$producto)->orderBy('equivale')->paginate(8);
       return view('presentaciones.show',compact('presentacion','producto','nombre','estado','id'));
@@ -214,7 +214,7 @@ class PresentacionesController extends Controller
         $pres->id = $id;
         $id= $pres->id;
 
-      $estado=2;
+      $estado=1;
       $nombre = Presentaciones::nombreProd($producto);
       $presentacion = Presentaciones::where('producto_id','=',$producto)->orderBy('equivale')->paginate(8);
       return view('presentaciones.show',compact('presentacion','producto','nombre','estado','id'));

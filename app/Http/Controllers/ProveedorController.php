@@ -21,7 +21,7 @@ class ProveedorController extends Controller
      */
     public function index()
     {   
-       $estado=2;
+       $estado=1;
        $proveedors= \SICVFG\Proveedor::all();
        return view('proveedor.index',compact('proveedors','estado'));
     }

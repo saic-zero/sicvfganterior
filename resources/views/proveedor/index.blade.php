@@ -25,7 +25,7 @@
       <br>
      
     <!--   {!!link_to_action("frontController@index", $title = "Salir", $parameters = 1, $attributes = ["class"=>"btn btn-danger"])!!} -->
-      {!!link_to_action("ProveedorController@index", $title = "Todos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
+     <!--  {!!link_to_action("ProveedorController@index", $title = "Todos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!} -->
       {!!link_to_action("ProveedorController@activo", $title = "Activos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_action("ProveedorController@desactivo", $title = "Desactivos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       @if($estado==2 || $estado==1)
@@ -47,7 +47,8 @@
             </tr>
           </thead>
            <tbody>
-          @foreach ($proveedors as $proveedor)   
+          @foreach ($proveedors as $proveedor) 
+            @if($proveedor->estadoProv==1 && $estado==1)  
                 <tr>
                      <td>{{$proveedor->nombreProv}}</td>
                      <td>{{$proveedor->RUC}}</td>
@@ -55,7 +56,7 @@
                      <td>{{$proveedor->direccionProv}}</td>
                      <td>{{$proveedor->telefonoProv}}</td>
                
-                    @if($proveedor->estadoProv==1)
+                  
                       <td>
                           <div align="center">
                             <table>
@@ -66,7 +67,15 @@
                           </table>
                         </div><!-- fin tabla que centra los botones-->
                       </td>
-                  @else
+                  @endif
+                      @if($proveedor->estadoProv==0 && $estado==0)  
+                      <td>{{$proveedor->nombreProv}}</td>
+                     <td>{{$proveedor->RUC}}</td>
+                     <td>{{$proveedor->correoProv}}</td>
+                     <td>{{$proveedor->direccionProv}}</td>
+                     <td>{{$proveedor->telefonoProv}}</td>
+               
+                  
                       <td>
                           <div align="center">
                             <table>
@@ -78,7 +87,7 @@
                         </div><!-- fin tabla que centra los botones-->
                       </td>
                   @endif
-                  </td>
+                 
                 </tr>
             @endforeach
             </tbody><!-- El foreach debe ir dentro de tbody para que funcionen las busquedas de las tablas -->

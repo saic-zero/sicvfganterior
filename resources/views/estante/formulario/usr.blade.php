@@ -1,28 +1,29 @@
-<div class="logo-lg">
-  <h2 >ESTANTE</h2>
-</div>
-<div class="container-fluid">
-     <div class="box box-success">
-      <div class="box-body">
-        <div class="row">
-          <div class="col-md-9">
-         
-                 <table id="tabla1" class="table stacktable">
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title">Estantes</h3>
+    <h6 class="campoObligatorio">los campos con ( * ) son obligatorios</h6>
+  </div><!-- /.box-header -->
+
+  <div class="box-body">
+    <div class="row">
+    <div class="col-xs-7">
+        <table class="table">
 
 
 				<div class="form-group">
 
-            {!!form::label('nombre de Estante')!!}
-				    {!!form::text('nombreEst',null,['class'=>'form-control','placeholder'=>'Ingrese Nombre'])!!}
+            {!!form::label('* Nombre de Estante')!!}
+				    {!!form::text('nombreEst',null,['class'=>'form-control','placeholder'=>'Ingrese Nombre..','required'])!!}
 				   
                                
 				
-					{!!form::label('Ubicacion de estante')!!}
-					{!!form::text('ubicacionEst',null,['class'=>'form-control','placeholder'=>'Ingrese ubicacion de estante'])!!}
+					{!!form::label('* Ubicacion de estante')!!}
+					{!!form::text('ubicacionEst',null,['class'=>'form-control','placeholder'=>'Ingrese ubicación de estante..','required'])!!}
 
 				 </div>		
 
-             </div>
-         </div>
-     </div>
-  </div>
+      </table>
+        </div>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.box-body -->

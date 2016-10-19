@@ -10,6 +10,7 @@ use SICVFG\Categoria;
 use SICVFG\Estante;
 use SICVFG\Detallecompra;
 use SICVFG\Proveedor;
+use SICVFG\Vendedor;
 use SICVFG\Producto;
 use SICVFG\Presentaciones;
 use SICVFG\Http\Requests;
@@ -35,8 +36,9 @@ class compraController extends Controller
     {
        $compras= \SICVFG\Compra::All();
        $detallecompras= \SICVFG\DetalleCompra::All();
+        $vendedor=\SICVFG\Vendedor::lists('nombreVen','id');
         return view('compras.index',compact('compras','detallecompras'));
-        return view('detallecompras.index',compact('detallecompras'));
+        return view('detallecompras.index',compact('detallecompras','proveedors'));
     }
 
 
@@ -49,9 +51,9 @@ class compraController extends Controller
     {
 
         $estantes=Estante::All();
-        $proveedor=Proveedor::All();
+        $vendedor=Vendedor::All();
         $categorias=Categoria::All();
-        return view('compras.create',compact('estantes','proveedor','categorias'));
+        return view('compras.create',compact('estantes','vendedor','categorias'));
     }
 
 
@@ -63,23 +65,21 @@ class compraController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-         $compra=new Compra;
+    { $compra=new Compra;
          
          $compra->numComprobanteCompra = $request->numComprobanteCompra;
          $compra->tipoCompra = $request->tipoCompra;
          $compra->fechaCompra = $request->fechaCompra;
          $compra->descripcionCompra = $request->descripcionCompra;
-         $compra->proveedor_id = $request->proveedor_id;
          $compra->usuario_id = 1;
+          $compra->vendedor_id = $request->vendedor_id;
          $compra->save();         
-      
-        
+
       foreach ($request->articulos as $k => $a) {
       $detalle = new DetalleCompra;
       $i=1;
       $prod = Producto::where('codProducto','=', $a)->first();
-      $detalle->producto_id = $i;
+      $detalle->producto_id = $prod->id;
       $detalle->cantidad = $request->cantidad[$k];
       $detalle->precioCompra = $request->precioC[$k];
       $detalle->precioMinVenta = $request->pmv[$k];
@@ -87,11 +87,9 @@ class compraController extends Controller
       $detalle->fechaVencimiento = $request->vencimiento[$k];
       $detalle->lote = $request->lote[$k];
       $detalle->compra_id =$compra->id;
-      $detalle->IVA = $request->lote[$k];
-      $est = Estante::where('nombreEst','=', $a)->first();
-      $detalle->estante_id = $i;      
-      $pre = Presentaciones::where('nombrePre','=', $a)->first();
-      $detalle->presentacion_id = $i;
+      $detalle->estante_id = $request->estante[$k];      
+      $pre = Presentaciones::where('nombrePre','=', $request->presentaciones[$k])->first();
+      $detalle->presentacion_id = $pre->id;
       $i=$i+1;
       $detalle->save();
     }
@@ -107,9 +105,14 @@ class compraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
 
+         $compraObtenida =\SICVFG\Compra::find($id);
+         $detalleObtenido =\SICVFG\DetalleCompra::where('compra_id',$id)->get();
+         $w =\SICVFG\DetalleCompra::where('compra_id',$id)->count();
+      
+         return view('compras.show',compact('compraObtenida','w','detalleObtenido'));
 
     }
 

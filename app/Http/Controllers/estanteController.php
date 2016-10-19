@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use SICVFG\Usuario;
 use SICVFG\Empleado;
 use SICVFG\Estante;
+use DB;
 use Session;
 use Redirect;
 use SICVFG\Http\Requests;
@@ -22,8 +23,9 @@ class estanteController extends Controller
      */
     public function index()
     {
+        $estado=2;
       $estante= \SICVFG\Estante::All();
-        return view('estante.index',compact('estante'));
+        return view('estante.index',compact('estante','estado'));
 
     }
 
@@ -66,7 +68,11 @@ class estanteController extends Controller
      */
     public function show($id)
     {
-        //
+       $estante=\SICVFG\Estante::findOrFail($id);
+        $estante->estadoEst=1; //modificamos el estado 
+        $estante->update();
+        Session::flash('mensaje','Estante habilitado con exito ');
+        return Redirect::to('/estante');
     }
 
     /**
@@ -108,8 +114,24 @@ class estanteController extends Controller
      */
     public function destroy($id)
     {
-        Estante::destroy($id);
-        Session::flash('mensaje','Estante eliminado correctamente');
+        $estante=\SICVFG\Estante::findOrFail($id);
+        $estante->estadoEst=0; //modificamos el estado 
+        $estante->update();
+        Session::flash('mensaje','Estante deshabilitado con exito ');
         return Redirect::to('/estante');
     }
+
+       public function desactivo($id)
+    {
+       $estado=0;
+       $estante=DB::select('SELECT * FROM estantes where estadoEst=0 ');
+       return view('estante.index',compact('estante','estado'));
+    }
+    
+    public function activo($id)
+    {  
+      $estado=1;
+       $estante=DB::select('SELECT * FROM estantes where estadoEst=1 ');
+       return view('estante.index',compact('estante','estado'));
+     }
 }

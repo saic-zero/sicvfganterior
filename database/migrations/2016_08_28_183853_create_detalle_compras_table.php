@@ -24,7 +24,6 @@ class CreateDetalleComprasTable extends Migration
           $table->string('lote');
           $table->integer('compra_id')->unsigned();
           $table->foreign('compra_id')->references('id')->on('compras');
-          $table->double('IVA');
           $table->integer('estante_id')->unsigned();
           $table->foreign('estante_id')->references('id')->on('estantes');
           $table->timestamps();

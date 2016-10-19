@@ -115,9 +115,15 @@ Route::match(['get','post'],'/compras/ver/{id}','compraController@ver');
 Route::match(['get','post'],'/compras/productospresentaciones/{cadena}','compraController@productospresentaciones');
 Route::match(['get','post'],'/compras/nombrepresentacionCompra/{cadena}','compraController@nombrepresentacionCompra');
 
-
 Route::resource('compras', 'compraController');
+Route::match(['get','post'],'/compras/show/{id}','CompraController@show');
+Route::match(['get','post'],'/compras/index/{id}','CompraController@index');
+
 Route::resource('estante', 'estanteController');
+Route::match(['get','post'],'/estante/desactivo/{id}','EstanteController@desactivo');
+Route::match(['get','post'],'/estante/activo/{id}','EstanteController@activo');
+Route::match(['get','post'],'/estante/index/{id}','EstanteController@index');
+
 Route::resource('detallecompras', 'detallecompraController');
 
 ///////////////////////FIN ELIO//////////////////////////////////

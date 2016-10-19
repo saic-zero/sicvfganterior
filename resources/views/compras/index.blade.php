@@ -1,48 +1,64 @@
-@extends('layouts.principal1')
 
+
+@extends('layouts.principal1')
+@section('content')
 @if (Session::has('mensaje'))
-<div class="alert alert-info" role="alert" >
+<div class="alert alert-success" role="alert" >
   <button type="button" class="close" data-dismiss="alert" aria-label="close" name="button"><span aria-hidden="true" >&times;</span></button>
 {{Session::get('mensaje')}}
 </div>
 @endif
+@if (Session::has('mensaje1'))
+<div class="alert alert-warning" role="alert" >
+  <button type="button" class="close" data-dismiss="alert" aria-label="close" name="button"><span aria-hidden="true" >&times;</span></button>
+{{Session::get('mensaje1')}}
+</div>
+@endif
 
-@section('content')
- <td>
- <center>
-     {!!link_to_action("detallecompraController@index", $title = "Ver Detalle de Compras", $parameters = 1, $attributes = ["class"=>"btn btn-primary"])!!}
- </center>
-</td>
-<table class="table">
-  <thead>
-    <th>Comprobante</th>
-    <th>TipoCompra</th>
-    <th>FechaCompra</th>
-    <th>Descripcion</th>
-    <th>Proveedor</th>
-    <th>Usuario</th>
-  </thead>
-  @foreach ($compras as $compras)
-  <tbody>
-  <tr>
-    <td>{{$compras->numComprobanteCompra}}</td>
-    <td>{{$compras->tipoCompra}}</td>
-    <td>{{$compras->fechaCompra}}</td>
-    <td>{{$compras->descripcionCompra}}</td>
-    <td>{{$compras->proveedor_id}}</td>
-    <td>{{$compras->usuario_id}}</td>
-                     
-
-
-    <td>
-      {!!link_to_route('compras.edit',$title='Editar', $parametro=$compras->id,$atributo=['class'=>'btn btn-primary'])!!}
-
-    </td>
-<td>@include('compras.eliminar')</td>
-</tr>
-  </tbody>
-  @endforeach
-</table>
-
-
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box box-success">
+      <div class="box-header">
+        </td>
+        <h3 class="box-title"  font-weight:"bold">Administración de Compras</h3> 
+      </div><!-- /.box-header -->
+       {!!link_to_route('compras.create',$title='Nueva', $parametro= 1, $attributes = ["class"=>"btn bg-olive "])!!}  
+     <br>
+      <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped">
+          <thead>
+            <tr>
+                     <th  bgcolor="#e5eef7" >Nº COMPROBANTE</th>
+                      <th  bgcolor="#e5eef7" >FECHA</th>
+                      <th  bgcolor="#e5eef7" >DESCRIPCION</th>
+                      <th  bgcolor="#e5eef7" >VENDEDOR</th>
+                      <th  bgcolor="#e5eef7" >ACCION</th>
+            </tr>
+          </thead>
+           <tbody>
+           @foreach ($compras as $compras) 
+                <tr>
+                        <td>{{$compras->numComprobanteCompra}}</td>
+                          <td>{{$compras->fechaCompra}}</td>
+                          <td>{{$compras->descripcionCompra}}</td>
+                           <td>{{$compras->nombreVen($compras->vendedor_id)}}</td>
+                      <td>
+                          <div align="center">
+                            <table>
+                                <tr>    
+                                    <td>{!!link_to_route('compras.show',$title=' Ver Compra', $parametro=$compras->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-eye-open'])!!}</td>  
+                                </tr>
+                          </table>
+                        </div><!-- fin tabla que centra los botones-->
+                      </td>
+                  </td>
+                </tr>
+            @endforeach
+            </tbody><!-- El foreach debe ir dentro de tbody para que funcionen las busquedas de las tablas -->
+        </table>
+      </div><!-- /.box-body -->
+    </div><!-- /.box -->
+  </div><!-- /.col -->
+</div><!-- /.row -->
 @stop
+

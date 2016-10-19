@@ -1,4 +1,3 @@
-
 <div class="logo-lg">
   <h2 >REGISTRO DE COMPRAS</h2>
 </div>
@@ -13,12 +12,21 @@
         		<div class="col-md-12">
 					    <h4>DATOS GENERALES</h4>
      				</div>
+
+
+            <div class="col-md-12">
+            <button type="button" class="btn btn-primary glyphicon glyphicon-plus" data-toggle="modal" data-target=".bs-example-modal-lg"> Producto</button>
+            </div>
+
+            <!-- boton modal -->
+
+
         		<div class="col-md-3">
-					    {!!form::label('Proveedor')!!}
-				      <select id="proveedor_id" class="form-control" name="proveedor_id" >
+					    {!!form::label('Vendedor')!!}
+				      <select id="vendedor_id" class="form-control" name="vendedor_id" >
                 <option value = "Elegir...." >Elegir....</option>
-         				 @foreach($proveedor as $emp)
-             			<option value="{{$emp->id}}">{{$emp->nombreProv}}</option>
+         				 @foreach($vendedor as $emp)
+             			<option value="{{$emp->id}}">{{$emp->nombreVen}}</option>
          				 @endforeach
         				</select>
                 {!!Form::label('lbFecha','Fecha de Compra')!!}
@@ -39,15 +47,13 @@
                 {!!Form::textarea('descripcionCompra',null,['class'=>'form-control', 'placeholder'=>'Descripcion sobre la compra', 'rows'=>'2', 'cols'=>'5'])!!}
               </div>
               <div class="col-md-3">
-                {!!form::label('IVA')!!}
-                {!!form::number('IVA',null,['id'=>'IVA','class'=>'form-control','placeholder'=>'Ingrese IVA '])!!}
                 {!!form::label('Total')!!}
                 <input  name="totalCompra" id="totalCompra" class="form-control" value="0" type="number" disabled/>
               </div>
 					 </div>
 					</div>
+
 					<!-- Large modal -->
-					<button type="button" class="btn btn-primary glyphicon glyphicon-plus" data-toggle="modal" data-target=".bs-example-modal-lg"> Producto</button>
 					<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 					<center>
   					<div class="modal-dialog modal-lg" role="document">
@@ -81,28 +87,30 @@
                         <br>
                 		    <div class="col-md-4">
                           {!!form::label('Cantidad')!!}
-        				          {!!form::text('cantidad',null,['id'=>'cantidad','class'=>'form-control','placeholder'=>'Ingrese Cantidad'])!!}
+        				          {!!form::number('cantidad',null,['id'=>'cantidad','min'=>1,'class'=>'form-control','min'=>"0",'placeholder'=>'Ingrese Cantidad','required'])!!}
 
                 					{!!form::label('Precio de compra')!!}
-                					{!!form::number('precioCompra',null,['id'=>'precioCompra','class'=>'form-control','placeholder'=>'Ingrese precio de compra'])!!}
+                					{!!form::number('precioCompra',null,['id'=>'precioCompra','class'=>'form-control','min'=>"0",'placeholder'=>'Ingrese precio de compra','required'])!!}
 
                 					{!!form::label('Precio Minimo de venta')!!}
-                					{!!form::text('precioMinVenta',null,['id'=>'precioMinVenta','class'=>'form-control','placeholder'=>'Ingrese Minimo de venta'])!!}
+                					{!!form::text('precioMinVenta',null,['id'=>'precioMinVenta','class'=>'form-control','min'=>"0",'placeholder'=>'Ingrese Minimo de venta','required'])!!}
                 				</div>
               					<div class="col-md-4">
                 					{!!form::label('Precio Maximo de venta')!!}
-                					{!!form::text('precioMaxVenta',null,['id'=>'precioMaxVenta','class'=>'form-control','placeholder'=>'Ingrese Maximo de venta'])!!}
+                					{!!form::text('precioMaxVenta',null,['id'=>'precioMaxVenta','class'=>'form-control','min'=>"0",'placeholder'=>'Ingrese Maximo de venta','required'])!!}
 
                 					{!!Form::label('lbFecVen','Fecha de Vencimiento ')!!}
                 					{!!Form::date('fechaVencimiento',null,['id'=>'fechaVencimiento','class'=>'form-control', 'placeholder'=>'Fecha de Vencimiento...','required'])!!}
 
                           {!!form::label('Lote')!!}
-        				          {!!form::text('lote',null,['id'=>'lote','class'=>'form-control','placeholder'=>'Ingrese Cantidad'])!!}
+        				          {!!form::text('lote',null,['id'=>'lote','class'=>'form-control','placeholder'=>'Ingrese Cantidad','required'])!!}
         				        </div>
         		            <div class="col-md-4">
                           <br><br><br>
                           <input class="btn btn-primary" name="btnInsertarProducto" id="btnInsertarProducto" type="button" value="Agregar" onClick="addProductoCompra()"/>
-                          {!! Form::reset('Limpiar',['class'=>'btn btn-primary']) !!}
+
+                         <button type="button" class="btn btn-primary" value="limpiar" onClick="limpiar()" >Limpiar</button>
+
                           <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
         		           </div>
         				     </div>
@@ -119,7 +127,7 @@
 	</table>
 </div>
 <div class="box-body">
-		<table class="table  table-bordered taC table-hover" name="tablaArticulosVenta" id="tblDatosCompra">
+   		<table class="table  table-bordered taC table-hover" name="tablaArticulosVenta" id="tblDatosCompra">
       <tr>
       <th> ---- </th>
       <th>Lote</th>
@@ -132,7 +140,6 @@
        <th>P/MaxV ($)</th>
        <th>Caducidad</th>
 			 <th>Total ($)</th>
-       <th>Opción</th>
       </tr>
     </table>
 			</div>

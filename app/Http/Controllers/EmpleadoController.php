@@ -26,7 +26,7 @@ class EmpleadoController extends Controller
 
     public function index()
     {
-      $empleados= \SICVFG\Empleado::All();
+      $empleados=DB::select('SELECT * FROM empleados where estadoEmp=1 ');
         return view('empleado.index',compact('empleados'));
     }
 

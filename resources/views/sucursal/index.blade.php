@@ -13,7 +13,7 @@
         <h3 class="box-title">Administración de Sucursales</h3>
       </div><!-- /.box-header -->
       <br>
-      {!!link_to_action("SucursalController@index", $title = "Todos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
+      {{-- {!!link_to_action("SucursalController@index", $title = "Todos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!} --}}
       {!!link_to_action("SucursalController@activo", $title = "activos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_action("SucursalController@desactivo", $title = "Desactivos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_route('sucursal.create',$title='Nueva', $parametro= 1, $attributes = ["class"=>"btn bg-olive"])!!}
@@ -22,11 +22,11 @@
         <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th bgcolor="#e5eef7">Sucursal</th>
-              <th bgcolor="#e5eef7">Representante</th>
-              <th bgcolor="#e5eef7">Telefono</th>
-              <th bgcolor="#e5eef7">Dirección</th>
-             <th bgcolor="#e5eef7">Acción</th>
+              <th bgcolor="#e5eef7">SUCURSAL</th>
+              <th bgcolor="#e5eef7">REPRESENTANTE</th>
+              <th bgcolor="#e5eef7">TELEFONO</th>
+              <th bgcolor="#e5eef7">DIRECCION</th>
+             <th bgcolor="#e5eef7">ACCION</th>
             </tr>
           </thead>
           <tbody>

@@ -51,7 +51,11 @@ if($bandera==1){
 					<div class="col-md-6"><br>
 						<div class="form-group">
 							{!!Form::label('lbFechaNac','* Fecha de Nacimiento:')!!}
-							{!!Form::date('fechaNacimiento',null,['class'=>'form-control', 'placeholder'=>'Fecha...','required'])!!}
+							@if($bandera==1)
+							{!!Form::date('fechaNacimiento',null,['class'=>'form-control', 'placeholder'=>'Fecha...','max'=>'1998-12-31','required'])!!}
+						@else
+							{!!Form::date('fechaNacimiento',null,['class'=>'form-control', 'placeholder'=>'Fecha...','max'=>'1998-12-31','ReadOnly'])!!}
+								@endif()
 						</div><!-- /.form-group -->
 						<div class="form-group">
 							{!!Form::label('lbTelefono','* Teléfono :')!!}
@@ -68,11 +72,19 @@ if($bandera==1){
 					<div class="col-md-6"><br>
 						<div class="form-group">
 							{!!Form::label('lbDui','* DUI:')!!}
+							@if($bandera==1)
 							{!!Form::text('DUI',null,['onKeyPress'=>'return validarDUI(event)','id'=>'DUI','class'=>'form-control', 'placeholder'=>'Documento Unico de Identidad...','required'])!!}
+						@else
+							{!!Form::text('DUI',null,['onKeyPress'=>'return validarDUI(event)','id'=>'DUI','class'=>'form-control', 'placeholder'=>'Documento Unico de Identidad...','ReadOnly'])!!}
+						@endif
 						</div><!-- /.form-group -->
 						<div class="form-group">
 							{!!Form::label('lbNit','* NIT:')!!}
+							@if($bandera==1)
 							{!!Form::text('NIT',null,['onKeyPress'=>'return validarNIT(event)','id'=>'NIT','class'=>'form-control', 'placeholder'=>'Numero de Identificación Tributaria...','required'])!!}
+							@else
+								{!!Form::text('NIT',null,['onKeyPress'=>'return validarNIT(event)','id'=>'NIT','class'=>'form-control', 'placeholder'=>'Numero de Identificación Tributaria...','ReadOnly'])!!}
+								@endif
 						</div><!-- /.form-group -->
 					</div><!-- /.col -->
 					<div class="col-md-6"><br>
@@ -91,11 +103,19 @@ if($bandera==1){
 					<div class="col-md-6"><br>
 						<div class="form-group">
 							{!!Form::label('lbCodEmp','* Código_Empleado:')!!}
+							@if($bandera==1)
 							{!!Form::text('codEmpleado',null,['class'=>'form-control','onKeyPress'=>'return validarCodEmp(event)','id'=>'codEmpleado', 'placeholder'=>'Codigo de Empleado...','required'])!!}
+						@else
+							{!!Form::text('codEmpleado',null,['class'=>'form-control','onKeyPress'=>'return validarCodEmp(event)','id'=>'codEmpleado', 'placeholder'=>'Codigo de Empleado...','ReadOnly'])!!}
+						@endif
 							</div><!-- /.form-group -->
 						<div class="form-group">
 							{!!Form::label('lbFechaIngSuc','* Fecha de Ingreso:')!!}
-							{!!Form::date('fechaIngrSuc',null,['id'=>'fechaIngSuc','class'=>'form-control', 'placeholder'=>'Fecha de ingreso a farmacia...','required'])!!}
+							@if($bandera==1)
+							{!!Form::date('fechaIngrSuc',null,['id'=>'fechaIngSuc','class'=>'form-control', 'max'=>'2016-10-20','placeholder'=>'Fecha de ingreso a farmacia...','required'])!!}
+							@else
+								{!!Form::date('fechaIngrSuc',null,['id'=>'fechaIngSuc','class'=>'form-control', 'max'=>'2016-10-20','placeholder'=>'Fecha de ingreso a farmacia...','ReadOnly'])!!}
+							@endif
 					</div><!-- /.form-group -->
 				</div><!-- /.col -->
 				<div class="col-md-6"><br>

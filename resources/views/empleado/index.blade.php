@@ -13,7 +13,7 @@
         <h3 class="box-title">Administración de Empleados</h3>
       </div><!-- /.box-header -->
       <br>
-      {!!link_to_action("EmpleadoController@index", $title = "Todos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
+      {{-- {!!link_to_action("EmpleadoController@index", $title = "Todos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!} --}}
       {!!link_to_action("EmpleadoController@activo", $title = "activos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_action("EmpleadoController@desactivo", $title = "Desactivos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_route('empleado.create',$title='Nuevo', $parametro= 1, $attributes = ["class"=>"btn bg-olive"])!!}
@@ -22,12 +22,12 @@
         <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th bgcolor="#e5eef7">Nombres</th>
-              <th bgcolor="#e5eef7">Apellidos</th>
-              <th bgcolor="#e5eef7">Dirección</th>
-              <th bgcolor="#e5eef7">Teléfono</th>
-              <th bgcolor="#e5eef7">Contratación</th>
-              <th bgcolor="#e5eef7">Acción</th>
+              <th bgcolor="#e5eef7">NOMBRES</th>
+              <th bgcolor="#e5eef7">APELLIDOS</th>
+              <th bgcolor="#e5eef7">DIRECCION</th>
+              <th bgcolor="#e5eef7">TELEFONO</th>
+              <th bgcolor="#e5eef7">F/CONTRATO</th>
+              <th bgcolor="#e5eef7">ACCION</th>
             </tr>
           </thead>
           <tbody>

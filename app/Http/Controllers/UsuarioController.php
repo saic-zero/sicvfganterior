@@ -24,7 +24,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-      $users=DB::select('SELECT e.nombresEmp,e.apellidosEmp,u.name,u.email,u.tipoCuenta,u.estadoUsu,u.id,u.nombre_img  FROM empleados e, users u where u.user_id=e.id ');
+      $users=DB::select('SELECT e.nombresEmp,e.apellidosEmp,u.name,u.email,u.tipoCuenta,u.estadoUsu,u.id,u.nombre_img  FROM empleados e, users u where u.user_id=e.id and u.estadoUsu=1');
       return view('usuario.index',compact('users'));
     }
 

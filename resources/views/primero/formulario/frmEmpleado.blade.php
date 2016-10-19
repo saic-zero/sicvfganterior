@@ -36,7 +36,7 @@
 					<div class="col-md-6"><br>
 						<div class="form-group">
 							{!!Form::label('lbFechaNac','* Fecha de Nacimiento:')!!}
-							{!!Form::date('fechaNacimiento',null,['class'=>'form-control', 'placeholder'=>'Fecha...','required'])!!}
+							{!!Form::date('fechaNacimiento',null,['class'=>'form-control','max'=>'1998-12-31', 'placeholder'=>'Fecha...','required'])!!}
 						</div><!-- /.form-group -->
 						<div class="form-group">
 							{!!Form::label('lbTelefono','* Teléfono :')!!}
@@ -80,7 +80,7 @@
 							</div><!-- /.form-group -->
 							<div class="form-group">
 								{!!Form::label('lbFechaIngSuc','* Fecha de Ingreso:')!!}
-								{!!Form::date('fechaIngrSuc',null,['id'=>'fechaIngSuc','class'=>'form-control', 'placeholder'=>'Fecha de ingreso a farmacia...','required'])!!}
+								{!!Form::date('fechaIngrSuc',null,['id'=>'fechaIngSuc','class'=>'form-control', 'max'=>'2016-10-20', 'placeholder'=>'Fecha de ingreso a farmacia...','required'])!!}
 							</div><!-- /.form-group -->
 						</div><!-- /.col primera columna -->
 						<div class="col-md-6"><br>

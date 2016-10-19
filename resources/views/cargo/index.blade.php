@@ -13,7 +13,7 @@
         <h3 class="box-title">Administración de Cargos</h3>
       </div><!-- /.box-header -->
       <br>
-      {!!link_to_action("CargoController@index", $title = "Todos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
+      {{-- {!!link_to_action("CargoController@index", $title = "Todos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!} --}}
       {!!link_to_action("CargoController@activo", $title = "activos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_action("CargoController@desactivo", $title = "Desactivos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_route('cargo.create',$title='Nuevo', $parametro= 1, $attributes = ["class"=>"btn bg-olive"])!!}
@@ -22,8 +22,8 @@
         <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th bgcolor="#e5eef7">Cargo</th>
-              <th bgcolor="#e5eef7">Accion</th>
+              <th bgcolor="#e5eef7">CARGO</th>
+              <th bgcolor="#e5eef7">ACCION</th>
             </tr>
           </thead>
           <tbody>

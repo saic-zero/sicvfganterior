@@ -14,7 +14,7 @@
         <h3 class="box-title">Administración de Usuarios</h3>
       </div><!-- /.box-header -->
       <br>
-      {!!link_to_action("UsuarioController@index", $title = "Todos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
+      {{-- {!!link_to_action("UsuarioController@index", $title = "Todos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!} --}}
       {!!link_to_action("UsuarioController@activo", $title = "activos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_action("UsuarioController@desactivo", $title = "Desactivos", $parameters = 1, $attributes = ["class"=>"btn bg-olive"])!!}
       {!!link_to_route('usuario.create',$title='Nuevo', $parametro= 1, $attributes = ["class"=>"btn bg-olive"])!!}
@@ -23,12 +23,12 @@
         <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th bgcolor="#e5eef7">foto</th>
-              <th bgcolor="#e5eef7">Usuario</th>
-              <th bgcolor="#e5eef7">Nombre</th>
-              <th bgcolor="#e5eef7">Correo</th>
-              <th bgcolor="#e5eef7">Tipo De Cuenta</th>
-              <th bgcolor="#e5eef7">Acción</th>
+              <th bgcolor="#e5eef7">FOTO</th>
+              <th bgcolor="#e5eef7">USUARIO</th>
+              <th bgcolor="#e5eef7">NOMBRE</th>
+              <th bgcolor="#e5eef7">CORREO</th>
+              <th bgcolor="#e5eef7">T/CUENTA</th>
+              <th bgcolor="#e5eef7">ACCION</th>
             </tr>
           </thead>
           <tbody>

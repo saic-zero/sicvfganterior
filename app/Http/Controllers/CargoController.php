@@ -21,7 +21,7 @@ class CargoController extends Controller
      */
     public function index()
     {
-       $cargos= \SICVFG\Cargo::All();
+       $cargos=DB::select('SELECT * FROM cargos where estadoCargo=1 ');
        return view ('cargo.index',compact('cargos'));
     }
 

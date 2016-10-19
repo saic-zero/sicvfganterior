@@ -22,7 +22,7 @@ class SucursalController extends Controller
      */
     public function index()
     {
-      $sucursals= \SICVFG\Sucursal::All();
+      $sucursals=DB::select('SELECT * FROM sucursals where estadoSuc=1 ');
        return view ('sucursal.index',compact('sucursals'));
     }
 

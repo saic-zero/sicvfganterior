@@ -20,39 +20,44 @@
     <div class="box box-success">
       <div class="box-header">
         </td>
-        <h3 class="box-title"  font-weight:"bold">Administración de Compras</h3> 
+        <h3 class="box-title"  font-weight:"bold">Administración de Compras</h3>
       </div><!-- /.box-header -->
-       {!!link_to_route('compras.create',$title='Nueva', $parametro= 1, $attributes = ["class"=>"btn bg-olive "])!!}  
+       {!!link_to_route('compras.create',$title='Nueva', $parametro= 1, $attributes = ["class"=>"btn bg-olive "])!!}
      <br>
       <div class="box-body">
         <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
-                     <th  bgcolor="#e5eef7" >Nº COMPROBANTE</th>
-                      <th  bgcolor="#e5eef7" >FECHA</th>
-                      <th  bgcolor="#e5eef7" >DESCRIPCION</th>
-                      <th  bgcolor="#e5eef7" >VENDEDOR</th>
-                      <th  bgcolor="#e5eef7" >ACCION</th>
+             <th  bgcolor="#e5eef7" >Nº COMPROBANTE</th>
+             <th  bgcolor="#e5eef7" >VENDEDOR</th>
+             <th  bgcolor="#e5eef7" >T/COMPRA</th>
+             <th  bgcolor="#e5eef7" >MONTO</th>
+              <th  bgcolor="#e5eef7" >FECHA</th>
+              <th  bgcolor="#e5eef7" >DESCRIPCIÓN</th>
+              <th  bgcolor="#e5eef7" >ACCIÓN</th>
             </tr>
           </thead>
            <tbody>
-           @foreach ($compras as $compras) 
+           @foreach ($compras as $compras)
+             <?php	$datos=explode('-', $compras->fechaCompra);?>
                 <tr>
-                        <td>{{$compras->numComprobanteCompra}}</td>
-                          <td>{{$compras->fechaCompra}}</td>
-                          <td>{{$compras->descripcionCompra}}</td>
-                           <td>{{$compras->nombreVen($compras->vendedor_id)}}</td>
-                      <td>
-                          <div align="center">
-                            <table>
-                                <tr>    
-                                    <td>{!!link_to_route('compras.show',$title=' Ver Compra', $parametro=$compras->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-eye-open'])!!}</td>  
-                                </tr>
-                          </table>
-                        </div><!-- fin tabla que centra los botones-->
-                      </td>
+                  <td>{{$compras->numComprobanteCompra}}</td>
+                  <td>{{$compras->nombreVen($compras->vendedor_id)}}</td>
+                  <td>{{$compras->tipoCompra}}</td>
+                  <td>{{$compras->totalCompra}}</td>
+                  <td>{{$datos[2].'/'.$datos[1].'/'.$datos[0]}}</td>
+                  <td>{{$compras->descripcionCompra}}</td>
+                  <td>
+                    <div align="center">
+                      <table>
+                        <tr>
+                          <td>{!!link_to_route('compras.show',$title=' Ver Compra', $parametro=$compras->id,$atributo=['class'=>'btn btn-primary glyphicon glyphicon-eye-open'])!!}</td>
+                        </tr>
+                      </table>
+                    </div><!-- fin tabla que centra los botones-->
                   </td>
-                </tr>
+                </td>
+              </tr>
             @endforeach
             </tbody><!-- El foreach debe ir dentro de tbody para que funcionen las busquedas de las tablas -->
         </table>
@@ -61,4 +66,3 @@
   </div><!-- /.col -->
 </div><!-- /.row -->
 @stop
-

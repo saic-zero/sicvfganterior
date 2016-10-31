@@ -35,10 +35,7 @@ class compraController extends Controller
     public function index()
     {
        $compras= \SICVFG\Compra::All();
-       $detallecompras= \SICVFG\DetalleCompra::All();
-        $vendedor=\SICVFG\Vendedor::lists('nombreVen','id');
-        return view('compras.index',compact('compras','detallecompras'));
-        return view('detallecompras.index',compact('detallecompras','proveedors'));
+        return view('compras.index',compact('compras'));
     }
 
 
@@ -50,8 +47,8 @@ class compraController extends Controller
     public function create()
     {
 
-        $estantes=Estante::All();
-        $vendedor=Vendedor::All();
+        $estantes=DB::select('SELECT * FROM estantes where estadoEst=1 ');
+        $vendedor=DB::select('SELECT * FROM vendedors where estadoVen=1 ');
         $categorias=Categoria::All();
         return view('compras.create',compact('estantes','vendedor','categorias'));
     }
@@ -66,14 +63,15 @@ class compraController extends Controller
      */
     public function store(Request $request)
     { $compra=new Compra;
-         
+
          $compra->numComprobanteCompra = $request->numComprobanteCompra;
          $compra->tipoCompra = $request->tipoCompra;
          $compra->fechaCompra = $request->fechaCompra;
          $compra->descripcionCompra = $request->descripcionCompra;
-         $compra->usuario_id = 1;
-          $compra->vendedor_id = $request->vendedor_id;
-         $compra->save();         
+         $compra->usuario_id =$request->user_id;
+         $compra->vendedor_id = $request->vendedor_id;
+         $compra->totalCompra=$request->totalCompra;
+         $compra->save();
 
       foreach ($request->articulos as $k => $a) {
       $detalle = new DetalleCompra;
@@ -87,13 +85,13 @@ class compraController extends Controller
       $detalle->fechaVencimiento = $request->vencimiento[$k];
       $detalle->lote = $request->lote[$k];
       $detalle->compra_id =$compra->id;
-      $detalle->estante_id = $request->estante[$k];      
+      $detalle->estante_id = $request->estante[$k];
       $pre = Presentaciones::where('nombrePre','=', $request->presentaciones[$k])->first();
       $detalle->presentacion_id = $pre->id;
       $i=$i+1;
       $detalle->save();
     }
-       return redirect('/compras')->with('mensaje','Registrado con exito');
+       return redirect('/compras')->with('mensaje','Compra realizada con éxito');
 
     }
 
@@ -107,11 +105,9 @@ class compraController extends Controller
      */
     public function show($id)
     {
-
          $compraObtenida =\SICVFG\Compra::find($id);
          $detalleObtenido =\SICVFG\DetalleCompra::where('compra_id',$id)->get();
          $w =\SICVFG\DetalleCompra::where('compra_id',$id)->count();
-      
          return view('compras.show',compact('compraObtenida','w','detalleObtenido'));
 
     }
@@ -154,13 +150,24 @@ class compraController extends Controller
     {
 
     }
-
+    // funcion para obtener el nombre del producto a comprar
+    public function nombreproducto($codProd){
+      $producto=Producto::where('codProducto',$codProd)->get();
+      foreach ($producto as $p) {
+        $nombProd=$p->nombreProd;
+      }
+      return Response::json($nombProd);
+    }
+// funcion que devuelve todas las presentaciones asociadas aun producto en especifico
     public function productospresentaciones($codProd){
       $producto=Producto::where('codProducto',$codProd)->get();
       foreach ($producto as $p) {
         $idProducto=$p->id;
+        $nombProd=$p->nombreProd;
       }
-      $presentaciones=Presentaciones::where('producto_id',$idProducto)->get();
+      // $presentaciones=DB::select('SELECT pre.nombrePre,pro.nombreProd FROM presentaciones pre,productos pro where pre.producto_id=pro.id and pre.producto_id',$idProducto );
+
+       $presentaciones=Presentaciones::where('producto_id',$idProducto)->get();
       return Response::json($presentaciones);
     }
 

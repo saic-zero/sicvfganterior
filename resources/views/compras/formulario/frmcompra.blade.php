@@ -1,5 +1,5 @@
 <div class="logo-lg">
-  <h2 >REGISTRO DE COMPRAS</h2>
+  <h3 >REGISTRO DE COMPRAS</h3>
 </div>
 <div class="container-fluid">
  <div class="box box-success">
@@ -9,22 +9,13 @@
        <table id="tabla1" class="table stacktable">
 		    <div class="box-body">
         	<div class="row">
-        		<div class="col-md-12">
-					    <h4>DATOS GENERALES</h4>
-     				</div>
-
-
             <div class="col-md-12">
             <button type="button" class="btn btn-primary glyphicon glyphicon-plus" data-toggle="modal" data-target=".bs-example-modal-lg"> Producto</button>
             </div>
-
             <!-- boton modal -->
-
-
         		<div class="col-md-3">
 					    {!!form::label('Vendedor')!!}
 				      <select id="vendedor_id" class="form-control" name="vendedor_id" >
-                <option value = "Elegir...." >Elegir....</option>
          				 @foreach($vendedor as $emp)
              			<option value="{{$emp->id}}">{{$emp->nombreVen}}</option>
          				 @endforeach
@@ -37,9 +28,8 @@
     					  <input type="text" class="form-control" id="numComprobanteCompra" name="numComprobanteCompra" placeholder="Numero de comprobate de compra">
                 {!!form::label('tipo de compra')!!}
     				    <select id="tipoCompra" class="form-control" name="tipoCompra" >
-      						<option value = "Elegir...." >Elegir....</option>
+                  <option value = "Contado" >Contado</option>
       						<option value = "Credito" >Credito</option>
-      						<option value = "Contado" >Contado</option>
     					 </select>
               </div>
         		  <div class="col-md-3">
@@ -48,7 +38,8 @@
               </div>
               <div class="col-md-3">
                 {!!form::label('Total')!!}
-                <input  name="totalCompra" id="totalCompra" class="form-control" value="0" type="number" disabled/>
+                <input  name="totalCompra" id="totalCompra" class="form-control" value="0" type="number","ReadOnly" />
+                <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{Auth::user()->id}}">
               </div>
 					 </div>
 					</div>
@@ -66,51 +57,40 @@
            					      <div class="col-md-12">
         					          <h4>PRODUCTO</h4>
              				      </div>
-             				      <div class="col-md-3">
+             				      <div class="col-md-6">
                   					{!!form::label('codigo Producto')!!}
-                            <div class="input-group margin">
-                              <input type="text" class="form-control" name="codProducto" id="codProd" onkeypress="buscarPresentaciones(this);">
-                              <span class="input-group-btn">
-                                <button class="btn btn-info btn-flat" type="button" ><font><font class="glyphicon glyphicon-zoom-in"></font></font></button>
-                              </span>
-                            </div>
+                            <input type="text" class="form-control" name="codProducto" id="codProd" onkeypress="buscarPresentaciones(this);">
                             {!!form::label('presentacion')!!}
-                  				  <select id="presentacion_id" class="form-control" name="presentacion_id" >
-                  				  </select>
-                            {!!form::label('Estante de ubicacion')!!}
-                  				  <select id="estante_id" class="form-control" name="estante_id" >
-                     				 @foreach($estantes as $est)
-                         			<option value="{{$est->id}}">{{$est->nombreEst}}</option>
-                     				 @endforeach
-                  				</select>
-                		    </div>
+                            <select id="presentacion_id" class="form-control" name="presentacion_id" >
+                            </select>
+                            {!!form::label('Cantidad')!!}
+          				          {!!form::number('cantidad',null,['id'=>'cantidad','min'=>1,'class'=>'form-control','min'=>'0','placeholder'=>'Ingrese Cantidad'])!!}
+                            {!!form::label('Precio Minimo de venta')!!}
+                            {!!form::text('precioMinVenta',null,['id'=>'precioMinVenta','class'=>'form-control','min'=>'0','placeholder'=>'Ingrese Minimo de venta'])!!}
+                            {!!Form::label('lbFecVen','Fecha de Vencimiento ')!!}
+                  					{!!Form::date('fechaVencimiento',null,['id'=>'fechaVencimiento','class'=>'form-control', 'placeholder'=>'Fecha de Vencimiento...'])!!}
+                		      </div>
                         <br>
-                		    <div class="col-md-4">
-                          {!!form::label('Cantidad')!!}
-        				          {!!form::number('cantidad',null,['id'=>'cantidad','min'=>1,'class'=>'form-control','min'=>"0",'placeholder'=>'Ingrese Cantidad','required'])!!}
-
-                					{!!form::label('Precio de compra')!!}
-                					{!!form::number('precioCompra',null,['id'=>'precioCompra','class'=>'form-control','min'=>"0",'placeholder'=>'Ingrese precio de compra','required'])!!}
-
-                					{!!form::label('Precio Minimo de venta')!!}
-                					{!!form::text('precioMinVenta',null,['id'=>'precioMinVenta','class'=>'form-control','min'=>"0",'placeholder'=>'Ingrese Minimo de venta','required'])!!}
-                				</div>
-              					<div class="col-md-4">
-                					{!!form::label('Precio Maximo de venta')!!}
-                					{!!form::text('precioMaxVenta',null,['id'=>'precioMaxVenta','class'=>'form-control','min'=>"0",'placeholder'=>'Ingrese Maximo de venta','required'])!!}
-
-                					{!!Form::label('lbFecVen','Fecha de Vencimiento ')!!}
-                					{!!Form::date('fechaVencimiento',null,['id'=>'fechaVencimiento','class'=>'form-control', 'placeholder'=>'Fecha de Vencimiento...','required'])!!}
-
+                		    <div class="col-md-6">
+                          {!!form::label('Producto')!!}
+                          {!!form::text('nombProd',null,['id'=>'nombProd','class'=>'form-control','placeholder'=>'producto'])!!}
+                          {!!form::label('Estante de ubicacion')!!}
+                          <select id="estante_id" class="form-control" name="estante_id" >
+                           @foreach($estantes as $est)
+                            <option value="{{$est->id}}">{{$est->nombreEst}}</option>
+                           @endforeach
+                         </select>
+                          {!!form::label('Precio de compra')!!}
+                          {!!form::number('precioCompra',null,['id'=>'precioCompra','class'=>'form-control','min'=>'0','placeholder'=>'Ingrese precio de compra'])!!}
+                          {!!form::label('Precio Maximo de venta')!!}
+                					{!!form::text('precioMaxVenta',null,['id'=>'precioMaxVenta','class'=>'form-control','min'=>'0','placeholder'=>'Ingrese Maximo de venta'])!!}
                           {!!form::label('Lote')!!}
-        				          {!!form::text('lote',null,['id'=>'lote','class'=>'form-control','placeholder'=>'Ingrese Cantidad','required'])!!}
-        				        </div>
+                          {!!form::text('lote',null,['id'=>'lote','class'=>'form-control','placeholder'=>'Numero de lote'])!!}
+                			  </div>
         		            <div class="col-md-4">
                           <br><br><br>
                           <input class="btn btn-primary" name="btnInsertarProducto" id="btnInsertarProducto" type="button" value="Agregar" onClick="addProductoCompra()"/>
-
-                         <button type="button" class="btn btn-primary" value="limpiar" onClick="limpiar()" >Limpiar</button>
-
+                          <button type="button" class="btn btn-primary" value="limpiar" onClick="limpiar()" >Limpiar</button>
                           <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
         		           </div>
         				     </div>
@@ -129,17 +109,16 @@
 <div class="box-body">
    		<table class="table  table-bordered taC table-hover" name="tablaArticulosVenta" id="tblDatosCompra">
       <tr>
-      <th> ---- </th>
-      <th>Lote</th>
-			 <th>Producto</th>
-			 <th>Presentación</th>
-			 <th>Estante</th>
-			 <th>cantidad</th>
-       <th>P/C ($)</th>
-       <th>P/MinV ($)</th>
-       <th>P/MaxV ($)</th>
-       <th>Caducidad</th>
-			 <th>Total ($)</th>
+      <th bgcolor="#e5eef7"> ---- </th>
+      <th bgcolor="#e5eef7">N° LOTE</th>
+      <th bgcolor="#e5eef7">PRODUCTO</th>
+      <th bgcolor="#e5eef7">PRESENTACIÓN</th>
+      <th bgcolor="#e5eef7">CANTIDAD</th>
+       <th bgcolor="#e5eef7">P/C ($)</th>
+       <th bgcolor="#e5eef7">P/MINV ($)</th>
+       <th bgcolor="#e5eef7">P/MAXV ($)</th>
+       <th bgcolor="#e5eef7">CADUCIDAD</th>
+			 <th bgcolor="#e5eef7">TOTAL ($)</th>
       </tr>
     </table>
 			</div>

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateComprasTable extends Migration
+class AddTotalComprasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,7 @@ class UpdateComprasTable extends Migration
     public function up()
     {
         Schema::table('compras', function (Blueprint $table) {
-          $table->integer('vendedor_id')->unsigned();
-          $table->foreign('vendedor_id')->references('id')->on('vendedors');
-          
+            $table->double('totalCompra');
         });
     }
 
@@ -27,7 +25,7 @@ class UpdateComprasTable extends Migration
     public function down()
     {
         Schema::table('compras', function (Blueprint $table) {
-
+            //
         });
     }
 }

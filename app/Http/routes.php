@@ -114,6 +114,7 @@ Route::match(['get','post'],'/compras/index/{id}','compraController@index');
 Route::match(['get','post'],'/compras/ver/{id}','compraController@ver');
 Route::match(['get','post'],'/compras/productospresentaciones/{cadena}','compraController@productospresentaciones');
 Route::match(['get','post'],'/compras/nombrepresentacionCompra/{cadena}','compraController@nombrepresentacionCompra');
+Route::match(['get','post'],'/compras/nombreproducto/{cadena}','compraController@nombreproducto');
 
 Route::resource('compras', 'compraController');
 Route::match(['get','post'],'/compras/show/{id}','CompraController@show');

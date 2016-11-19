@@ -23,7 +23,7 @@
           <thead>
             <tr>
               <th bgcolor="#e5eef7">CARGO</th>
-              <th bgcolor="#e5eef7">ACCION</th>
+              <th bgcolor="#e5eef7">ACCIÓN</th>
             </tr>
           </thead>
           <tbody>

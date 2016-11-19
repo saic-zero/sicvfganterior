@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use SICVFG\Usuario;
 use SICVFG\Empleado;
 use SICVFG\Estante;
+use SICVFG\Bitacora;
 use DB;
 use Session;
 use Redirect;
@@ -48,13 +49,14 @@ class estanteController extends Controller
      */
     public function store(Request $request)
     {
-     
+
       Estante::create([
         'nombreEst'=>$request['nombreEst'],
          'ubicacionEst'=>$request['ubicacionEst'],
         'estadoEst'=>1,
-        
+
       ]);
+      Bitacora::bitacora("Registro de nuevo Estante: ".$request['nombreEst']);
       return redirect('/estante')->with('mensaje','registrado con éxito');
 
     }
@@ -69,8 +71,9 @@ class estanteController extends Controller
     public function show($id)
     {
        $estante=\SICVFG\Estante::findOrFail($id);
-        $estante->estadoEst=1; //modificamos el estado 
+        $estante->estadoEst=1; //modificamos el estado
         $estante->update();
+        Bitacora::bitacora("Estante ".$estante['nombreEst']." Habilitado");
         Session::flash('mensaje','Estante habilitado con exito ');
         return Redirect::to('/estante');
     }
@@ -86,7 +89,7 @@ class estanteController extends Controller
       $estante=\SICVFG\Estante::find($id);
        return view('estante.edit',['estante'=>$estante]);
 
-     
+
     }
 
     /**
@@ -101,7 +104,7 @@ class estanteController extends Controller
         $estante= Estante::find($id);
         $estante->fill($request->all());
         $estante->save();
-
+        Bitacora::bitacora("Se modifico Estante: ".$request['nombreEst']);
         Session::flash('mensaje','Estate editado correctamente');
         return Redirect::to('/estante');
     }
@@ -115,8 +118,9 @@ class estanteController extends Controller
     public function destroy($id)
     {
         $estante=\SICVFG\Estante::findOrFail($id);
-        $estante->estadoEst=0; //modificamos el estado 
+        $estante->estadoEst=0; //modificamos el estado
         $estante->update();
+        Bitacora::bitacora("Estante ".$estante['nombreEst']." Deshabilitado");
         Session::flash('mensaje','Estante deshabilitado con exito ');
         return Redirect::to('/estante');
     }
@@ -127,9 +131,9 @@ class estanteController extends Controller
        $estante=DB::select('SELECT * FROM estantes where estadoEst=0 ');
        return view('estante.index',compact('estante','estado'));
     }
-    
+
     public function activo($id)
-    {  
+    {
       $estado=1;
        $estante=DB::select('SELECT * FROM estantes where estadoEst=1 ');
        return view('estante.index',compact('estante','estado'));

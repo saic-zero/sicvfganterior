@@ -1,12 +1,11 @@
 <ul class="sidebar-menu">
   <li class="header" align="center">MENU</li>
-  <li class="treeview">
-    <a>
-      <i class="glyphicon glyphicon-briefcase text-aqua"></i> <span>INVENTARIO</span> <i class="fa fa-angle-left pull-right"></i>
-    </a>
-    <ul class="treeview-menu">
-      <li>
-
+    <li class="treeview">
+      <a>
+        <i class="glyphicon glyphicon-briefcase text-aqua"></i> <span>INVENTARIO</span> <i class="fa fa-angle-left pull-right"></i>
+      </a>
+      <ul class="treeview-menu">
+        <li>
           <li class="treeview">
             <a href="#">
               <i class="fa fa-list-ol fa-fw text-aqua"></i>
@@ -14,230 +13,248 @@
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-
-                <li>
-                   <li class="treeview">
-                     <a href="#">
+              <li>
+               <li class="treeview">
+                 <a href="#">
                     <i class="glyphicon glyphicon-tags text-aqua"></i>
                     <span>Categorias</span>
                     <i class="fa fa-angle-left pull-right"></i>
-                      </a>
-                      <ul class="treeview-menu">
-                                  <li>
-                        <a href="{!!URL::to('/categoria/create')!!}"><i class='fa fa-plus fa-fw '></i>Agregar</a>
+                  </a>
+                  <ul class="treeview-menu">
+                    <li>
+                      <a href="{!!URL::to('/categoria/create')!!}"><i class='fa fa-plus fa-fw '></i>Agregar</a>
                     </li>
                     <li>
-                        <a href="{!!URL::to('/categoria')!!}"><i class='fa fa-gears '></i> Administrar</a>
-                    </li>
-                     <li>
-                                      <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
-                               </li>
-                     </ul>
-                     </li>
-                            </li>
-
-                            <li>
-                  <li class="treeview">
-                     <a href="#">
-                    <i class=" glyphicon glyphicon-th-list text-aqua"></i>
-                    <span>Productos</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                      </a>
-                      <ul class="treeview-menu">
-                                  <li>
-                        <a href="{!!URL::to('/producto/create')!!}"><i class='fa fa-plus fa-fw '></i>Agregar</a>
+                      <a href="{!!URL::to('/categoria')!!}"><i class='fa fa-gears '></i> Administrar</a>
                     </li>
                     <li>
-                        <a href="{!!URL::to('/producto')!!}"><i class='fa fa-gears '></i> Administrar</a>
+                      <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
                     </li>
-                     <li>
-                                      <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
-                               </li>
-                     </ul>
-                    </li>
+                 </ul>
               </li>
-              
-            </ul>
+            </li>
+            <li>
+              <li class="treeview">
+                <a href="#">
+                  <i class=" glyphicon glyphicon-th-list text-aqua"></i>
+                  <span>Productos</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                  <li>
+                    <a href="{!!URL::to('/producto/create')!!}"><i class='fa fa-plus fa-fw '></i>Agregar</a>
+                  </li>
+                  <li>
+                    <a href="{!!URL::to('/producto')!!}"><i class='fa fa-gears '></i> Administrar</a>
+                  </li>
+                  <li>
+                    <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
+                  </li>
+                </ul>
               </li>
+            </li>
+          </ul>
+        </li>
       </li>
     </ul>
   </li>
-
-            <li class="treeview">
+  <li class="treeview">
     <a>
       <i class="fa fa-group text-aqua"></i> <span>EMPLEADOS</span> <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
        <li>
-          <a href="{!!URL::to('/empleado/create')!!}"><i class='fa fa-plus fa-fw '></i> Agregar</a>
+        <a href="{!!URL::to('/empleado/create')!!}"><i class='fa fa-plus fa-fw '></i> Agregar</a>
       </li>
       <li>
-          <a href="{!!URL::to('/empleado')!!}"><i class='fa fa-gears '></i> Administrar</a>
+        <a href="{!!URL::to('/empleado')!!}"><i class='fa fa-gears '></i> Administrar</a>
       </li>
       <li>
-          <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open'></i> Informe</a>
+        <a target="_blank" href="{!!URL::to('/reporte')!!}"><i class='glyphicon glyphicon-eye-open'></i> Informe</a>
       </li>
-
     </ul>
   </li>
-<li class="treeview">
-            <a>
-              <i class="fa fa-shopping-cart text-aqua"></i> <span>COMPRAS</span> <i class="fa fa-angle-left pull-right"></i>
-            </a>
-            <ul class="treeview-menu">
-              <li>
-                   <li class="treeview">
-                             <a href="#">
-                            <i class="glyphicon glyphicon-globe text-aqua"></i>
-                            <span>Proveedores</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                              </a>
-                              <ul class="treeview-menu">
-                                          <li>
-                                <a href="{!!URL::to('/proveedor/create')!!}"><i class='fa fa-plus fa-fw'></i>Agregar</a>
-                            </li>
-                            <li>
-                                <a href="{!!URL::to('/proveedor')!!}"><i class='fa fa-gears '></i> Administrar</a>
-                            </li>
-                             <li>
-                                              <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
-                                       </li>
-                                         <li>
-                                         <li class="treeview">
-                                       <a href="#">
-                                      <i class="glyphicon glyphicon-folder-open text-aqua"></i>
-                                      <span>Vendedores</span>
-                                      <i class="fa fa-angle-left pull-right"></i>
-                                        </a>
-                                        <ul class="treeview-menu">
-                                                    <li>
-                                          <a href="{!!URL::to('/vendedor/create')!!}"><i class='fa fa-plus fa-fw'></i>Agregar</a>
-                                      </li>
-                                      <li>
-                                          <a href="{!!URL::to('/vendedor')!!}"><i class='fa fa-gears '></i> Administrar</a>
-                                      </li>
-                                       <li>
-                                                        <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
-                                                 </li>
-                                       </ul>
-                                          </li>
-                                       </li>
-                             </ul>
-                 </li>
-              </li>
-              </li>
-              <li>
-                   <li class="treeview">
-                             <a href="#">
-                            <i class="fa fa-folder text-aqua"></i>
-                            <span>Pedidos</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                              </a>
-                              <ul class="treeview-menu">
-                                          <li>
-                                <a href="{!!URL::to('/compras/create')!!}"><i class='fa fa-plus fa-fw'></i>Agregar</a>
-                            </li>
-                            <li>
-                                <a href="{!!URL::to('/compras')!!}"><i class='fa fa-gears '></i> Administrar</a>
-                            </li>
-                             <li>
-                                              <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
-                                       </li>
-                             </ul>
-                 </li>
-              </li>
-              <li>
-                   <li>
-                    <li class="treeview">
-                             <a href="#">
-                            <i class="fa fa-folder text-aqua"></i>
-                            <span>Devolución S/Compra</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                              </a>
-                              <ul class="treeview-menu">
-                                          <li>
-                                <a href="{!!URL::to('/producto/create')!!}"><i class='fa fa-plus fa-fw '></i>Agregar</a>
-                            </li>
-                            <li>
-                                <a href="{!!URL::to('/producto')!!}"><i class='fa fa-gears '></i> Administrar</a>
-                            </li>
-                             <li>
-                                              <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
-                                       </li>
-                             </ul>
-                            </li>
-                    </li>
-
-              </li>
-            </ul>
-          </li>
   <li class="treeview">
     <a>
-      <i class="glyphicon glyphicon-list-alt text-aqua"></i> <span>VENTAS</span> <i class="fa fa-angle-left pull-right"></i>
+      <i class="fa fa-shopping-cart text-aqua"></i> <span>COMPRAS</span> <i class="fa fa-angle-left pull-right"></i>
     </a>
+    <ul class="treeview-menu">
+      <li>
+        <li class="treeview">
+          <a href="#">
+            <i class="glyphicon glyphicon-globe text-aqua"></i>
+            <span>Proveedores</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li>
+              <a href="{!!URL::to('/proveedor/create')!!}"><i class='fa fa-plus fa-fw'></i>Agregar</a>
+            </li>
+            <li>
+              <a href="{!!URL::to('/proveedor')!!}"><i class='fa fa-gears '></i> Administrar</a>
+            </li>
+            <li>
+              <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
+            </li>
+             <li>
+               <li class="treeview">
+                 <a href="#">
+                  <i class="glyphicon glyphicon-folder-open text-aqua"></i>
+                  <span>Vendedores</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                  <li>
+                    <a href="{!!URL::to('/vendedor/create')!!}"><i class='fa fa-plus fa-fw'></i>Agregar</a>
+                  </li>
+                  <li>
+                    <a href="{!!URL::to('/vendedor')!!}"><i class='fa fa-gears '></i> Administrar</a>
+                  </li>
+                  <li>
+                    <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
+                  </li>
+                </ul>
+              </li>
+           </li>
+         </ul>
+       </li>
+     </li>
+   </li>
+    <li>
+       <li class="treeview">
+         <a href="#">
+          <i class="fa fa-folder text-aqua"></i>
+          <span>Pedidos</span>
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <a href="{!!URL::to('/compras/create')!!}"><i class='fa fa-plus fa-fw'></i>Agregar</a>
+          </li>
+          <li>
+            <a href="{!!URL::to('/compras')!!}"><i class='fa fa-gears '></i> Administrar</a>
+          </li>
+          <li>
+             <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
+          </li>
+       </ul>
+     </li>
+    </li>
+    <li>
+       <li>
+          <li class="treeview">
+             <a href="#">
+                <i class="fa fa-folder text-aqua"></i>
+                <span>Devolución S/Compra</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li>
+                  <a href="{!!URL::to('/producto/create')!!}"><i class='fa fa-plus fa-fw '></i>Agregar</a>
+                </li>
+                <li>
+                  <a href="{!!URL::to('/producto')!!}"><i class='fa fa-gears '></i> Administrar</a>
+                </li>
+                 <li>
+                   <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
+                 </li>
+                </ul>
+            </li>
+        </li>
+    </li>
+    <li>
+     <li>
+      <li class="treeview">
+         <a href="#">
+            <i class="fa fa-folder text-aqua"></i>
+            <span>Informe de Productos</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li>
+              <a href="{!!URL::to('/producto/create')!!}"><i class='glyphicon glyphicon-eye-open'></i>Por laboratorio</a>
+            </li>
+            <li>
+              <a href="{!!URL::to('/producto')!!}"><i class='glyphicon glyphicon-eye-open '></i>Más rentables</a>
+            </li>
+            <li>
+              <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i>A vencer</a>
+            </li>
+            <li>
+              <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i>Por antigüedad</a>
+            </li>
+           </ul>
+        </li>
+      </li>
+    </li>
+  </ul>
+</li>
+<li class="treeview">
+  <a>
+    <i class="glyphicon glyphicon-list-alt text-aqua"></i> <span>VENTAS</span> <i class="fa fa-angle-left pull-right"></i>
+  </a>
     <ul class="treeview-menu">
       <li>
         <li>
-            <li class="treeview">
-                     <a href="#">
-                    <i class="fa fa-folder text-aqua"></i>
-                    <span>Venta</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                      </a>
-                      <ul class="treeview-menu">
-                                  <li>
-                        <a href="{!!URL::to('/producto/create')!!}"><i class='fa fa-plus fa-fw '></i>Agregar</a>
-                    </li>
-                    <li>
-                        <a href="{!!URL::to('/producto')!!}"><i class='fa fa-gears '></i> Administrar</a>
-                    </li>
-                     <li>
-                                      <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
-                               </li>
-                     </ul>
-                    </li>
+          <li class="treeview">
+             <a href="#">
+                <i class="fa fa-folder text-aqua"></i>
+                <span>Venta</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li>
+                  <a href="{!!URL::to('/producto/create')!!}"><i class='fa fa-plus fa-fw '></i>Agregar</a>
+                </li>
+                <li>
+                  <a href="{!!URL::to('/producto')!!}"><i class='fa fa-gears '></i> Administrar</a>
+                </li>
+                <li>
+                  <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
+                </li>
+               </ul>
             </li>
+          </li>
           <li>
             <li class="treeview">
-                     <a href="#">
-                    <i class="fa fa-folder text-aqua"></i>
-                    <span>Devolución S/Venta</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                      </a>
-                      <ul class="treeview-menu">
-                                  <li>
-                        <a href="{!!URL::to('/producto/create')!!}"><i class='fa fa-plus fa-fw '></i>Agregar</a>
+               <a href="#">
+                  <i class="fa fa-folder text-aqua"></i>
+                  <span>Devolución S/Venta</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                  <ul class="treeview-menu">
+                    <li>
+                      <a href="{!!URL::to('/producto/create')!!}"><i class='fa fa-plus fa-fw '></i>Agregar</a>
                     </li>
                     <li>
-                        <a href="{!!URL::to('/producto')!!}"><i class='fa fa-gears '></i> Administrar</a>
+                      <a href="{!!URL::to('/producto')!!}"><i class='fa fa-gears '></i> Administrar</a>
                     </li>
                     <li>
-                                      <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
-                               </li>
-                     </ul>
+                      <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
                     </li>
-            </li>
-      </li>
-    </ul>
-  </li>
-  <li class="treeview">
-    <a>
-      <i class="glyphicon glyphicon-lock  text-aqua"></i> <span>SEGURIDAD</span> <i class="fa fa-angle-left pull-right"></i>
-    </a>
-    <ul class="treeview-menu">
-      <li>
-          <a href="{!!URL::to('/admin')!!}"><i class='fa fa-gears'></i> Administración</a>
-      </li>
-      <li>
-          <a href="{!!URL::to('')!!}"><i class='fa fa-database'></i> Respaldar BD</a>
-      </li>
-      <li>
-          <a href="{!!URL::to('')!!}"><i class='fa fa-database'></i> Restaurar BD</a>
-      </li>
-      <li>
-          <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open'></i> Bitácora</a>
-      </li>
-    </ul>
-  </li>
-
+                 </ul>
+              </li>
+          </li>
+        </li>
+      </ul>
+    </li>
+    <li class="treeview">
+      <a>
+        <i class="glyphicon glyphicon-lock  text-aqua"></i> <span>SEGURIDAD</span> <i class="fa fa-angle-left pull-right"></i>
+      </a>
+      <ul class="treeview-menu">
+        <li>
+            <a href="{!!URL::to('/admin')!!}"><i class='fa fa-gears'></i> Administración</a>
+        </li>
+        <li>
+            <a href="{!!URL::to('')!!}"><i class='fa fa-database'></i> Respaldar BD</a>
+        </li>
+        <li>
+            <a href="{!!URL::to('')!!}"><i class='fa fa-database'></i> Restaurar BD</a>
+        </li>
+        <li>
+            <a href="{!!URL::to('/bitacora')!!}"><i class='glyphicon glyphicon-eye-open'></i> Bitácora</a>
+        </li>
+      </ul>
+    </li>
 </ul>

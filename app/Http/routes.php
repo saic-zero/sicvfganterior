@@ -31,6 +31,15 @@ Route::resource('primer','primeraSucController');
 Route::resource('primerEmpleado','primerEmpleadoController');
 Route::resource('primerUsuario','primerUsuarioController');
 
+
+Route::get('password/email','Auth\PasswordController@getEmail');
+Route::post('password/email','Auth\PasswordController@postEmail');
+
+Route::get('password/reset/{token}','Auth\PasswordController@getReset');
+Route::post('password/reset','Auth\PasswordController@postReset');
+
+Route::resource('mail','MailController');
+
 Route::get('index','frontController@index');
 
 Route::get('w','frontController@w');
@@ -58,6 +67,15 @@ Route::group(['middleware'=>'administrador'], function(){
   Route::match(['get','post'],'/cargo/activo/{id}','CargoController@activo');
   Route::match(['get','post'],'/cargo/desactivo/{id}','CargoController@desactivo');
   Route::resource('cargo','CargoController');
+
+  Route::resource('bitacora','BitacoraController');
+
+  ///////////////////////////////Reportes//////////////////////////////////////////////////////
+
+  Route::match(['get','post'],'reporte','EmpleadoController@reporte');
+  Route::match(['get','post'],'reporteBitacora','BitacoraController@reporteBitacora');
+  // Route::match(['get','post'],'productoLaboratorio','RProductosController@productoLaboratorio');
+
   /////////////////////////////FIN SAIC/////////////////////////////////////////////////////////
   });
 

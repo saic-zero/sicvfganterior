@@ -27,8 +27,8 @@ return [
     | the Mailgun mail service which will provide reliable deliveries.
     |
     */
-
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+//configuracion del tipo de correo a utilizar sera gmail
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -40,8 +40,8 @@ return [
     | stay compatible with the Mailgun e-mail application by default.
     |
     */
-
-    'port' => env('MAIL_PORT', 587),
+// se coloca 465 ya que es el puerto para correos gmail
+    'port' => env('MAIL_PORT',465),
 
     /*
     |--------------------------------------------------------------------------
@@ -53,8 +53,9 @@ return [
     | used globally for all e-mails that are sent by your application.
     |
     */
-
-    'from' => ['address' => null, 'name' => null],
+// se coloca la cuenta de gmail a utilizar en el sistema y el nombre que
+// aparecera cuando se envien los mensajes
+    'from' => ['address' => 'sicvfg736@gmail.com', 'name' =>'SICVFG'],
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +68,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
 
     /*
     |--------------------------------------------------------------------------

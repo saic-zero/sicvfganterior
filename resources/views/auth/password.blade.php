@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Inicio de Sesión | </title>
+    <title>Recuperar Cuenta | </title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -16,7 +16,7 @@
     {!!Html::style('dist/css/AdminLTE.min.css')!!}
 
     <!-- alertas con script -->
-    {!!Html::style('css/sweetalert.css')!!}
+    {{-- {!!Html::style('css/sweetalert.css')!!} --}}
     <!--fin de alertas con script   -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -40,32 +40,24 @@
       </div><!-- /.login-logo -->
       <article>
       <div class="login-box-body">
-        <p class="login-box-msg">Inicie Sesión</p>
-        {!!Form::open(['route'=>'login.store','method'=>'POST'])!!}
+        <p class="login-box-msg">Recuperar Contraseña</p>
+        {!!Form::open(['url' => 'password/email'])!!}
 
           <div class="form-group has-feedback">
-            {!!form::text('name',null,['class'=>'form-control','placeholder'=>'Ingrese su Usuario'])!!}
+            {!!form::text('email',null,['class'=>'form-control','placeholder'=>'Ingrese su correo'])!!}
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
-          </div>
-          <div class="form-group has-feedback">
-            {!!form::password('password',['class'=>'form-control','placeholder'=>'Ingrese su Contraseña'])!!}
-
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-          <center>
-            {!!link_to('password/email', $title = '¿ Olvidaste tu contraseña ?', $attributes = null, $secure = null)!!}
-          </center>
           </div>
           <div class="row">
             <div class="col-xs-4">
             </div>
             <div class="col-xs-4">
-              <button type="submit" class="btn btn-danger btn-block btn-flat "> Acceder </button>
+              <button type="submit" class="btn btn-danger btn-block btn-flat "> Enviar </button>
             </div><!-- /.col -->
           </div>
           {!!Form::close()!!}
           <div class="social-auth-links text-center">
 
-          <img src="images/securidad.png" width="100" height="100" align="right"></img>
+          {{-- <img src="images/securidad.png" width="100" height="100" align="right"></img> --}}
         </div><!-- /.social-auth-links -->
 
       </div><!-- /.login-box-body -->
@@ -73,6 +65,13 @@
 
     </div><!-- /.login-box -->
 
+    <!-- jQuery 2.1.4 -->
+    {{-- <script src="../../plugins/jQuery/jQuery-2.1.4.min.js"></script> --}}
+    <!-- Bootstrap 3.3.5 -->
+    {!!Html::script('js/login.js')!!}
+{{-- {!!Html::script('bootstrap/js/bootstrap.min.js')!!} --}}
+{{-- {!!Html::script('js/login.js')!!} --}}
+    {{-- {!!Html::script('js/sweetalert-dev.js')!!}  <!-- plugin alertas --> --}}
 
   </body>
 </html>

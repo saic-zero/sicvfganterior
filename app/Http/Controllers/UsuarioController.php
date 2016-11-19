@@ -7,6 +7,7 @@ use DB;
 use Input;
 use SICVFG\User;
 use SICVFG\Empleado;
+use SICVFG\Bitacora;
 use Session;
 use Redirect;
 use SICVFG\Http\Requests;
@@ -67,6 +68,7 @@ class UsuarioController extends Controller
         'tipoCuenta'=>$request['tipoCuenta'],
         'user_id'=>$idEmpleado->last()->id,
       ]);
+      Bitacora::bitacora("Registro de nuevo Usuario: ".$request['name']);
       return redirect('/usuario')->with('mensaje','Usuario ingresado correctamente');
     }
     /**
@@ -86,6 +88,7 @@ class UsuarioController extends Controller
       if ($estadoEmpleado==1) {
         $user->estadoUsu=1; //modificamos el estado
         $user->update();
+        Bitacora::bitacora("Usuario ".$user['name']." Habilitado");
         Session::flash('mensaje','Usuario Habilitado Correctamente');
         return Redirect::to('/usuario');
       }else{
@@ -140,6 +143,7 @@ class UsuarioController extends Controller
         //  $user->fill($request->all());
 
         $user->save();
+        Bitacora::bitacora("Modificación de usuario: ".$request['name']);
         Session::flash('mensaje','Usuario editado correctamente');
         return Redirect::to('/usuario');
     }
@@ -155,7 +159,8 @@ class UsuarioController extends Controller
       $user=\SICVFG\User::findOrFail($id);
       $user->estadoUsu=0; //modificamos el estado
       $user->update();
-      Session::flash('mensaje','Usuario Deshabilitado con Exito');
+      Bitacora::bitacora("Usuario ".$user['name']." Deshabilitado");
+      Session::flash('mensaje','Usuario Deshabilitado con Éxito');
       return Redirect::to('/usuario');
     }
 

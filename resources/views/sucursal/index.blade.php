@@ -24,9 +24,9 @@
             <tr>
               <th bgcolor="#e5eef7">SUCURSAL</th>
               <th bgcolor="#e5eef7">REPRESENTANTE</th>
-              <th bgcolor="#e5eef7">TELEFONO</th>
-              <th bgcolor="#e5eef7">DIRECCION</th>
-             <th bgcolor="#e5eef7">ACCION</th>
+              <th bgcolor="#e5eef7">TELÉFONO</th>
+              <th bgcolor="#e5eef7">DIRECCIÓN</th>
+             <th bgcolor="#e5eef7">ACCIÓN</th>
             </tr>
           </thead>
           <tbody>

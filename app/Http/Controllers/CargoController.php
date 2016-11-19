@@ -8,6 +8,7 @@ use SICVFG\Http\Requests;
 use SICVFG\Http\Requests\CargosRequest;
 use SICVFG\Http\Controllers\Controller;
 use SICVFG\Cargo;
+use SICVFG\Bitacora;
 use Session;
 use DB;
 use Redirect;
@@ -46,6 +47,7 @@ class CargoController extends Controller
       Cargo::create([
         'nombreCargo'=>$request['nombreCargo'],
       ]);
+      Bitacora::bitacora("Registro de nuevo cargo: ".$request['nombreCargo']);
       return redirect('/cargo')->with('mensaje','Registro guardado con éxito');
     }
 
@@ -60,7 +62,8 @@ class CargoController extends Controller
       $cargos=\SICVFG\Cargo::findOrFail($id);
       $cargos->estadoCargo=1; //modificamos el estado
       $cargos->update();
-      Session::flash('mensaje','Cargo Habilitado con Exito');
+      Bitacora::bitacora("Cargo  ".$cargos['nombreCargo']." Habilitado");
+      Session::flash('mensaje','Cargo Habilitado con Éxito');
       return Redirect::to('/cargo');
     }
 
@@ -88,7 +91,7 @@ class CargoController extends Controller
       $cargo =Cargo::find($id);
       $cargo->fill($request->all());
       $cargo->save();
-
+      Bitacora::bitacora("Modificación de cargo: ".$request['nombreCargo']);
       Session::flash('mensaje','Datos modificados correctamente');
       return Redirect::to('/cargo');
     }
@@ -104,7 +107,8 @@ class CargoController extends Controller
       $cargos=\SICVFG\Cargo::findOrFail($id);
       $cargos->estadoCargo=0; //modificamos el estado
       $cargos->update();
-      Session::flash('mensaje','Cargo Deshabilitado con Exito');
+      Bitacora::bitacora("Cargo ".$cargos['nombreCargo']." Deshabilitado");
+      Session::flash('mensaje','Cargo Deshabilitado con Éxito');
       return Redirect::to('/cargo');
     }
 

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Inicio de Sesión | </title>
+    <title>Recuperar Cuenta | </title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -40,26 +40,25 @@
       </div><!-- /.login-logo -->
       <article>
       <div class="login-box-body">
-        <p class="login-box-msg">Inicie Sesión</p>
-        {!!Form::open(['route'=>'login.store','method'=>'POST'])!!}
+        <p class="login-box-msg">Recuperar Contraseña</p>
+        {!!Form::open(['url' => '/password/reset'])!!}
 
           <div class="form-group has-feedback">
-            {!!form::text('name',null,['class'=>'form-control','placeholder'=>'Ingrese su Usuario'])!!}
-            <span class="glyphicon glyphicon-user form-control-feedback"></span>
-          </div>
-          <div class="form-group has-feedback">
-            {!!form::password('password',['class'=>'form-control','placeholder'=>'Ingrese su Contraseña'])!!}
+            {!!Form::hidden('token',$token,null)!!}
+            {!!form::email('email',null,['class'=>'form-control','placeholder'=>'Ingrese su correo'])!!}
 
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-          <center>
-            {!!link_to('password/email', $title = '¿ Olvidaste tu contraseña ?', $attributes = null, $secure = null)!!}
-          </center>
+					 		{{-- {!!Form::text('email',null,['value' => "{{old('email')}}"])!!} --}}
+              {!!form::password('password',['class'=>'form-control','placeholder'=>'Ingrese su Contraseña'])!!}
+              {!!form::password('password_confirmation',['class'=>'form-control','placeholder'=>'Repita su Contraseña'])!!}
+
+					 		{{-- {!!Form::password('password')!!} --}}
+					 		{{-- {!!Form::password('password_confirmation')!!} --}}
           </div>
           <div class="row">
             <div class="col-xs-4">
             </div>
             <div class="col-xs-4">
-              <button type="submit" class="btn btn-danger btn-block btn-flat "> Acceder </button>
+              <button type="submit" class="btn btn-danger btn-block btn-flat "> Restablecer </button>
             </div><!-- /.col -->
           </div>
           {!!Form::close()!!}
@@ -73,6 +72,13 @@
 
     </div><!-- /.login-box -->
 
+    <!-- jQuery 2.1.4 -->
+    {{-- <script src="../../plugins/jQuery/jQuery-2.1.4.min.js"></script> --}}
+    <!-- Bootstrap 3.3.5 -->
+    {!!Html::script('js/login.js')!!}
+{{-- {!!Html::script('bootstrap/js/bootstrap.min.js')!!} --}}
+{!!Html::script('js/login.js')!!}
+    {!!Html::script('js/sweetalert-dev.js')!!}  <!-- plugin alertas -->
 
   </body>
 </html>

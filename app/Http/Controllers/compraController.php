@@ -12,6 +12,7 @@ use SICVFG\Detallecompra;
 use SICVFG\Proveedor;
 use SICVFG\Vendedor;
 use SICVFG\Producto;
+use SICVFG\Bitacora;
 use SICVFG\Presentaciones;
 use SICVFG\Http\Requests;
 use SICVFG\Http\Controllers\Controller;
@@ -72,6 +73,7 @@ class compraController extends Controller
          $compra->vendedor_id = $request->vendedor_id;
          $compra->totalCompra=$request->totalCompra;
          $compra->save();
+         Bitacora::bitacora("Registro de nueva Compra: ".$request['numComprobanteCompra']);
 
       foreach ($request->articulos as $k => $a) {
       $detalle = new DetalleCompra;

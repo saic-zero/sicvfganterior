@@ -24,21 +24,21 @@
             <tr>
               <th bgcolor="#e5eef7">NOMBRES</th>
               <th bgcolor="#e5eef7">APELLIDOS</th>
-              <th bgcolor="#e5eef7">DIRECCION</th>
-              <th bgcolor="#e5eef7">TELEFONO</th>
+              <th bgcolor="#e5eef7">DIRECCIÓN</th>
+              <th bgcolor="#e5eef7">TELÉFONO</th>
               <th bgcolor="#e5eef7">F/CONTRATO</th>
-              <th bgcolor="#e5eef7">ACCION</th>
+              <th bgcolor="#e5eef7">ACCIÓN</th>
             </tr>
           </thead>
           <tbody>
           @foreach ($empleados as $empleado)
-          <?php	$datos=explode('-', $empleado->fechaIngrSuc);?>
+          <?php	$fecha=explode('-', $empleado->fechaIngrSuc);?>
           <tr>
             <td>{{$empleado->nombresEmp}}</td>
             <td>{{$empleado->apellidosEmp}}</td>
             <td>{{$empleado->direccionEmp}}</td>
             <td>{{$empleado->telefonoEmp}}</td>
-            <td>{{$datos[2].'/'.$datos[1].'/'.$datos[0]}}</td>
+            <td>{{$fecha[2].'/'.$fecha[1].'/'.$fecha[0]}}</td>
             <td>
               <div align="center">
                 <table>

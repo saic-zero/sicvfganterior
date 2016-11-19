@@ -7,6 +7,7 @@ use SICVFG\Http\Requests;
 use SICVFG\Http\Requests\SucursalRequest;
 use SICVFG\Http\Controllers\Controller;
 use SICVFG\Sucursal;
+use SICVFG\Bitacora;
 use Session;
 use Redirect;
 use View;
@@ -50,7 +51,8 @@ class SucursalController extends Controller
         'direccionSuc'=>$request['direccionSuc'],
         'telefonoSuc'=>$request['telefonoSuc'],
       ]);
-      return redirect('/sucursal')->with('mensaje','Registro guardado con éxito');
+      Bitacora::bitacora("Registro de nueva sucursal: ".$request['nombreSuc']);
+      return redirect('/sucursal')->with('mensaje','Registro guardado con Éxito');
     }
 
     /**
@@ -64,7 +66,8 @@ class SucursalController extends Controller
       $sucursals=\SICVFG\Sucursal::findOrFail($id);
       $sucursals->estadoSuc=1; //modificamos el estado
       $sucursals->update();
-      Session::flash('mensaje','Sucursal Habilitada con Exito');
+      Bitacora::bitacora("Sucursal  ".$sucursals['nombreSuc']." Habilitada");
+      Session::flash('mensaje','Sucursal Habilitada con Éxito');
       return Redirect::to('/sucursal');
     }
 
@@ -92,7 +95,7 @@ class SucursalController extends Controller
       $sucursal =Sucursal::find($id);
       $sucursal->fill($request->all());
       $sucursal->save();
-
+      Bitacora::bitacora("Modificación de sucursal: ".$request['nombreSuc']);
       Session::flash('mensaje','Sucursal editada correctamente');
       return Redirect::to('/sucursal');
     }
@@ -119,8 +122,9 @@ class SucursalController extends Controller
             $sucursals=\SICVFG\Sucursal::findOrFail($id);
             $sucursals->estadoSuc=0; //modificamos el estado
             $sucursals->update();
+            Bitacora::bitacora("Sucursal ".$sucursals['nombreSuc']." Deshabilitada");
             $empleado=\SICVFG\Empleado::where('sucursal_id',$id)->update(['estadoEmp'=>0]);
-            Session::flash('mensaje','Sucursal Deshabilitada con Exito, es posible que tuviera empleados registrados los cuales tambien se deshabilitaron');
+            Session::flash('mensaje','Sucursal Deshabilitada con Éxito, es posible que tuviera empleados registrados los cuales tambien se deshabilitaron');
             return Redirect::to('/sucursal');
           }
 

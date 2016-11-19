@@ -11,6 +11,7 @@ use SICVFG\Empleado;
 use SICVFG\Sucursal;
 use SICVFG\User;
 use SICVFG\Cargo;
+use SICVFG\Bitacora;
 use Session;
 use Redirect;
 use DB;
@@ -68,6 +69,7 @@ class EmpleadoController extends Controller
         'sucursal_id'=> $request['sucursal_id'],
         'cargo_id'=> $request['cargo_id'],
       ]);
+      Bitacora::bitacora("Registro de nuevo Empleado: ".$request['codEmpleado']);
       return redirect('/empleado')->with('mensaje','Empleado registrado con éxito');
     }
 
@@ -86,7 +88,8 @@ class EmpleadoController extends Controller
       if ($estadoSucursal==1) {
         $empleados->estadoEmp=1; //modificamos el estado a uno asumir que esta habilitado
         $empleados->update();
-        Session::flash('mensaje','Empleado Habilitado con Exito');
+        Bitacora::bitacora("Empleado ".$empleados['codEmpleado']." Habilitado");
+        Session::flash('mensaje','Empleado Habilitado con Éxito');
         return Redirect::to('/empleado');
       }else{
         Session::flash('mensaje','El empleado no se ha Habilitado ya que la sucursal a la que pertenece esta Inactiva');
@@ -122,7 +125,7 @@ class EmpleadoController extends Controller
       $empleado= Empleado::find($id);
       $empleado->fill($request->all());
       $empleado->save();
-
+      Bitacora::bitacora("Modificación de empleado: ".$request['codEmpleado']);
       Session::flash('mensaje','Empleado editado correctamente');
       return Redirect::to('/empleado');
     }
@@ -139,6 +142,7 @@ class EmpleadoController extends Controller
       $empleados->estadoEmp=0; //modificamos el estado a uno asumir que esta deshabilitado
       $empleados->update();
       $usuario=\SICVFG\User::where('user_id',$id)->update(['estadoUsu'=>0]);
+      Bitacora::bitacora("Empleado ".$empleados['codEmpleado']." Deshabilitado");
       Session::flash('mensaje','Empleado  deshabilitado, es  posible que tuviera asociado ua cuenta de usuario que tambien se deshabilito');
       return Redirect::to('/empleado');
     }
@@ -152,6 +156,19 @@ class EmpleadoController extends Controller
     {
       $empleados=DB::select('SELECT * FROM empleados where estadoEmp=1 ');
         return view('empleado.index',compact('empleados'));
+    }
+    public function reporte()
+    {
+      $empleados=Empleado::all();
+      $cargo = new Cargo;
+      $date = date('d-m-Y');
+      $date1 = date('g:i:s a');
+      $vistaurl="empleado.reporte";
+      $view =  \View::make($vistaurl, compact('empleados', 'date','date1','cargo'))->render();
+      $pdf = \App::make('dompdf.wrapper');
+      $pdf->loadHTML($view);
+
+      return $pdf->stream('reporte');
     }
 
 }

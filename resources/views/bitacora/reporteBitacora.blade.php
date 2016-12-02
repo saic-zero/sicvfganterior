@@ -44,10 +44,10 @@
       <table class="table" border="1px" >
 	      <thead>
           <tr>
-            <th bgcolor="#e5eef7">USUARIO</th>
-            <th bgcolor="#e5eef7">ACCIÓN</th>
-            <th bgcolor="#e5eef7">FECHA DE REGISTRO</th>
-            <th bgcolor="#e5eef7">HORA DE REGISTRO</th>
+            <th bgcolor="#3c86c7">Usuario</th>
+            <th bgcolor="#3c86c7">Acción</th>
+            <th bgcolor="#3c86c7">Fecha de registro</th>
+            <th bgcolor="#3c86c7">Hora de registro</th>
           </tr>
 	      </thead>
         <tbody>

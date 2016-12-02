@@ -6,16 +6,10 @@ use Illuminate\Http\Request;
 
 use SICVFG\Http\Requests;
 use SICVFG\Http\Controllers\Controller;
-use SICVFG\Compra;
-use SICVFG\DetalleCompra;
-use SICVFG\Proveedor;
-use SICVFG\Producto;
-use SICVFG\Presentaciones;
-use Session;
 use DB;
-use Redirect;
-
-class RProductosController extends Controller
+use SICVFG\DetalleCompra;
+use SICVFG\DetalleVenta;
+class InventarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,26 +18,18 @@ class RProductosController extends Controller
      */
     public function index()
     {
-        //
-    }
 
-    public function RPAntiguedad()
-    {
-      // $detalle=DetalleCompra::all();
-      $detalle=DB::select('SELECT d.lote,p.nombreProd,pr.nombrePre,d.cantidad,c.fechaCompra,
-        d.fechaVencimiento,v.nombreVen,v.telefonoVen
-        from detalle_compras d,productos p,presentaciones pr,compras c,vendedors v
-        where d.compra_id=c.id and d.producto_id=p.id and d.presentacion_id=pr.id and c.vendedor_id=v.id
-        order by c.fechaCompra desc');
+        // $detallecompras=DB::select('select d.id,p.nombreProd, d.cantidad, d.precioMinVenta,
+        //  d.precioMaxVenta,d.fechaVencimiento,d.lote,e.nombreEst,pr.nombrePre from productos p,
+        //   detalle_compras d, presentaciones pr, estantes e
+        //    where p.id=d.producto_id and pr.id=d.presentacion_id and e.id=d.estante_id
+        //    order by p.nombreProd, d.fechaVencimiento');
 
-      $date = date('d-m-Y');
-      $date1 = date('g:i:s a');
-      $vistaurl="compras.informes.porAntiguedad";
-      $view =  \View::make($vistaurl, compact('detalle', 'date','date1'))->render();
-      $pdf = \App::make('dompdf.wrapper');
-      $pdf->loadHTML($view);
+        $detallecompras= DetalleCompra::orderBy('producto_id')->orderBy('created_at','asc')->paginate(20);
 
-      return $pdf->stream('reporte');
+        $detalle= new DetalleCompra;
+
+       return view('inventario.inventario',compact('detallecompras','detalle'));
     }
 
     /**

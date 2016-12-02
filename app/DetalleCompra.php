@@ -3,6 +3,7 @@
 namespace SICVFG;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class DetalleCompra extends Model
 {
@@ -24,6 +25,11 @@ class DetalleCompra extends Model
     $n=\SICVFG\Estante::find($id);
     return $n->nombreEst;
     }
+// funcion para obtener el total de de medicamentos vendidos de un determinado medicamento
+    public static function productoVendido($detalleCompra,$lote){
+      $detalle = DetalleVenta::where('detalleCompra_id',$detalleCompra)->sum('cantidad');
+      return $detalle;
+    }
 
-  
+
 }

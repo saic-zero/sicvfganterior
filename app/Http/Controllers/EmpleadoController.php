@@ -160,6 +160,7 @@ class EmpleadoController extends Controller
     public function reporte()
     {
       $empleados=Empleado::all();
+      // $empleados=DB::select('SELECT * FROM empleados where id=1 ');
       $cargo = new Cargo;
       $date = date('d-m-Y');
       $date1 = date('g:i:s a');

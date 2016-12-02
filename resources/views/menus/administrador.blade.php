@@ -55,6 +55,22 @@
             </li>
           </ul>
         </li>
+
+        <li class="treeview">
+           <a href="#">
+              <i class="fa fa-folder text-aqua"></i>
+              <span>Inventario</span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              <li>
+                <a href="{!!URL::to('/inventario')!!}"><i class='glyphicon glyphicon-eye-open '></i>Inventario</a>
+              </li>
+              <li>
+                <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i>Kardex</a>
+              </li>
+             </ul>
+          </li>
       </li>
     </ul>
   </li>
@@ -181,7 +197,7 @@
               <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i>A vencer</a>
             </li>
             <li>
-              <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i>Por antigüedad</a>
+              <a  target="_blank"  href="{!!URL::to('/RPAntiguedad')!!}"><i class='glyphicon glyphicon-eye-open '></i>Por antigüedad</a>
             </li>
            </ul>
         </li>

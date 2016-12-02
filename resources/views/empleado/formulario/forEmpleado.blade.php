@@ -8,6 +8,7 @@ if($bandera==1){
 	$car = $empleados->cargo_id;
 	$sex = $empleados->sexo;
 }
+$date = date('d-m-Y');
  ?>
  <div class="box box-primary">
 	 <div class="box-header with-border">
@@ -114,7 +115,7 @@ if($bandera==1){
 							@if($bandera==1)
 							{!!Form::date('fechaIngrSuc',null,['id'=>'fechaIngSuc','class'=>'form-control', 'max'=>'','placeholder'=>'Fecha de ingreso a farmacia...','required'])!!}
 							@else
-								{!!Form::date('fechaIngrSuc',null,['id'=>'fechaIngSuc','class'=>'form-control', 'max'=>'2016-10-20','placeholder'=>'Fecha de ingreso a farmacia...','ReadOnly'])!!}
+								{!!Form::date('fechaIngrSuc',null,['id'=>'fechaIngSuc','class'=>'form-control', 'max'=>'','placeholder'=>'Fecha de ingreso a farmacia...','ReadOnly'])!!}
 							@endif
 					</div><!-- /.form-group -->
 				</div><!-- /.col -->

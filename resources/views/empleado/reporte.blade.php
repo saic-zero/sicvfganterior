@@ -29,30 +29,54 @@
 						</center>
 			    </div><!-- /.box-header -->
 			    <div class="box-body">
-			      <table class="table" border="1" width="100%" >
-				      <thead>
-				         <tr>
-									<th bgcolor="#e5eef7" >Nombres</th>
-				          <th bgcolor="#e5eef7">Apellidos</th>
-				          <th bgcolor="#e5eef7">Dirección</th>
-				          <th bgcolor="#e5eef7">Teléfono</th>
-									{{-- <th bgcolor="#e5eef7">Cargo</th> --}}
-				          <th bgcolor="#e5eef7">Fecha de contrato</th>
-				        </tr>
-				      </thead>
-			        <tbody>
+			      <table class="table" border="" width="100%" >
 								@foreach ($empleados as $empleado)
-			          <?php	$fecha=explode('-', $empleado->fechaIngrSuc);?>
+			          <?php	$fecha=explode('-', $empleado->fechaIngrSuc);
+								$fecha1=explode('-', $empleado->fechaNacimiento);?>
 			          <tr>
+									<td bgcolor="#e5eef7">Nombres</td>
 			            <td>{{$empleado->nombresEmp}}</td>
+									<td bgcolor="#e5eef7">Apellidos</td>
 			            <td>{{$empleado->apellidosEmp}}</td>
+								</tr>
+								<tr>
+									<td bgcolor="#e5eef7">Sexo</td>
+			            <td>{{$empleado->sexo}}</td>
+									<td bgcolor="#e5eef7">Fecha de nacimiento</td>
+			            <td>{{$fecha1[2].'-'.$fecha1[1].'-'.$fecha1[0]}}</td>
+								</tr>
+								<tr>
+									<td bgcolor="#e5eef7">Dirección</td>
 			            <td>{{$empleado->direccionEmp}}</td>
+									<td bgcolor="#e5eef7">Teléfono</td>
 			            <td>{{$empleado->telefonoEmp}}</td>
-									{{-- <td>{{$cargo->nombCargo($empleado->cargo_id)}}</td> --}}
+								</tr>
+								<tr>
+									<td bgcolor="#e5eef7">DUI</td>
+			            <td>{{$empleado->DUI}}</td>
+									<td bgcolor="#e5eef7">NIT</td>
+			            <td>{{$empleado->NIT}}</td>
+								</tr>
+								<tr>
+									<td bgcolor="#e5eef7">Código</td>
+			            <td>{{$empleado->codEmpleado}}</td>
+									<td bgcolor="#e5eef7">Fecha de contrato</td>
 			            <td>{{$fecha[2].'-'.$fecha[1].'-'.$fecha[0]}}</td>
 								</tr>
+								<tr>
+									<td bgcolor="#e5eef7">Cargo</td>
+			            <td>{{$cargo->nombCargo($empleado->cargo_id)}}</td>
+									<td bgcolor="#e5eef7">Referecia Laboral</td>
+			            <td>{{$empleado->referenciaLaboral}}</td>
+								</tr>
+								<tr>
+									<td bgcolor="#e5eef7">AFP</td>
+			            <td>{{$empleado->numAFP}}</td>
+									<td bgcolor="#e5eef7">ISSS</td>
+			            <td>{{$empleado->numISSS}}</td>
+								</tr>
+								<tr><td bgcolor="black" colspan="4" ></td></tr>
 								@endforeach
-			      </tbody>
 			    </table>
 			  </div><!-- /.box-body -->
 			</div><!-- /.box -->

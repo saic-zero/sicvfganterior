@@ -42,10 +42,7 @@
                     </select>
                   </div>
                 </div>
-            {!! Form::submit('Imprimir Informe',['class'=>'btn btn-info']) !!}
-
-            {{-- {!!link_to_action("BitacoraController@reporteBitacora",  $title = "Imprimir Informe", $parameters = 1, $attributes = ["class"=>"btn bg-olive",  "target"=>"_blank"])!!} --}}
-          </form>
+            {!! Form::submit('Imprimir Informe',['class'=>'btn btn-info']) !!}  </form>
         </div>
         {!! Form::close() !!}
       </div><!-- /.box -->

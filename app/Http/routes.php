@@ -70,10 +70,13 @@ Route::group(['middleware'=>'administrador'], function(){
 
   Route::resource('bitacora','BitacoraController');
 
+  Route::resource('inventario','InventarioController');
+
   ///////////////////////////////Reportes//////////////////////////////////////////////////////
 
   Route::match(['get','post'],'reporte','EmpleadoController@reporte');
   Route::match(['get','post'],'reporteBitacora','BitacoraController@reporteBitacora');
+  Route::match(['get','post'],'RPAntiguedad','RProductosController@RPAntiguedad');
   // Route::match(['get','post'],'productoLaboratorio','RProductosController@productoLaboratorio');
 
   /////////////////////////////FIN SAIC/////////////////////////////////////////////////////////

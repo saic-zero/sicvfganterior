@@ -174,7 +174,6 @@
 	  {!!Html::script('js/validaciones.js')!!}
 		{!!Html::script('js/buscaresc.js')!!}
 		{!!Html::script('js/compra.js')!!}
-		{!!Html::script('js/ventas.js')!!}
 
 		<!-- jQuery UI 1.11.4 -->
 	{!!Html::script('plugins\jQueryUI/jquery-ui.min.js')!!}

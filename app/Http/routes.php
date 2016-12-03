@@ -126,8 +126,16 @@ Route::match(['get','post'],'/darAltaPresentacion/{id}','PresentacionesControlle
 Route::get('presentaciones/crear/{producto}','PresentacionesController@crear');
 Route::match(['get','post'],'/guardarPresentaciones/{id}','PresentacionesController@guardar');
 
-///////////////////////FIN ADONAY//////////////////////////////////
+Route::resource('ventas', 'ventaController');
+Route::match(['get','post'],'/ventas/index/{id}','ventaController@index');
+Route::match(['get','post'],'/ventas/ver/{id}','ventaController@ver');
+Route::match(['get','post'],'/ventas/productospresentaciones/{cadena}','ventaController@productospresentaciones');
+Route::match(['get','post'],'/ventas/nombrepresentacionVenta/{cadena}','ventaController@nombrepresentacionVenta');
+Route::match(['get','post'],'/ventas/nombreproducto/{cadena}','ventaController@nombreproducto');
 
+Route::resource('detalleventas', 'detalleVentaController');
+
+///////////////////////FIN ADONAY//////////////////////////////////
 ///////////////////////ELIO//////////////////////////////////
 Route::match(['get','post'],'/compras/desactivo/{id}','compraController@desactivo');
 Route::match(['get','post'],'/compras/activo/{id}','compraController@activo');

@@ -168,10 +168,10 @@
                       </a>
                       <ul class="treeview-menu">
                                   <li>
-                        <a href="{!!URL::to('/producto/create')!!}"><i class='fa fa-plus fa-fw '></i>Agregar</a>
+                        <a href="{!!URL::to('/ventas/create')!!}"><i class='fa fa-plus fa-fw '></i>Agregar</a>
                     </li>
                     <li>
-                        <a href="{!!URL::to('/producto')!!}"><i class='fa fa-gears '></i> Administrar</a>
+                        <a href="{!!URL::to('/ventas')!!}"><i class='fa fa-gears '></i> Administrar</a>
                     </li>
                      <li>
                                       <a href="{!!URL::to('')!!}"><i class='glyphicon glyphicon-eye-open '></i> Informe</a>
@@ -202,6 +202,4 @@
       </li>
     </ul>
   </li>
-
-
 </ul>
